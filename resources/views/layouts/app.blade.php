@@ -16,11 +16,12 @@
 
     <!-- Scripts -->
     <script>
-        {{--window.App = {!! json_encode([--}}
-            {{--'csrfToken' => csrf_token(),--}}
-            {{--'user' => Auth::user(),--}}
-            {{--'signedIn' => Auth::check()--}}
-        {{--]) !!};--}}
+        window.App = {!! json_encode([
+            'csrfToken' => csrf_token(),
+            'user' => Auth::user(),
+            'signedIn' => Auth::check()
+        ]) !!};
+
     </script>
 
     <style>
@@ -45,7 +46,7 @@
 
     @yield('head')
 </head>
-<body>
+<body style="padding-bottom: 100px;">
 <div id="app">
     @include ('layouts.nav')
     @yield('content')
@@ -54,6 +55,13 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 @yield('scripts')
 </body>
 </html>

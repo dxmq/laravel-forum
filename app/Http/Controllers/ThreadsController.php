@@ -46,8 +46,11 @@ class ThreadsController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show(Thread $thread)
+    public function show($id)
     {
+        $thread = Thread::with(['replies' => function ($query) {
+            $query->latest();
+        }, 'creator'])->findOrFail($id);
         return view('threads.show', compact('thread'));
     }
 

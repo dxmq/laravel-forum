@@ -46,6 +46,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+//        if (app()->environment() === 'local') throw $exception; // local
         return parent::render($request, $exception);
     }
 }

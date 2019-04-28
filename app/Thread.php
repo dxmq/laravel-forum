@@ -22,4 +22,22 @@ class Thread extends Model
     {
         return $this->hasMany(Reply::class);
     }
+
+    /**
+     * 许多个话题属于这个用户
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * 添加回复
+     * @param $reply
+     */
+    public function addReply($reply)
+    {
+        $this->replies()->create($reply);
+    }
 }
