@@ -46,4 +46,15 @@ class ReadThreadsTest extends TestCase
         // 我们也要看到回复
         $this->get($this->thread->path())->assertSee($reply->only);
     }*/
+
+  /* public function test_a_user_can_filter_threads_according_to_a_channel() // 一个用户能够根据频道过滤话题
+   {
+       $channel = create('App\Channel');
+       $threadInChannel = create('App\Thread', ['channel_id' => $channel->id]);
+       $threadNotInChannel = create('App\Thread');
+
+       $this->get('/threads/' . $channel->slug)
+           ->assertSee($threadInChannel->title)
+           ->assertDontSee($threadNotInChannel->title);
+   }*/
 }

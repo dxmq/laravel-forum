@@ -34,7 +34,7 @@ class ParticipateInForumTest extends TestCase
 //        $this->post('threads/1/replies', []);
     }*/
 
-    public function test_a_reply_requires_a_body() // 测试一个回复的内容必填
+   /* public function test_a_reply_requires_a_body() // 测试一个回复的内容必填
     {
         $this->withExceptionHandling()->signIn(); // 需要登录
 
@@ -44,6 +44,6 @@ class ParticipateInForumTest extends TestCase
 
         $this->post($thread->path(). '/replies', $reply->toArray())
             ->assertSessionHasErrors('body');
-    }
+    }*/
 }
 
