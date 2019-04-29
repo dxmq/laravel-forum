@@ -35,7 +35,7 @@ class ThreadTest extends TestCase
         $this->assertInstanceOf('App\User', $this->thread->creator);
     }*/
 
-    public function test_a_thread_can_add_reply()
+   /* public function test_a_thread_can_add_reply()
     {
         $this->thread->addReply([
             'body' => 'Foobar',
@@ -43,5 +43,19 @@ class ThreadTest extends TestCase
         ]);
 
         $this->assertCount(1, $this->thread->replies);
-    }
+    }*/
+
+   /*public function test_a_thread_belongs_to_a_channel() // 测试一个话题属于一个频道
+   {
+        $thread = create('App\Thread');
+
+        $this->assertInstanceOf('App\Channel', $thread->channel);
+   }*/
+
+/*   public function test_a_thread_can_make_a_string_path() // 我们期望访问 http://forum.test/threads/1 时实际是访问并且显示 http://forum.test/threads/{channel}/1
+   {
+       $thread = create('App\Thread');
+
+       $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
+   }*/
 }
