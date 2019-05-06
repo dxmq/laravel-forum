@@ -81,4 +81,44 @@ class CreateThreadsTest extends TestCase
         $this->publishThread(['channel_id' => 999])  // channle_id 为 999，是一个不存在的 Channel
         ->assertSessionHasErrors('channel_id');
     }*/
+
+    /*public function authorized_users_can_delete_threads()
+{
+    $this->signIn();
+
+    $thread = create('App\Thread',['user_id' => auth()->id()]);
+    $reply = create('App\Reply',['thread_id' => $thread->id]);
+
+    $response =  $this->json('DELETE',$thread->path());
+
+    $response->assertStatus(204);
+
+    $this->assertDatabaseMissing('threads',['id' => $thread->id]);
+    $this->assertDatabaseMissing('replies',['id' => $reply->id]);
+}
+*/
+
+  /*  public function test_guests_cannot_delete_threads()
+    {
+        $this->withExceptionHandling();
+
+        $thread = create('App\Thread');
+
+        $response = $this->delete($thread->path());
+
+        $response->assertRedirect('/login');
+    }*/
+
+    /*public function unauthorized_users_may_not_delete_threads()
+    {
+        $this->withExceptionHandling();
+
+        $thread = create('App\Thread');
+
+        $this->delete($thread->path())->assertRedirect('/login');
+
+        $this->signIn();
+        $this->delete($thread->path())->assertStatus(403);
+    }*/
+
 }

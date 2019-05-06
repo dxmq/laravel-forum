@@ -7,7 +7,7 @@
                 <div class="page-header">
                     <h1>
                         {{ $profileUser->name }}
-                        <small>注册于{{ $profileUser->created_at->diffForHumans() }}</small>
+                        <small>注册于@isset($profileUser->created_at){{ $profileUser->created_at->diffForHumans() }}@endisset</small>
                     </h1>
                 </div>
 
@@ -16,11 +16,11 @@
                         <div class="panel-heading">
                             <div class="level">
                                 <span class="flex">
-                                    <a href="{{ route('profile',$thread->creator) }}">{{ $thread->creator->name }}</a> 发表于
-                                    {{ $thread->title }}
+                                    <a href="{{ route('profile',$thread->creator) }}">{{ $thread->creator->name }}</a> 发表了
+                                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
                                 </span>
 
-                                <span>{{ $thread->created_at->diffForHumans() }}</span>
+                                <span>@isset($thread->created_at){{ $thread->created_at->diffForHumans() }}@endisset</span>
                             </div>
                         </div>
 
