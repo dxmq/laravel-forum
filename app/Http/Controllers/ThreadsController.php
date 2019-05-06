@@ -88,7 +88,7 @@ class ThreadsController extends Controller
     {
         $thread = Thread::with(['replies' => function ($query) {
             $query->latest();
-        }, 'creator', 'channel'])->findOrFail($threadId);
+        }])->find($threadId);
         return view('threads.show', [
             'thread' => $thread,
             'replies' => $thread->replies()->paginate(10)

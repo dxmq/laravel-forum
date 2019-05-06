@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Channel;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -31,7 +32,10 @@ class AppServiceProvider extends ServiceProvider
         /*View::share('channels', \App\Channel::all()); // 共享channel数据*/
 
         View::composer('*', function ($view) {
-       $view->with('channels', Channel::all());
+           $channel = Cache::rememberForever('channels', function () {
+               return Channel::all();
+           });
+           $view->with('channels', $channel);
         });
     }
 }

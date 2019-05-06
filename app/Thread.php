@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Thread extends Model
 {
     protected $guarded = [];
+    protected $with = ['creator', 'channel'];
 
     protected static function boot()
     {
@@ -27,7 +29,7 @@ class Thread extends Model
      * 当前话题下有许多的回复
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function replies()
+    public function replies():HasMany
     {
         return $this->hasMany(Reply::class);
     }
