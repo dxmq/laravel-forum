@@ -23,7 +23,7 @@ class ProfilesTest extends TestCase
 
    public function test_profiles_display_all_threads_created_by_the_associated_user()
    {
-       $user = create('App\User');
+       $this->signIn();
 
        $thread = create('App\Thread', ['user_id' => $user->id]);
 

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Thread extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
 
@@ -19,8 +21,9 @@ class Thread extends Model
         });
 
         static::deleting(function ($thread) {
-            $thread->replies()->delete(); // 删除回复
+            $thread->replies->each->delete(); // 删除回复
         });
+
     }
 
     public function path()
