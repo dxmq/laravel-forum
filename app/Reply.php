@@ -13,6 +13,8 @@ class Reply extends Model
 
     protected $with = ['owner', 'favorites'];
 
+    protected $appends = ['favoritesCount', 'isFavorited'];
+
     /**
      * 一个回复属于多个用户
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
