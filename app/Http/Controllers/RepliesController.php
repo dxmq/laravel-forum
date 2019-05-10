@@ -10,7 +10,12 @@ class RepliesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); // 只有登录的用户才能回复
+        $this->middleware('auth', ['except' => 'index']); // 只有登录的用户才能回复
+    }
+
+    public function index($channelId,Thread $thread)
+    {
+        return $thread->replies()->paginate(20);
     }
 
     /**
@@ -23,12 +28,16 @@ class RepliesController extends Controller
             'body' => 'required',
         ]);
 
-        $thread->addReply([
+        $reply = $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id(),
         ]);
 
-        return back()->with('flash', 'Your reply has been left.');
+        if (request()->expectsJson()) {
+            return $reply->load('owner');
+        }
+
+        return back()->with('flash','Your reply has been left.');
     }
 
 

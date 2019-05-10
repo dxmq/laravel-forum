@@ -85,15 +85,9 @@ class ThreadsController extends Controller
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, $threadId)
+    public function show($channelId, Thread $thread)
     {
-        $thread = Thread::with(['replies' => function ($query) {
-            $query->latest();
-        }])->find($threadId);
-        return view('threads.show', [
-            'thread' => $thread,
-            'replies' => $thread->replies()->paginate(10)
-        ]);
+        return view('threads.show',compact('thread'));
     }
 
     /**
