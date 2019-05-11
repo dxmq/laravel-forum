@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Events\ThreadHasNewReply;
+use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -11,14 +13,11 @@ class Thread extends Model
 
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
+    protected $appends = ['isSubscribedTo'];
 
     protected static function boot()
     {
         parent::boot();
-
-        static::addGlobalScope('replyCount', function ($builder) {
-            $builder->withCount('replies');
-        });
 
         static::deleting(function ($thread) {
             $thread->replies->each->delete(); // 删除回复
@@ -36,7 +35,7 @@ class Thread extends Model
      * 当前话题下有许多的回复
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function replies():HasMany
+    public function replies(): HasMany
     {
         return $this->hasMany(Reply::class);
     }
@@ -56,7 +55,11 @@ class Thread extends Model
      */
     public function addReply($reply)
     {
-        return $this->replies()->create($reply);
+        $reply = $this->replies()->create($reply);
+
+        event(new ThreadHasNewReply($this, $reply)); // 用事件方式通知
+
+        return $reply;
     }
 
     /**
@@ -72,5 +75,43 @@ class Thread extends Model
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
+    }
+
+
+    /**
+     * 订阅动作
+     * @param null $userId
+     * @return $this
+     */
+    public function subscribe($userId = null)
+    {
+        $this->subscriptions()->create([
+            'user_id' => $userId ?: auth()->id(),
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * 话题订阅
+     * @return HasMany
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(ThreadSubscription::class);
+    }
+
+    public function unsubscribe($userId = null)
+    {
+        $this->subscriptions()
+            ->where('user_id', $userId ?: auth()->id())
+            ->delete();
+    }
+
+    public function getIsSubscribedToAttribute()
+    {
+        return $this->subscriptions()
+            ->where('user_id', auth()->id())
+            ->exists();
     }
 }
