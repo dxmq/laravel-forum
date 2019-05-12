@@ -14,12 +14,12 @@ class ReplyTest extends TestCase
      *
      * @return void
      */
-   /* public function test_a_user_has_an_owner()
-    {
-        $reply = factory('App\Reply')->create(); // 创建回复
+    /* public function test_a_user_has_an_owner()
+     {
+         $reply = factory('App\Reply')->create(); // 创建回复
 
-        $this->assertInstanceOf('App\User', $reply->owner);
-    }*/
+         $this->assertInstanceOf('App\User', $reply->owner);
+     }*/
 
     /*public function test_it_knows_if_it_was_just_published()
     {
@@ -32,12 +32,25 @@ class ReplyTest extends TestCase
         $this->assertFalse($reply->wasJustPublished());
     }*/
 
-    public function test_it_can_detect_all_mentioned_users_in_the_body()
+    /*public function test_it_can_detect_all_mentioned_users_in_the_body()
     {
         $reply = create('App\Reply',[
             'body' => '@JaneDoe wants to talk to @JohnDoe'
         ]);
 
         $this->assertEquals(['JaneDoe','JohnDoe'],$reply->mentionedUsers());
+    }*/
+
+    public function test_it_warps_mentioned_usernames_in_the_body_within_archor_tags()
+    {
+
+        $reply = create('App\Reply',[
+            'body' => 'Hello @Jane-Doe.'
+        ]);
+
+        $this->assertEquals(
+            'Hello <a href="/profiles/Jane-Doe">@Jane-Doe</a>.',
+            $reply->body
+        );
     }
 }
