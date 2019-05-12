@@ -5,10 +5,7 @@
         <div class="row">
             <div class="col-md-offset-2">
                 <div class="page-header">
-                    <h1>
-                        {{ $profileUser->name }}
-                        <small>注册于@isset($profileUser->created_at){{ $profileUser->created_at->diffForHumans() }}@endisset</small>
-                    </h1>
+                    <avatar-form :user="{{ $profileUser }}"></avatar-form>
                 </div>
 
                 @forelse($activities as $date => $activity)
