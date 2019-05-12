@@ -56,4 +56,15 @@ class Reply extends Model
     {
         return $this->created_at->gt(Carbon::now()->subMinute());
     }
+
+    /**
+     * 返回被@的用户名
+     * @return mixed
+     */
+    public function mentionedUsers()
+    {
+        preg_match_all('/\@([^\s\.]+)/',$this->body,$matches);
+
+        return $matches[1];
+    }
 }

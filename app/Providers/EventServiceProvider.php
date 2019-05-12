@@ -19,8 +19,11 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
-        'App\Events\ThreadHasNewReply' => [
+        'App\Events\ThreadHasNewReply' => [ // 订阅话题监听
             'App\Listeners\NotifyThreadSubscribers'
+        ],
+        'App\Events\ThreadReceivedNewReply' => [ // @某人事件监听
+            'App\Listeners\NotifyMentionedUsers'
         ]
     ];
 

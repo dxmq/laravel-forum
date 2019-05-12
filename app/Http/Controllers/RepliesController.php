@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
+use App\Notifications\YouWereMentioned;
 use App\Reply;
 use App\Inspections\Spam;
 use App\Thread;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -27,7 +29,7 @@ class RepliesController extends Controller
      */
     public function store($channelId, Thread $thread, CreatePostRequest $request)
     {
-        return $reply = $thread->addReply([
+        return $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id(),
         ])->load('owner');
@@ -35,17 +37,11 @@ class RepliesController extends Controller
 
     public function update(Reply $reply)
     {
-        $this->authorize('update', $reply);
+        $this->authorize('update',$reply);
 
-        try {
-            $this->validate(request(), ['body' => 'required|spamfree']);
+        $this->validate(request(),['body' => 'required|spamfree']);
 
-            $reply->update(request(['body']));
-        } catch (\Exception $e) {
-            return response(
-                '抱歉，您的此次回复不能被提交:)', 422
-            );
-        }
+        $reply->update(request(['body']));
     }
 
     /**
