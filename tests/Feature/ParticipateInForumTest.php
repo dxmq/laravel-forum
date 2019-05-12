@@ -28,25 +28,25 @@ class ParticipateInForumTest extends TestCase
         $this->assertEquals(1,$thread->fresh()->replies_count);
     }*/
 
- /*   public function test_unauthenticated_may_no_add_replies()
-    {
-        $this->withExceptionHandling()
-            ->post('/threads/some-channel/1/replies', [])
-            ->assertRedirect('/login');
-//        $this->post('threads/1/replies', []);
-    }*/
+    /*   public function test_unauthenticated_may_no_add_replies()
+       {
+           $this->withExceptionHandling()
+               ->post('/threads/some-channel/1/replies', [])
+               ->assertRedirect('/login');
+   //        $this->post('threads/1/replies', []);
+       }*/
 
-   /* public function test_a_reply_requires_a_body() // 测试一个回复的内容必填
-    {
-        $this->withExceptionHandling()->signIn(); // 需要登录
+    /* public function test_a_reply_requires_a_body() // 测试一个回复的内容必填
+     {
+         $this->withExceptionHandling()->signIn(); // 需要登录
 
-        $thread = create('App\Thread');
+         $thread = create('App\Thread');
 
-        $reply = make('App\Reply', ['body' => null]);
+         $reply = make('App\Reply', ['body' => null]);
 
-        $this->post($thread->path(). '/replies', $reply->toArray())
-            ->assertSessionHasErrors('body');
-    }*/
+         $this->post($thread->path(). '/replies', $reply->toArray())
+             ->assertSessionHasErrors('body');
+     }*/
 
     /*public function test_unauthorized_users_cannot_delete_replies()
     {
@@ -99,16 +99,48 @@ class ParticipateInForumTest extends TestCase
             ->assertStatus(403);
     }*/
 
-    public function test_authorized_user_can_update_replies()
+    /* public function test_authorized_user_can_update_replies()
+     {
+         $this->signIn();
+
+         $reply = create('App\Reply', ['user_id' => auth()->id()]);
+
+         $updateReply = 'You have been changed,foo.';
+         $this->patch("replies/{$reply->id}", ['body' => $updateReply]);
+
+         $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => $updateReply]);
+     }*/
+
+    /*public function test_replies_contains_spam_may_not_be_created()
     {
+        $ $this->withExceptionHandling();
+
         $this->signIn();
 
-        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+        $thread = create('App\Thread');
+        $reply = make('App\Reply',[
+           'body' => 'something forbidden'
+        ]);
 
-        $updateReply = 'You have been changed,foo.';
-        $this->patch("replies/{$reply->id}", ['body' => $updateReply]);
+        $this->json('post',$thread->path() . '/replies',$reply->toArray())
+            ->assertStatus(422);
+    }*/
 
-        $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => $updateReply]);
-    }
+    /*public function test_users_may_only_reply_a_maximum_of_once_per_minute()
+    {
+        $this->withExceptionHandling();
+        $this->signIn();
+
+        $thread = create('App\Thread');
+        $reply = make('App\Reply', [
+            'body' => 'My simple reply.',
+        ]);
+
+        $this->post($thread->path().'/replies', $reply->toArray())
+            ->assertStatus(200);
+
+        $this->post($thread->path().'/replies', $reply->toArray())
+            ->assertStatus(429);
+    }*/
 }
 

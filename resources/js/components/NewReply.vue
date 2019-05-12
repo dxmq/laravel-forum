@@ -39,11 +39,14 @@
 
         methods: {
             addReply() {
-                axios.post(location.pathname + '/replies',{ body:this.body })
+                axios.post(location.pathname + '/replies', { body:this.body })
+                    .catch(error => {
+                        flash(error.response.data, 'danger');
+                    })
                     .then(({data}) => {
                         this.body = '';
 
-                        flash('回复已提交!');
+                        flash('Your reply has been posted.');
 
                         this.$emit('created',data);
                     });

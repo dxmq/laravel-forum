@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Channel;
 use App\Filters\ThreadsFilters;
+use App\Inspections\Spam;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class ThreadsController extends Controller
         $threads = Thread::latest()->filter($filters);
 
         if ($channel->exists) {
-            $threads->where('channel_id',$channel->id);
+            $threads->where('channel_id', $channel->id);
         }
 
 //        dd($threads->toSql());
@@ -57,15 +58,15 @@ class ThreadsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Spam $spam)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-            'channel_id' => 'required|exists:channels,id' // channel 需要必填，并且存在
+            'title' => 'required|spamfree',
+            'body' => 'required|spamfree',
+            'channel_id' => 'required|exists:channels,id',
         ]);
 
         $thread = Thread::create([
@@ -82,18 +83,22 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Thread  $thread
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function show($channelId, Thread $thread)
     {
-        return view('threads.show',compact('thread'));
+        if (auth()->check()) {
+            auth()->user()->read($thread);
+        }
+
+        return view('threads.show', compact('thread'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Thread  $thread
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function edit(Thread $thread)
@@ -104,8 +109,8 @@ class ThreadsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Thread  $thread
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Thread $thread)
@@ -116,7 +121,7 @@ class ThreadsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Thread  $thread
+     * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function destroy($channel, Thread $thread)

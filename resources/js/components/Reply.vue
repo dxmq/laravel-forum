@@ -24,7 +24,7 @@
                 <button class="btn btn-xs btn-link" @click="editing = false">Cancel</button>
             </div>
 
-            <div v-else v-text="body"> </div>
+            <div v-else v-text="body"></div>
         </div>
 
         <div class="panel-footer level" v-if="canUpdate">
@@ -41,7 +41,7 @@
     export default {
         props: ['data'],
 
-        components: { Favorite },
+        components: {Favorite},
 
         data() {
             return {
@@ -53,7 +53,7 @@
 
         computed: {
             ago() {
-                return moment(this.data.created_at).fromNow()+'...';
+                return moment(this.data.created_at).fromNow() + '...';
             },
 
             signIn() {
@@ -65,21 +65,26 @@
             }
         },
 
-        methods:{
+        methods: {
             update() {
-                axios.patch('/replies/' + this.data.id,{
-                    body:this.body
-                });
+                axios.patch('/replies/' + this.data.id)
+                    .catch(error => {
+                        flash(error.response.data, 'danger');
+                    })
+                    .then(() => {
+                        body = this.body;
 
-                this.editing = false;
+                        this.editing = false;
 
-                flash('Updated!');
+                        flash('Updated!');
+                    });
+
             },
 
             destroy() {
                 axios.delete('/replies/' + this.data.id);
 
-                this.$emit('deleted',this.data.id);
+                this.$emit('deleted', this.data.id);
             }
         }
     }

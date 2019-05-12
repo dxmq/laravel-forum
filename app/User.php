@@ -50,4 +50,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(Activity::class);
     }
+
+    /**
+     * 用户浏览话题的动作
+     * @param $thread
+     * @throws \Exception
+     */
+    public function read($thread)
+    {
+        cache()->forever(
+            $this->visitedThreadCacheKey($thread),
+            \Carbon\Carbon::now()
+        );
+    }
+
+    public function visitedThreadCacheKey($thread)
+    {
+        return $key = sprintf("users.%s.visits.%s", $this->id, $thread);
+    }
+
+    public function lastReply()
+    {
+        return $this->hasOne(Reply::class)->latest();
+    }
 }

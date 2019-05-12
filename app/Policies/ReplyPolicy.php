@@ -14,4 +14,13 @@ class ReplyPolicy
     {
         return $reply->user_id == $user->id;
     }
+
+    public function create(User $user) // 限制回复频率
+    {
+        if(! $lastReply = $user->fresh()->lastReply) {
+            return true;
+        }
+
+        return ! $lastReply->wasJustPublished();
+    }
 }

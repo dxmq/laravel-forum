@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -29,7 +30,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -40,13 +41,22 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
-        if (app()->environment() === 'testing') throw $exception; // local
+        if ($exception instanceof ValidationException) {
+            if ($request->expectsJson()) {
+                return response('你的本次回复不能被保存:)', 422);
+            }
+        }
+
+        if ($exception instanceof ThrottleException) {
+            return response('您的回复太频繁:)', 429);
+        }
+
         return parent::render($request, $exception);
     }
 }

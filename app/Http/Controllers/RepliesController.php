@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Reply;
+use App\Inspections\Spam;
 use App\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RepliesController extends Controller
 {
@@ -13,7 +16,7 @@ class RepliesController extends Controller
         $this->middleware('auth', ['except' => 'index']); // 只有登录的用户才能回复
     }
 
-    public function index($channelId,Thread $thread)
+    public function index($channelId, Thread $thread)
     {
         return $thread->replies()->paginate(20);
     }
@@ -22,30 +25,27 @@ class RepliesController extends Controller
      * @param Thread $thread
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store($channelId, Thread $thread)
+    public function store($channelId, Thread $thread, CreatePostRequest $request)
     {
-        $this->validate(request(), [
-            'body' => 'required',
-        ]);
-
-        $reply = $thread->addReply([
+        return $reply = $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id(),
-        ]);
-
-        if (request()->expectsJson()) {
-            return $reply->load('owner');
-        }
-
-        return back()->with('flash','Your reply has been left.');
+        ])->load('owner');
     }
-
 
     public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
 
-        $reply->update(request(['body']));
+        try {
+            $this->validate(request(), ['body' => 'required|spamfree']);
+
+            $reply->update(request(['body']));
+        } catch (\Exception $e) {
+            return response(
+                '抱歉，您的此次回复不能被提交:)', 422
+            );
+        }
     }
 
     /**
@@ -66,4 +66,5 @@ class RepliesController extends Controller
 
         return back();
     }
+
 }
