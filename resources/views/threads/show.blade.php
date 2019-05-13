@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <thread-view :initial-replies-count="{{ $thread->replies_count }}" inline-template>
+    <thread-view :thread="{{ $thread }}" inline-template>
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -37,26 +37,6 @@
 
                     <replies @added="repliesCount++" @removed="repliesCount--"></replies>
 
-                    {{--@foreach ($replies as $reply)--}}
-                    {{--@include('threads.reply')--}}
-                    {{--@endforeach--}}
-
-                    {{--{{ $replies->links() }}--}}
-
-                    {{--@if (auth()->check())
-                        <form method="post" action="{{ $thread->path() . '/replies' }}">
-
-                            {{ csrf_field() }}
-
-                            <div class="form-group">
-                                <textarea name="body" id="body" class="form-control" placeholder="说点什么吧..."rows="5"></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-default">提交</button>
-                        </form>
-                    @else
-                        <p class="text-center">请先<a href="{{ route('login') }}">登录</a>，然后再发表回复 </p>
-                    @endif--}}
                 </div>
 
                 <div class="col-md-4">
@@ -69,7 +49,9 @@
                             </p>
 
                             <p>
-                                <subscribe-button :active="{{ json_encode($thread->isSubscribedTo)}}"></subscribe-button>
+                                <subscribe-button :active="{{ json_encode($thread->isSubscribedTo)}}" v-if="signedIn"></subscribe-button>
+
+                                <button class="btn btn-default" v-if="authorize('isAdmin')" @click="toggleLock" v-text="test()"></button>
                             </p>
                         </div>
                     </div>

@@ -6,7 +6,11 @@
 
         <paginator :dataSet="dataSet" @changed="fetch"></paginator>
 
-        <new-reply @created="add"></new-reply>
+        <p v-if="$parent.locked">
+            这个话题是已被管理员锁定，不能回复。
+        </p>
+
+        <new-reply @created="add" v-else></new-reply>
     </div>
 </template>
 

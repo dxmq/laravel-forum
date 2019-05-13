@@ -184,4 +184,5 @@ class ThreadTest extends TestCase
 
         $this->assertEquals("something-24-{$thread['id']}",$thread['slug']);
     }*/
+
 }

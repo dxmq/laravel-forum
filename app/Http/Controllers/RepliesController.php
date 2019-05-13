@@ -29,6 +29,10 @@ class RepliesController extends Controller
      */
     public function store($channelId, Thread $thread, CreatePostRequest $request)
     {
+        if ($thread->locked) {
+            return response('话题被锁定，不能被回复', 422);
+        }
+
         return $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id(),
