@@ -3108,7 +3108,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ['message'],
   data: function data() {
     return {
-      body: '',
+      body: this.message,
+      // 此处赋予初始值
       level: 'success',
       show: false
     };
@@ -3117,7 +3118,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     if (this.message) {
-      this.flash(this.message);
+      this.flash(); // 更改逻辑为：如果有消息，则展示
     }
 
     window.events.$on('flash', function (data) {
@@ -3126,8 +3127,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     flash: function flash(data) {
-      this.body = data.message;
-      this.level = data.level;
+      // 修改处理方式：如果传入了对象参数，则重写 body，level
+      if (data) {
+        this.body = data.message;
+        this.level = data.level;
+      }
+
       this.show = true;
       this.hide();
     },
@@ -6320,7 +6325,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.alert-flash{\n    position: fixed;\n    right: 25px;\n    bottom: 25px;\n}\n", ""]);
+exports.push([module.i, "\n.alert-flash {\n    position: fixed;\n    right: 25px;\n    bottom: 25px;\n}\n", ""]);
 
 // exports
 

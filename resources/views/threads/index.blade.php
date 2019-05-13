@@ -4,6 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                @if(session('email_error') != null)
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li style="color: red">{{ session('email_error') }}</li>
+                        </ul>
+                    </div>
+                @endif
+
                 @include ('threads._list')
 
                 {{ $threads->render() }}
