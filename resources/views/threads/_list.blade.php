@@ -29,6 +29,10 @@
         <div class="panel-body">
             <div class="body">{{ $thread->body }}</div>
         </div>
+
+        <div class="panel-footer">
+            浏览量 {{ $thread->visits() }}
+        </div>
     </div>
 @empty
     <p>There are no relevant results at this time.</p>

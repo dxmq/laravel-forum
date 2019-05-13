@@ -6,7 +6,9 @@ use App\Channel;
 use App\Filters\ThreadsFilters;
 use App\Inspections\Spam;
 use App\Thread;
+use App\Trending;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class ThreadsController extends Controller
 {
@@ -20,7 +22,7 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel, ThreadsFilters $filters)
+    public function index(Channel $channel, ThreadsFilters $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
 
@@ -28,7 +30,10 @@ class ThreadsController extends Controller
             return $threads;
         }
 
-        return view('threads.index', compact('threads'));
+        return view('threads.index', [
+            'threads' => $threads,
+            'trending' => $trending->get(),
+        ]);
     }
 
     protected function getThreads(Channel $channel, ThreadsFilters $filters)
@@ -62,6 +67,10 @@ class ThreadsController extends Controller
      */
     public function store(Request $request, Spam $spam)
     {
+        if (! auth()->user()->confirmed) {
+            return redirect('/threads')->with('flash','You must first confirm your email address.');
+        }
+
         $this->validate($request, [
             'title' => 'required|spamfree',
             'body' => 'required|spamfree',
@@ -85,11 +94,15 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread)
+    public function show($channelId, Thread $thread, Trending $trending)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
         }
+
+        $trending->push($thread);
+
+        $thread->recordVisit(); // 记录浏览量
 
         return view('threads.show', compact('thread'));
     }

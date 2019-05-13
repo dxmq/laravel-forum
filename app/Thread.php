@@ -7,10 +7,11 @@ use App\Events\ThreadReceivedNewReply;
 use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Redis;
 
 class Thread extends Model
 {
-    use RecordsActivity;
+    use RecordsActivity, RecordsVisits;
 
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
@@ -127,4 +128,5 @@ class Thread extends Model
 
         return $this->updated_at > cache($key);
     }
+
 }
