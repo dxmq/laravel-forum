@@ -12,6 +12,14 @@
                     </div>
                 @endif
 
+                @if (!Auth::guest() && !auth()->user()->confirmed)
+                    <div class="alert alert-warning">
+                        <ul>
+                            <li>你的邮箱还未验证，这将导致你不能发贴，请前往你的邮箱{{auth()->user()->email}}查收邮件并验证。</li>
+                        </ul>
+                    </div>
+                @endif
+
                 @include ('threads._list')
 
                 {{ $threads->render() }}

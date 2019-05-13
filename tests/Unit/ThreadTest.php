@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
@@ -37,29 +38,29 @@ class ThreadTest extends TestCase
         $this->assertInstanceOf('App\User', $this->thread->creator);
     }*/
 
-   /* public function test_a_thread_can_add_reply()
-    {
-        $this->thread->addReply([
-            'body' => 'Foobar',
-            'user_id' => 1
-        ]);
+    /* public function test_a_thread_can_add_reply()
+     {
+         $this->thread->addReply([
+             'body' => 'Foobar',
+             'user_id' => 1
+         ]);
 
-        $this->assertCount(1, $this->thread->replies);
+         $this->assertCount(1, $this->thread->replies);
+     }*/
+
+    /*public function test_a_thread_belongs_to_a_channel() // 测试一个话题属于一个频道
+    {
+         $thread = create('App\Thread');
+
+         $this->assertInstanceOf('App\Channel', $thread->channel);
     }*/
 
-   /*public function test_a_thread_belongs_to_a_channel() // 测试一个话题属于一个频道
-   {
-        $thread = create('App\Thread');
+    /*   public function test_a_thread_can_make_a_string_path() // 我们期望访问 http://forum.test/threads/1 时实际是访问并且显示 http://forum.test/threads/{channel}/1
+       {
+           $thread = create('App\Thread');
 
-        $this->assertInstanceOf('App\Channel', $thread->channel);
-   }*/
-
-/*   public function test_a_thread_can_make_a_string_path() // 我们期望访问 http://forum.test/threads/1 时实际是访问并且显示 http://forum.test/threads/{channel}/1
-   {
-       $thread = create('App\Thread');
-
-       $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
-   }*/
+           $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
+       }*/
 
     /*public function test_a_thread_can_be_subscribed_to()
     {
@@ -100,30 +101,30 @@ class ThreadTest extends TestCase
         $this->assertTrue($thread->isSubscribedTo);
     }*/
 
-   /* public function test_a_thread_can_add_a_reply()
-    {
-        $this->thread->addReply([
-            'body' => 'Foobar',
-            'user_id' => 1
-        ]);
+    /* public function test_a_thread_can_add_a_reply()
+     {
+         $this->thread->addReply([
+             'body' => 'Foobar',
+             'user_id' => 1
+         ]);
 
-        $this->assertCount(1, $this->thread->replies);
-    }
+         $this->assertCount(1, $this->thread->replies);
+     }
 
-    public function test_a_thread_notifies_all_registered_subscribers_when_a_reply_is_added()
-    {
-        Notification::fake();
+     public function test_a_thread_notifies_all_registered_subscribers_when_a_reply_is_added()
+     {
+         Notification::fake();
 
-        $this->signIn()
-            ->thread
-            ->subscribe()
-            ->addReply([
-                'body' => 'Foobar',
-                'user_id' => 999
-            ]);
+         $this->signIn()
+             ->thread
+             ->subscribe()
+             ->addReply([
+                 'body' => 'Foobar',
+                 'user_id' => 999
+             ]);
 
-        Notification::assertSentTo(auth()->user(), ThreadWasUpdated::class);
-    }*/
+         Notification::assertSentTo(auth()->user(), ThreadWasUpdated::class);
+     }*/
 
     /*public function test_a_thread_can_check_if_the_authenticated_user_has_read_all_replies()
     {
@@ -140,7 +141,7 @@ class ThreadTest extends TestCase
         });
     }*/
 
-    public function test_a_thread_records_each_visit()
+    /*public function test_a_thread_records_each_visit()
     {
         $thread = make('App\Thread', ['id' =>1]);
 
@@ -152,5 +153,35 @@ class ThreadTest extends TestCase
 
         $thread->recordVisit();
         $this->assertEquals(2,$thread->visits());
-    }
+    }*/
+
+    /*public function test_a_thread_requires_a_unique_slug()
+    {
+        $this->signIn();
+
+        $thread = create('App\Thread', ['title' => 'Foo Title', 'slug' => 'foo-title']);
+
+        $this->assertEquals($thread->fresh()->slug, 'foo-title');
+
+        $this->post(route('threads'), $thread->toArray());
+
+        // 相同话题的 Slug 后缀会加 1，即 foo-title-2
+        $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());
+
+        $this->post(route('threads'), $thread->toArray());
+
+        // 相同话题的 Slug 后缀会加 1，即 foo-title-3
+        $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
+    }*/
+
+    /*public function test_a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
+    {
+        $this->signIn();
+
+        $thread = create('App\Thread',['title' => 'Something 24']);
+
+        $thread = $this->postJson(route('threads'),$thread->toArray())->json();
+
+        $this->assertEquals("something-24-{$thread['id']}",$thread['slug']);
+    }*/
 }

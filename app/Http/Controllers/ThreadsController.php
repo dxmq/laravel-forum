@@ -80,8 +80,12 @@ class ThreadsController extends Controller
             'body' => request('body'),
         ]);
 
+        if (request()->wantsJson()) {
+            return response($thread, 201);
+        }
+
         return redirect($thread->path())
-            ->with('flash', 'Your thread has been published');
+            ->with('flash', '你的话题已经被创建！');
     }
 
     /**
