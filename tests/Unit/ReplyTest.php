@@ -54,7 +54,7 @@ class ReplyTest extends TestCase
         );
     }*/
 
-    public function test_it_knows_if_it_is_the_best_reply()
+   /* public function test_it_knows_if_it_is_the_best_reply()
     {
         $reply = create('App\Reply');
 
@@ -63,5 +63,21 @@ class ReplyTest extends TestCase
         $reply->thread->update(['best_reply_id' => $reply->id]);
 
         $this->assertTrue($reply->isBest());
+    }*/
+
+    public function test_only_the_thread_creator_may_mark_a_reply_as_best()
+    {
+        $this->withExceptionHandling()->signIn();
+
+        $thread = create('App\Thread',['user_id' => auth()->id()]);
+
+        $replies = create('App\Reply',['thread_id' => $thread->id],2);
+
+        $this->signIn(create('App\User'));
+
+        $this->postJson(route('best-replies.store',[$replies[1]->id]))
+            ->assertStatus(403);
+
+        $this->assertFalse($replies[1]->fresh()->isBest());
     }
 }

@@ -1,15 +1,15 @@
 <template>
-    <div :id="'reply'+id" class="panel panel-default">
+    <div :id="'reply'+id" class="panel" :class="isBest ? 'panel-success' : 'panel-default'">
         <div class="panel-heading">
             <div class="level">
                 <h5 class="flex">
-                    <a :href="'/profiles/'+data.owner.name"
-                       v-text="data.owner.name">
+                    <a :href="'/profiles/'+reply.owner.name"
+                       v-text="reply.owner.name">
                     </a> said <span v-text="ago"></span>
                 </h5>
 
-                <div v-if="signIn">
-                    <favorite :reply="data"></favorite>
+                <div v-if="signedIn">
+                    <favorite :reply="reply"></favorite>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                         <textarea class="form-control" v-model="body" required></textarea>
                     </div>
 
-                    <button class="btn btn-xs btn-primary">Update</button>
+                    <button class="btn btn-xs btn-primary" >Update</button>
                     <button class="btn btn-xs btn-link" @click="cancelReply" type="button">Cancel</button>
                 </form>
             </div>
@@ -29,11 +29,14 @@
             <div v-else v-html="body"> </div>
         </div>
 
-        <div class="panel-footer level" v-if="canUpdate">
-            <button class="btn btn-xs mr-1" @click="editReply">Edit</button>
-            <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
-        </div>
+        <div class="panel-footer level" v-if="authorize('owns',reply) || authorize('owns',reply.thread)">
+            <div v-if="authorize('owns',reply)">
+                <button class="btn btn-xs mr-1" @click="editReply">Edit</button>
+                <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
+            </div>
 
+            <button class="btn btn-xs btn-default ml-a" @click="markBestReply" v-if="authorize('owns',reply.thread)">Best Reply</button>
+        </div>
     </div>
 </template>
 <script>
@@ -41,40 +44,38 @@
     import moment from 'moment';
 
     export default {
-        props: ['data'],
+        props: ['reply'],
 
-        components: {Favorite},
+        components: { Favorite },
 
         data() {
             return {
                 editing: false,
-                id: this.data.id,
-                body: this.data.body
+                id: this.reply.id,
+                body: this.reply.body,
+                isBest: this.reply.isBest,
             };
         },
 
         computed: {
             ago() {
-                return moment(this.data.created_at).fromNow() + '...';
-            },
-
-            signIn() {
-                return window.App.signIn;
-            },
-
-            canUpdate() {
-                return this.authorize(user => this.data.user_id == user.id);
+                return moment(this.reply.created_at).fromNow() + '...';
             }
         },
 
-        methods: {
+        created() {
+            window.events.$on('best-reply-selected',id => {
+                this.isBest = (id === this.id)
+            });
+        },
+
+        methods:{
             update() {
-                axios.patch(
-                    '/replies/' + this.id, {
-                        body: this.body
-                    })
+                axios.patch('/replies/' + this.reply.id,{
+                    body:this.body
+                })
                     .catch(error => {
-                        flash(error.response.data, 'danger');
+                        flash(error.response.data,'danger');
                     });
 
                 this.editing = false;
@@ -83,21 +84,29 @@
             },
 
             destroy() {
-                axios.delete('/replies/' + this.data.id);
+                axios.delete('/replies/' + this.id);
 
-                this.$emit('deleted', this.data.id);
+                this.$emit('deleted',this.id);
             },
 
-            editReply() {
+            editReply(){
                 this.old_body_data = this.body;
                 this.editing = true;
             },
 
-            cancelReply() {
+            cancelReply(){
                 this.body = this.old_body_data;
                 this.old_body_data = '';
                 this.editing = false;
             },
+
+            markBestReply() {
+                this.isBest = true;
+
+                axios.post('/replies/' + this.id + '/best');
+
+                window.events.$emit('best-reply-selected',this.id);
+            }
         }
     }
 </script>

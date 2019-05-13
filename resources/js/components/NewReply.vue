@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="signIn">
+        <div v-if="signedIn">
             <div class="form-group">
                 <textarea name="body"
                           id="body"
@@ -32,12 +32,6 @@
             return {
                 body:'',
             };
-        },
-
-        computed: {
-            signIn() {
-                return window.App.signIn;
-            }
         },
 
         mounted() {

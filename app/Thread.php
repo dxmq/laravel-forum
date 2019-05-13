@@ -168,4 +168,13 @@ class Thread extends Model
         return $this->updated_at > cache($key);
     }
 
+
+    /**
+     * 标记最佳回复
+     * @param $reply
+     */
+    public function markBestReply($reply)
+    {
+        $this->update(['best_reply_id' => $reply->id]);
+    }
 }
