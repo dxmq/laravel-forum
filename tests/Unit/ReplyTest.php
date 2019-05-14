@@ -65,7 +65,7 @@ class ReplyTest extends TestCase
         $this->assertTrue($reply->isBest());
     }*/
 
-    public function test_only_the_thread_creator_may_mark_a_reply_as_best()
+   /* public function test_only_the_thread_creator_may_mark_a_reply_as_best()
     {
         $this->withExceptionHandling()->signIn();
 
@@ -79,5 +79,12 @@ class ReplyTest extends TestCase
             ->assertStatus(403);
 
         $this->assertFalse($replies[1]->fresh()->isBest());
+    }*/
+
+    public function test_a_reply_body_is_sanitized_automatically()
+    {
+        $reply = create('App\Reply',['body' => "<script>alert('bad')</script><p>This is OK.</p>"]);
+
+        $this->assertEquals("<p>This is OK.</p>",$reply->body);
     }
 }

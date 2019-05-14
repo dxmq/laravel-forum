@@ -8,7 +8,7 @@ use App\Thread;
 
 class SearchController extends Controller
 {
-    public function show(Trending $trending)
+    public function show(Thread $thread, Trending $trending)
     {
         $search = request('q');
 
@@ -16,7 +16,7 @@ class SearchController extends Controller
             return redirect('/threads');
         }
 
-        $threads = Thread::where('title', 'like', "$search%")->paginate(20);
+        $threads = $thread->search($search);
 
         return view('threads.search',[
             'threads' => $threads,

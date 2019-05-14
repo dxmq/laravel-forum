@@ -181,4 +181,8 @@ class Thread extends Model
         $this->update(['best_reply_id' => $reply->id]);
     }
 
+    public function search($search)
+    {
+        return $this->where('title', 'like', "$search%")->orderBy('replies_count', 'desc')->paginate(20);
+    }
 }
