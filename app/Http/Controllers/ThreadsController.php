@@ -9,6 +9,7 @@ use App\Thread;
 use App\Trending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Laravolt\Avatar\Avatar;
 
 class ThreadsController extends Controller
 {
@@ -94,7 +95,7 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread, Trending $trending)
+    public function show($channelId, Thread $thread, Trending $trending, Avatar $avatar)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
@@ -104,7 +105,12 @@ class ThreadsController extends Controller
 
         $thread->recordVisit(); // 记录浏览量
 
-        return view('threads.show', compact('thread'));
+        $defaultAvatar = $avatar->create($thread->creator->name)
+            ->setDimension(30)
+            ->setFontSize(16)
+            ->setBackground('#00b5ad');
+
+        return view('threads.show', compact('thread', 'defaultAvatar'));
     }
 
     /**

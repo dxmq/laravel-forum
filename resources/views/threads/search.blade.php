@@ -32,13 +32,13 @@
                                     </h4>
 
                                     <h5>
-                                        Posted By:<a
+                                        发布者：<a
                                                 href="{{ route('profile',$thread->creator) }}">{{ $thread->creator->name }}</a>
                                     </h5>
                                 </div>
 
                                 <a href="{{ $thread->path() }}">
-                                    {{ $thread->replies_count }} {{ str_plural('reply',$thread->replies_count) }}
+                                    {{ $thread->replies_count }}个回复
                                 </a>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Search
+                        搜索
                     </div>
 
                     <div class="panel-body">
@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-default" type="submit">Search</button>
+                                <button class="btn btn-default" type="submit">搜索</button>
                             </div>
                         </form>
                     </div>
@@ -81,7 +81,7 @@
                 @if (count($trending))
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Trending Threads
+                            活跃话题
                         </div>
 
                         <div class="panel-body">

@@ -16,12 +16,12 @@
                     </h4>
 
                     <h5>
-                        Posted By:<a href="{{ route('profile',$thread->creator) }}">{{ $thread->creator->name }}</a>
+                        发布者：<a href="{{ route('profile',$thread->creator) }}">{{ $thread->creator->name }}</a>
                     </h5>
                 </div>
 
                 <a href="{{ $thread->path() }}">
-                    {{ $thread->replies_count }} {{ str_plural('reply',$thread->replies_count) }}
+                    {{ $thread->replies_count }}个回复
                 </a>
             </div>
         </div>

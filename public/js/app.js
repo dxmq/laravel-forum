@@ -2998,6 +2998,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
@@ -3006,7 +3008,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      avatar: '/storage/' + this.user.avatar_path
+      avatar: this.user.avatar_path
     };
   },
   computed: {
@@ -55967,10 +55969,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("h1", { domProps: { textContent: _vm._s(_vm.user.name) } }),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
     _c("div", { staticClass: "level" }, [
-      _c("img", { attrs: { src: _vm.avatar, width: "200", height: "200" } }),
-      _vm._v(" "),
-      _c("h3", { domProps: { textContent: _vm._s(_vm.user.name) } })
+      _c("img", {
+        staticClass: "mr-1",
+        staticStyle: { "border-redius": "50%" },
+        attrs: { src: _vm.avatar, width: "100", height: "100" }
+      })
     ]),
     _vm._v(" "),
     _vm.canUpdate

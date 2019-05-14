@@ -31,7 +31,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Search
+                        搜索
                     </div>
 
                     <div class="panel-body">
@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-default" type="submit">Search</button>
+                                <button class="btn btn-default" type="submit">搜索</button>
                             </div>
                         </form>
                     </div>
@@ -50,7 +50,7 @@
                 @if (count($trending))
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Trending Threads
+                            活跃话题
                         </div>
 
                         <div class="panel-body">

@@ -5,7 +5,18 @@
         <div class="row">
             <div class="col-md-offset-2">
                 <div class="page-header">
-                    <avatar-form :user="{{ $profileUser }}"></avatar-form>
+                    @if ($profileUser->avatar_path)
+                        <form action="">
+
+                        <h1 v-text="user.name"></h1>
+                        <hr>
+                        <img src="{{ $defaultAvatar }}" alt="avatar">
+
+                        <input type="file">
+                        </form>
+                    @else
+                        <avatar-form :user="{{ $profileUser }}"></avatar-form>
+                    @endif
                 </div>
 
                 @forelse($activities as $date => $activity)
@@ -17,7 +28,7 @@
                         @endif
                     @endforeach
                 @empty
-                    <p>There is no activity for this user yet.</p>
+                    <p>{{ $profileUser->name }} 仍然没有任何活动。</p>
                 @endforelse
             </div>
         </div>

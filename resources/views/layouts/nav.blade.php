@@ -22,27 +22,27 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Browse <span class="caret"></span></a>
+                       aria-expanded="false">浏览 <span class="caret"></span></a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="/threads">All Threads</a></li>
+                        <li><a href="/threads">所有话题</a></li>
 
                         @if (auth()->check())
-                            <li><a href="/threads?by={{ auth()->user()->name }}">My Threads</a></li>
+                            <li><a href="/threads?by={{ auth()->user()->name }}">我的话题</a></li>
                         @endif
 
-                        <li><a href="/threads?popular=1">Popular Threads</a></li>
-                        <li><a href="/threads?unanswered=1">Unanswered Threads</a></li>
+                        <li><a href="/threads?popular=1">流行</a></li>
+                        <li><a href="/threads?unanswered=1">零回复</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="/threads/create">New Thread</a>
+                    <a href="/threads/create">新建话题</a>
                 </li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Channels <span class="caret"></span></a>
+                       aria-expanded="false">频道 <span class="caret"></span></a>
 
                     <ul class="dropdown-menu">
                         @foreach ($channels as $channel)
@@ -56,8 +56,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    <li><a href="{{ route('login') }}">登录</a></li>
+                    <li><a href="{{ route('register') }}">注册</a></li>
                 @else
                     <user-notifications></user-notifications>
 

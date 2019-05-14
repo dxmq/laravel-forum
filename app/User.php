@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravolt\Avatar\Avatar;
 
 class User extends Authenticatable
 {
@@ -89,13 +90,9 @@ class User extends Authenticatable
         return $this->hasOne(Reply::class)->latest();
     }
 
-    public function avatar()
-    {
-        return $this->avatar_path ?: 'avatars/default.png';
-    }
-
     public function getAvatarPathAttribute($avatar)
     {
-        return $avatar ?: 'avatars/default.png';
+        $ava = new Avatar();
+        return $avatar ?: $ava->create($this->name);
     }
 }

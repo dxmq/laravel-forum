@@ -43,6 +43,7 @@
 
         .mr-1 {
             margin-right: 1em;
+            border-radius:50%
         }
 
         .ml-a {

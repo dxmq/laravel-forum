@@ -33,11 +33,18 @@
 <div class="panel panel-default" v-else>
     <div class="panel-heading">
         <div class="level">
-            <img src="/storage/{{ $thread->creator->avatar_path }}" alt="{{ $thread->creator->name }}" width="25"
-                 height="25" class="mr-1">
+            @if ($thread->creator->avatar_path)
+                <a href="{{ route('profile',$thread->creator) }}">
+                    <img src="/storage/{{ $thread->creator->avatar_path }}" alt="{{ $thread->creator->name }}" class="mr-1" width="30">
+                </a>
+            @else
+                <a href="{{ route('profile',$thread->creator) }}">
+                    <img src="{{ $defaultAvatar }}" alt="avatar">
+                </a>
+            @endif
 
             <span class="flex">
-                <a href="{{ route('profile',$thread->creator) }}">{{ $thread->creator->name }}</a> posted: <span
+                <a href="{{ route('profile',$thread->creator) }}">{{ $thread->creator->name }}</a>： <span
                         v-text="title"></span>
             </span>
         </div>

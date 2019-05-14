@@ -8,6 +8,7 @@ use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Redis;
+use Overtrue\Pinyin\Pinyin;
 
 class Thread extends Model
 {
@@ -30,7 +31,8 @@ class Thread extends Model
 
         static::created(function ($thread) {
             $thread->update([
-                'slug' => $thread->title
+                'slug' => $thread->title,
+                'body' => clean($thread->body, 'thread_or_reply_body')
             ]);
         });
 
@@ -44,6 +46,10 @@ class Thread extends Model
     public function setSlugAttribute($value)
     {
         $slug = str_slug($value);
+
+        if (preg_match('/[\x{4e00}-\x{9fa5}]/u', $value)) {
+            $slug = str_slug(pinyin_sentence($value));
+        }
 
         if (static::whereSlug($slug)->exists()) {
             $slug = "{$slug}-" . $this->id;
