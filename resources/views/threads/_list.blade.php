@@ -35,5 +35,5 @@
         </div>
     </div>
 @empty
-    <p>There are no relevant results at this time.</p>
+    <p>没有任何话题</p>
 @endforelse

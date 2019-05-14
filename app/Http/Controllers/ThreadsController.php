@@ -125,9 +125,16 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update($channelId, Thread $thread)
     {
+        $this->authorize('update', $thread); // 只有话题的创建者才能更新
 
+        $thread->update(request()->validate([
+            'title' => 'required|spamfree',
+            'body' => 'required|spamfree'
+        ]));
+
+        return $thread;
     }
 
     /**

@@ -8,35 +8,10 @@
     <thread-view :thread="{{ $thread }}" inline-template>
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="level">
-                                <img src="/storage/{{ $thread->creator->avatar() }}" alt="{{ $thread->creator->name }}" width="25" height="25" class="mr-1">
-
-                                <span class="flex">
-                <a href="{{ route('profile',$thread->creator) }}">{{ $thread->creator->name }}</a> posted:
-                {{ $thread->title }}
-            </span>
-
-                                @can('update',$thread)
-                                    <form action="{{ $thread->path() }}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-
-                                        <button type="submit" class="btn btn-link">Delete Thread</button>
-                                    </form>
-                                @endcan
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-                            {{ $thread->body }}
-                        </div>
-                    </div>
+                <div class="col-md-8" v-cloak>
+                    @include('threads._topic')
 
                     <replies @added="repliesCount++" @removed="repliesCount--"></replies>
-
                 </div>
 
                 <div class="col-md-4">
@@ -51,7 +26,10 @@
                             <p>
                                 <subscribe-button :active="{{ json_encode($thread->isSubscribedTo)}}" v-if="signedIn"></subscribe-button>
 
-                                <button class="btn btn-default" v-if="authorize('isAdmin')" @click="toggleLock" v-text="test()"></button>
+                                <button class="btn btn-default"
+                                        v-if="authorize('isAdmin')"
+                                        @click="toggleLock"
+                                        v-text="locked ? '取消锁定' : '锁定'"></button>
                             </p>
                         </div>
                     </div>
