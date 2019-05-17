@@ -4,6 +4,6 @@
         <a href="{{ $activity->subject->path() }}">{{ $activity->subject->title }}</a>
     @endslot
     @slot('body')
-        {{ $activity->subject->body }}
+        {!! str_limit($activity->subject->body, 200) !!}
     @endslot
 @endcomponent

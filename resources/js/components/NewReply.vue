@@ -54,7 +54,7 @@
                         this.body = '';
                         this.completed = true;
 
-                        flash('Your reply has been posted.');
+                        flash('你的回复已经保存！');
 
                         this.$emit('created', data);
                     });

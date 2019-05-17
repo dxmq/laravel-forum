@@ -3,10 +3,19 @@
         <div class="panel-heading">
             <div class="level">
                 <h5 class="flex">
-                    <a :href="'/profiles/'+reply.owner.name"
+                    <a :href="'/profiles/'+reply.owner.slug"
                        v-text="reply.owner.name">
-                    </a> said <span v-text="ago"></span>
+                    </a> 在 <span v-text="ago"></span> 说：
                 </h5>
+
+                <div class="level" v-if="authorize('owns',reply) || authorize('owns',reply.thread)">
+                    <div v-if="authorize('owns',reply)">
+                        <button class="btn btn-xs mr-1" @click="editReply">编辑</button>
+                        <button class="btn btn-xs btn-danger mr-1" @click="destroy">删除</button>
+                    </div>
+
+                    <button class="btn btn-xs btn-default ml-a" @click="markBestReply" v-if="authorize('owns',reply.thread)" style="margin-right: 12px">最佳回复</button>
+                </div>
 
                 <div v-if="signedIn">
                     <favorite :reply="reply"></favorite>
@@ -21,22 +30,15 @@
                         <wysiwyg v-model="body"></wysiwyg>
                     </div>
 
-                    <button class="btn btn-xs btn-primary" >Update</button>
-                    <button class="btn btn-xs btn-link" @click="cancelReply" type="button">Cancel</button>
+                    <button class="btn btn-xs btn-primary" >更新</button>
+                    <button class="btn btn-xs btn-link" @click="cancelReply" type="button">取消</button>
                 </form>
             </div>
 
             <div v-else v-html="body"> </div>
         </div>
 
-        <div class="panel-footer level" v-if="authorize('owns',reply) || authorize('owns',reply.thread)">
-            <div v-if="authorize('owns',reply)">
-                <button class="btn btn-xs mr-1" @click="editReply">Edit</button>
-                <button class="btn btn-xs btn-danger mr-1" @click="destroy">Delete</button>
-            </div>
 
-            <button class="btn btn-xs btn-default ml-a" @click="markBestReply" v-if="authorize('owns',reply.thread)">Best Reply</button>
-        </div>
     </div>
 </template>
 <script>
@@ -59,7 +61,7 @@
 
         computed: {
             ago() {
-                return moment(this.reply.created_at).fromNow() + '...';
+                return moment(this.reply.created_at).fromNow();
             }
         },
 

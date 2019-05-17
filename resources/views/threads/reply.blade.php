@@ -23,8 +23,8 @@
                     <textarea class="form-control" v-model="body"></textarea>
                 </div>
 
-                <button class="btn btn-xs btn-primary" @click="update">Update</button>
-                <button class="btn btn-xs btn-link" @click="editing = false">Cancel</button>
+                <button class="btn btn-xs btn-primary" @click="update">更新</button>
+                <button class="btn btn-xs btn-link" @click="editing = false">取消</button>
             </div>
 
             <div v-else v-text="body"></div>
@@ -32,13 +32,13 @@
 
         @can('update',$reply)
             <div class="panel-footer level">
-                <button class="btn btn-xs mr-1" @click="editing = true">Edit</button>
+                <button class="btn btn-xs mr-1" @click="editing = true">编辑</button>
 
                 <form method="POST" action="/replies/{{ $reply->id }}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
 
-                    <button type="submit" class="btn btn-danger btn-xs mr-1" @click="destroy">Delete</button>
+                    <button type="submit" class="btn btn-danger btn-xs mr-1" @click="destroy">删除</button>
                 </form>
             </div>
         @endcan

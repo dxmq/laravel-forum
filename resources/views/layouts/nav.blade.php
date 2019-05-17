@@ -13,42 +13,28 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                {{--{{ config('app.name', 'Laravel-BBS') }}--}}
+                Laravel论坛
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">浏览 <span class="caret"></span></a>
-
-                    <ul class="dropdown-menu">
-                        <li><a href="/threads">所有话题</a></li>
-
-                        @if (auth()->check())
-                            <li><a href="/threads?by={{ auth()->user()->name }}">我的话题</a></li>
-                        @endif
-
-                        <li><a href="/threads?popular=1">流行</a></li>
-                        <li><a href="/threads?unanswered=1">零回复</a></li>
-                    </ul>
-                </li>
-
+            <ul class="nav navbar-nav navbar-left">
                 <li>
-                    <a href="/threads/create">新建话题</a>
-                </li>
+                    <div class="search-warp">
+                        <form action="/threads/search" method="get">
+                            @csrf
+                            <div class="search-area">
+                                <input name="q" placeholder="搜索感兴趣的知识和文章" autocomplete="off" class="search-input"></div>
+                            <div class="showhide-search">
+                                <button type="submit" class="submit">
+                                    <span class="glyphicon glyphicon-search">
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">频道 <span class="caret"></span></a>
-
-                    <ul class="dropdown-menu">
-                        @foreach ($channels as $channel)
-                            <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
-                        @endforeach
-                    </ul>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </li>
             </ul>
 
@@ -56,7 +42,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">登录</a></li>
+                    <li><i class=""></i><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{ route('register') }}">注册</a></li>
                 @else
                     <user-notifications></user-notifications>

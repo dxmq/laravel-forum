@@ -9,7 +9,8 @@ use App\Thread;
 use App\Trending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
-use Laravolt\Avatar\Avatar;
+use Laravolt\Avatar\Avatar as a;
+use Cxp\Avatar\Avatar;
 
 class ThreadsController extends Controller
 {
@@ -33,7 +34,7 @@ class ThreadsController extends Controller
 
         return view('threads.index', [
             'threads' => $threads,
-            'trending' => $trending->get(),
+            'trending' => $trending->get()
         ]);
     }
 
@@ -45,7 +46,7 @@ class ThreadsController extends Controller
             $threads->where('channel_id', $channel->id);
         }
 
-        $threads = $threads->paginate(20);
+        $threads = $threads->paginate(10);
 
         return $threads;
     }
@@ -103,14 +104,9 @@ class ThreadsController extends Controller
 
         $trending->push($thread);
 
-        $thread->recordVisit(); // 记录浏览量
+        visits($thread)->increment();
 
-        $defaultAvatar = $avatar->create($thread->creator->name)
-            ->setDimension(30)
-            ->setFontSize(16)
-            ->setBackground('#00b5ad');
-
-        return view('threads.show', compact('thread', 'defaultAvatar'));
+        return view('threads.show', compact('thread'));
     }
 
     /**
@@ -161,4 +157,5 @@ class ThreadsController extends Controller
 
         return redirect('/threads');
     }
+
 }

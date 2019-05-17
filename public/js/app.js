@@ -3256,7 +3256,7 @@ __webpack_require__.r(__webpack_exports__);
         var data = _ref.data;
         _this.body = '';
         _this.completed = true;
-        flash('Your reply has been posted.');
+        flash('你的回复已经保存！');
 
         _this.$emit('created', data);
       });
@@ -3448,6 +3448,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3465,7 +3467,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     ago: function ago() {
-      return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.reply.created_at).fromNow() + '...';
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.reply.created_at).fromNow();
     }
   },
   created: function created() {
@@ -3526,6 +3528,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     classes: function classes() {
       return ['btn', this.active ? 'btn-primary' : 'btn-default'];
+    },
+    text: function text() {
+      return this.active ? '取消订阅' : '订阅';
     }
   },
   methods: {
@@ -3592,8 +3597,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var trix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! trix */ "./node_modules/trix/dist/trix.js");
-/* harmony import */ var trix__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(trix__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_trix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/trix */ "./node_modules/trix/dist/trix.js");
+/* harmony import */ var _node_modules_trix__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_trix__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3604,6 +3609,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Trix: _node_modules_trix__WEBPACK_IMPORTED_MODULE_0___default.a
+  },
   props: ['name', 'value', 'placeholder', 'shouldClear'],
   mounted: function mounted() {
     var _this = this;
@@ -56206,7 +56214,7 @@ var render = function() {
               },
               [
                 _c("span", { attrs: { "aria-hidden": "true" } }, [
-                  _vm._v("« Previous")
+                  _vm._v("« 上一页")
                 ])
               ]
             )
@@ -56239,7 +56247,7 @@ var render = function() {
               },
               [
                 _c("span", { attrs: { "aria-hidden": "true" } }, [
-                  _vm._v("Next »")
+                  _vm._v("下一页 »")
                 ])
               ]
             )
@@ -56339,12 +56347,52 @@ var render = function() {
         _c("div", { staticClass: "level" }, [
           _c("h5", { staticClass: "flex" }, [
             _c("a", {
-              attrs: { href: "/profiles/" + _vm.reply.owner.name },
+              attrs: { href: "/profiles/" + _vm.reply.owner.slug },
               domProps: { textContent: _vm._s(_vm.reply.owner.name) }
             }),
-            _vm._v(" said "),
-            _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
+            _vm._v(" 在 "),
+            _c("span", { domProps: { textContent: _vm._s(_vm.ago) } }),
+            _vm._v(" 说：\n            ")
           ]),
+          _vm._v(" "),
+          _vm.authorize("owns", _vm.reply) ||
+          _vm.authorize("owns", _vm.reply.thread)
+            ? _c("div", { staticClass: "level" }, [
+                _vm.authorize("owns", _vm.reply)
+                  ? _c("div", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-xs mr-1",
+                          on: { click: _vm.editReply }
+                        },
+                        [_vm._v("编辑")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-xs btn-danger mr-1",
+                          on: { click: _vm.destroy }
+                        },
+                        [_vm._v("删除")]
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.authorize("owns", _vm.reply.thread)
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-xs btn-default ml-a",
+                        staticStyle: { "margin-right": "12px" },
+                        on: { click: _vm.markBestReply }
+                      },
+                      [_vm._v("最佳回复")]
+                    )
+                  : _vm._e()
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _vm.signedIn
             ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
@@ -56384,7 +56432,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("button", { staticClass: "btn btn-xs btn-primary" }, [
-                    _vm._v("Update")
+                    _vm._v("更新")
                   ]),
                   _vm._v(" "),
                   _c(
@@ -56394,51 +56442,13 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.cancelReply }
                     },
-                    [_vm._v("Cancel")]
+                    [_vm._v("取消")]
                   )
                 ]
               )
             ])
           : _c("div", { domProps: { innerHTML: _vm._s(_vm.body) } })
-      ]),
-      _vm._v(" "),
-      _vm.authorize("owns", _vm.reply) ||
-      _vm.authorize("owns", _vm.reply.thread)
-        ? _c("div", { staticClass: "panel-footer level" }, [
-            _vm.authorize("owns", _vm.reply)
-              ? _c("div", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-xs mr-1",
-                      on: { click: _vm.editReply }
-                    },
-                    [_vm._v("Edit")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-xs btn-danger mr-1",
-                      on: { click: _vm.destroy }
-                    },
-                    [_vm._v("Delete")]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.authorize("owns", _vm.reply.thread)
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-xs btn-default ml-a",
-                    on: { click: _vm.markBestReply }
-                  },
-                  [_vm._v("Best Reply")]
-                )
-              : _vm._e()
-          ])
-        : _vm._e()
+      ])
     ]
   )
 }
@@ -56464,9 +56474,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("button", { class: _vm.classes, on: { click: _vm.subscribe } }, [
-    _vm._v("Subscribe")
-  ])
+  return _c("button", {
+    class: _vm.classes,
+    domProps: { textContent: _vm._s(_vm.text) },
+    on: { click: _vm.subscribe }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true

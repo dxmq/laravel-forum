@@ -2,11 +2,12 @@
 
 namespace App\Filters;
 
+use App\Trending;
 use App\User;
 
 class ThreadsFilters extends Filters
 {
-    protected $filters = ['by', 'popular', 'unanswered'];
+    protected $filters = ['by', 'popular', 'unanswered', 'recently'];
 
     /**
      * @param $username
@@ -34,5 +35,10 @@ class ThreadsFilters extends Filters
     public function unanswered()
     {
         return $this->builder->where('replies_count', 0);
+    }
+
+    public function recently()
+    {
+        return $this->builder;
     }
 }

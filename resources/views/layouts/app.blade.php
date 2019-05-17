@@ -12,8 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.4/trix.css" rel="stylesheet">
-
+    <link href="{{ asset('css/trix.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <!-- Scripts -->
     <script>
         window.App = {!! json_encode([
@@ -23,60 +23,22 @@
     ]) !!};
     </script>
 
-    <style>
-        body {
-            padding-bottom: 100px;
-        }
-
-        .level {
-            display: flex;
-            align-items: center;
-        }
-
-        .level-item {
-            margin-right: 1em;
-        }
-
-        .flex {
-            flex: 1;
-        }
-
-        .mr-1 {
-            margin-right: 1em;
-            border-radius:50%
-        }
-
-        .ml-a {
-            margin-left: auto;
-        }
-
-        [v-cloak] {
-            display: none;
-        }
-
-        .ais-highlight > em {
-            background: yellow;
-            font-style: normal;
-        }
-
-        .navbar-static-top {
-            border-color: #e7e7e7;
-            background-color: #fff;
-            -webkit-box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
-            border-top: 4px solid #00b5ad;
-            border-top-color: rgb(0, 181, 173);
-            margin-bottom: 40px;
-        }
-    </style>
 
     @yield('header')
 </head>
 <body style="padding-bottom: 100px;">
-<div id="app">
+<div id="app" class="topics-index-page">
     @include ('layouts.nav')
 
     @yield('content')
 
+    <footer class="footer">
+        <div class="container">
+            <p class="pull-left">
+                由 <a href="https://github.com/dxmq" target="_blank">Dxmq</a> 设计和编码 <span style="color: #e27575;font-size: 14px;">❤</span>
+            </p>
+        </div>
+    </footer>
     <flash message="{{ session('flash') }}"></flash>
 </div>
 

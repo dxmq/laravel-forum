@@ -92,6 +92,12 @@
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/cxp/laravel-avatar" />
+      <path value="$PROJECT_DIR$/vendor/valiner/identicon-avatar" />
+      <path value="$PROJECT_DIR$/vendor/torann/geoip" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-referer" />
+      <path value="$PROJECT_DIR$/vendor/awssat/laravel-visits" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

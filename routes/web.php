@@ -16,6 +16,7 @@ Route::redirect('/', '/threads');
 
 //Route::resource('threads', 'ThreadsController');
 Route::get('threads', 'ThreadsController@index')->name('threads');
+
 Route::get('threads/create','ThreadsController@create');
 Route::get('threads/search', 'SearchController@show');
 Route::get('threads/{channel}/{thread}','ThreadsController@show');

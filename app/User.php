@@ -2,10 +2,11 @@
 
 namespace App;
 
+use Cxp\Avatar\Facades\Avatar;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravolt\Avatar\Avatar;
+use Valiner\IdenticonAvatar\Identicon;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar_path'
+        'name',
+        'slug',
+        'email',
+        'password',
+        'description',
+        'avatar_path',
     ];
 
     /**
@@ -26,7 +32,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','email'
+        'password',
+        'remember_token',
+        'email',
     ];
     /**
      * The attributes that should be cast to native types.
@@ -35,7 +43,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'confirmed' => 'boolean'
+        'confirmed' => 'boolean',
     ];
 
     public function confirm()
@@ -54,12 +62,28 @@ class User extends Authenticatable
 
     public function getRouteKeyName()
     {
-        return 'name';
+        return 'slug';
+    }
+
+    public function setSlugAttribute($value)
+    {
+        $slug = str_slug($value);
+
+        if (preg_match('/[\x{4e00}-\x{9fa5}]/u', $value)) {
+            $slug = str_slug(pinyin_sentence($value));
+        }
+
+        $this->attributes['slug'] = $slug;
     }
 
     public function threads()
     {
         return $this->hasMany('App\Thread')->latest();
+    }
+
+    public function replies()
+    {
+        return $this->hasMany('App\Reply')->latest();
     }
 
     public function activity()
@@ -90,9 +114,20 @@ class User extends Authenticatable
         return $this->hasOne(Reply::class)->latest();
     }
 
-    public function getAvatarPathAttribute($avatar)
+    public function getAvatarPathAttribute()
     {
-        $ava = new Avatar();
-        return $avatar ?: $ava->create($this->name);
+        if (empty($this->attributes['avatar_path'])) {
+            $filename = sprintf('avatars/%s.png', $this->id);
+            $filepath = storage_path('app/public/'.$filename);
+            if ( ! is_dir(dirname($filepath))) {
+                mkdir(dirname($filepath), 0755, true);
+            }
+            $identicon = new Identicon();
+
+            $identicon->saveAvatar($this->name, 100, $filepath);
+            $this->update(['avatar_path' => sprintf('storage/%s', $filename)]);
+        }
+
+        return asset($this->attributes['avatar_path']);
     }
 }

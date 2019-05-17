@@ -12,7 +12,7 @@ use Overtrue\Pinyin\Pinyin;
 
 class Thread extends Model
 {
-    use RecordsActivity, RecordsVisits;
+    use RecordsActivity;
 
     protected $guarded = [];
     protected $with = ['creator', 'channel'];

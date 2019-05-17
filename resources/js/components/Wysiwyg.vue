@@ -7,9 +7,11 @@
 </template>
 
 <script>
-    import Trix from 'trix';
+    import Trix from '../../../node_modules/trix';
 
     export default {
+        components: { Trix },
+
         props:['name','value','placeholder','shouldClear'],
 
         mounted () {
