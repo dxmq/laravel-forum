@@ -6,7 +6,7 @@
  * Time: 17:29
  */
 
-namespace App;
+namespace App\Traits;
 
 trait RecordsActivity
 {

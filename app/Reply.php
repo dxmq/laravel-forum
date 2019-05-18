@@ -3,14 +3,12 @@
 namespace App;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\Favoritable;
+use App\Traits\RecordsActivity;
 
 class Reply extends Model
 {
     use Favoritable, RecordsActivity;
-
-
-    protected $guarded = [];
 
     protected $with = ['owner', 'favorites'];
 

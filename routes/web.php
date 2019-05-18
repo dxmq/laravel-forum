@@ -12,7 +12,6 @@
 */
 
 
-Route::redirect('/', '/threads');
 
 //Route::resource('threads', 'ThreadsController');
 Route::get('threads', 'ThreadsController@index')->name('threads');

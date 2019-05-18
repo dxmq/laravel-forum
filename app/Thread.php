@@ -5,16 +5,15 @@ namespace App;
 use App\Events\ThreadHasNewReply;
 use App\Events\ThreadReceivedNewReply;
 use App\Notifications\ThreadWasUpdated;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Redis;
 use Overtrue\Pinyin\Pinyin;
+use App\Traits\RecordsActivity;
 
 class Thread extends Model
 {
     use RecordsActivity;
 
-    protected $guarded = [];
     protected $with = ['creator', 'channel'];
     protected $appends = ['isSubscribedTo'];
     protected $casts = [

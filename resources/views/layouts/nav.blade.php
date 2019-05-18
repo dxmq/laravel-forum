@@ -13,13 +13,15 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{--{{ config('app.name', 'Laravel-BBS') }}--}}
-                Laravel论坛
+                {{ config('app.name') }}
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
+                <li><a href="/">首页</a></li>
+                <li><a href="/threads">问答</a></li>
+                <li><a href="/documents">文档</a></li>
                 <li>
                     <div class="search-warp">
                         <form action="/threads/search" method="get">

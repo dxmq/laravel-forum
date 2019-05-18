@@ -3,17 +3,9 @@
 namespace App;
 
 use App\Notifications\ThreadWasUpdated;
-use Illuminate\Database\Eloquent\Model;
 
 class ThreadSubscription extends Model
 {
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [];
-
     /**
      * Get the user associated with the subscription.
      *

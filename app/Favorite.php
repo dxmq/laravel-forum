@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\RecordsActivity;
 
 class Favorite extends Model
 {
