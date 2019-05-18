@@ -48,6 +48,22 @@ Route::get('api/users', 'Api\UsersController@index');
 Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')
     ->name('avatar');
 
+
+// posts
+Route::prefix('posts')->group(function () {
+    // 创建文章
+    Route::get('/create','PostsController@create');
+    // 查看文章
+    Route::get('/{post}','PostsController@show');
+    Route::post('/store','PostsController@store');
+    // 更新文章
+    Route::get('/{post}/edit','PostsController@edit');
+    Route::put('/{post}','PostsController@update');
+    // 删除文章
+    Route::get('/{post}/delete','PostsController@delete');
+
+});
+
 Auth::routes();
 
 
