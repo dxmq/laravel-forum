@@ -23,8 +23,7 @@
     ]) !!};
     </script>
 
-
-    @yield('header')
+    @yield('css')
 </head>
 <body style="padding-bottom: 100px;">
 <div id="app" class="topics-index-page">
@@ -51,6 +50,6 @@
         }
     });
 </script>
-@yield('scripts')
+@yield('js')
 </body>
 </html>

@@ -32,15 +32,15 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(App\User::class,'unconfirmed',function () {
+$factory->state(App\User::class, 'unconfirmed', function () {
     return [
-        'confirmed' => false
+        'confirmed' => false,
     ];
 });
 
-$factory->state(App\User::class,'administrator',function () {
+$factory->state(App\User::class, 'administrator', function () {
     return [
-        'name' => 'admin'
+        'name' => 'admin',
     ];
 });
 
@@ -58,7 +58,7 @@ $factory->define(App\Thread::class, function (Faker $faker) {
         'title' => $title,
         'body' => $faker->paragraph,
         'slug' => str_slug($title),
-        'locked' => false
+        'locked' => false,
     ];
 });
 
@@ -87,10 +87,51 @@ $factory->define(\Illuminate\Notifications\DatabaseNotification::class, function
     return [
         'id' => Ramsey\Uuid\Uuid::uuid4()->toString(),
         'type' => 'App\Notifications\ThreadWasUpdated',
-        'notifiable_id' => function (){
+        'notifiable_id' => function () {
             return auth()->id() ?: factory('App\User')->create()->id;
         },
         'notifiable_type' => 'App\User',
-        'data' => ['foo' => 'bar']
+        'data' => ['foo' => 'bar'],
+    ];
+});
+
+
+// categories
+$factory->define(App\Category::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word,
+    ];
+});
+
+// posts
+$factory->define(App\Post::class, function (Faker $faker) {
+    return [
+        'title' => $faker->sentence(6),
+        'body' => $faker->paragraph(10),
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
+        'category_id' => function () {
+            return factory('App\Category')->create()->id;
+        },
+    ];
+});
+
+// topics
+$factory->define(App\Topic::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word,
+    ];
+});
+
+// post_topics
+$factory->define(App\PostTopic::class, function (Faker $faker) {
+    return [
+        'post_id' => function () {
+            return factory('App\Post')->create()->id;
+        },
+        'topic_id' => function () {
+            return factory('App\Topic')->create()->id;
+        },
     ];
 });
