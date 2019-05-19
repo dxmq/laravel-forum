@@ -26,6 +26,6 @@ class Model extends EloquentModel
             $slug = "{$slug}-" . $this->id;
         }
 
-        $this->attributes['slug'] = $slug;
+        return $this->attributes['slug'] = $slug;
     }
 }

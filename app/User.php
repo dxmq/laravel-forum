@@ -73,7 +73,7 @@ class User extends Authenticatable
             $slug = str_slug(pinyin_sentence($value));
         }
 
-        $this->attributes['slug'] = $slug;
+        return $this->attributes['slug'] = $slug;
     }
 
     public function threads()

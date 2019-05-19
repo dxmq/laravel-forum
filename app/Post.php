@@ -6,10 +6,22 @@ class Post extends Model
 {
     protected $fillable = [
         'title',
+        'slug',
         'body',
         'user_id',
         'category_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($post) {
+            $post->update([
+                'slug' => $post->title,
+            ]);
+        });
+    }
 
     public function getRouteKeyName()
     {

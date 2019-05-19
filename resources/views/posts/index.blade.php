@@ -20,10 +20,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <a href="#">
-
-                            </a>
                         </div>
                     </div>
 
@@ -32,6 +28,8 @@
                     </div>
 
                     <div class="panel-footer" >
+                        <span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span>
+                        <span title="阅读数">{{ visits($post)->count() }}</span>&nbsp;
                         <span title="喜欢数"><i class="fa fa-heart-o" aria-hidden="true"></i> 156</span>&nbsp;
                         <span title="点赞数"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 156</span>&nbsp;
                         <span title="评论数"><i class="fa fa-commenting-o" aria-hidden="true"></i> 2</span>&nbsp;

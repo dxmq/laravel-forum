@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1e6dfe111ce963949db8d9180abf390",
+    "content-hash": "bb96e973582a33de1fcbd513897b94d3",
     "packages": [
         {
             "name": "awssat/laravel-visits",

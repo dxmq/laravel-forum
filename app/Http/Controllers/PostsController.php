@@ -6,6 +6,7 @@ use App\Service\CategoriesService;
 use App\Service\PostsService;
 use App\Service\TopicsService;
 use Illuminate\Http\Request;
+use App\Post;
 
 class PostsController extends Controller
 {
@@ -26,7 +27,6 @@ class PostsController extends Controller
 
     public function create()
     {
-        // 获取categories
         $categories = $this->categoriesService->getCategories();
 
         return view('posts.create', compact('categories'));
@@ -50,12 +50,19 @@ class PostsController extends Controller
         // 添加关联
         $post->topics()->attach($topics);
 
-        return redirect("/posts/{$post->id}")
+        return redirect("/")
             ->with('flash', '你的文章已经创建！');
     }
 
-    public function show()
+    public function show(Post $post)
     {
-        return '123123';
+        $post->load('creator');
+
+        $parseDown = new \Parsedown();
+        $post->body = $parseDown->text($post->body);
+
+        visits($post)->increment(); // 增加访问量
+
+        return view('posts.show', compact('post'));
     }
 }
