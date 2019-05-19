@@ -24,11 +24,6 @@ class PostsController extends Controller
         $this->topicsService = $topicsService;
     }
 
-    public function index()
-    {
-        return view('posts.index');
-    }
-
     public function create()
     {
         // 获取categories

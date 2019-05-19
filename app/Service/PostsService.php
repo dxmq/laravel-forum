@@ -24,4 +24,9 @@ class PostsService
     {
         return $this->postsRepository->createPost($params);
     }
+
+    public function getPosts()
+    {
+        return $this->postsRepository->getPosts();
+    }
 }

@@ -44,17 +44,7 @@ class Thread extends Model
 
     public function setSlugAttribute($value)
     {
-        $slug = str_slug($value);
-
-        if (preg_match('/[\x{4e00}-\x{9fa5}]/u', $value)) {
-            $slug = str_slug(pinyin_sentence($value));
-        }
-
-        if (static::whereSlug($slug)->exists()) {
-            $slug = "{$slug}-" . $this->id;
-        }
-
-        $this->attributes['slug'] = $slug;
+       $this->setSlug($value);
     }
 
     protected function incrementSlug($slug)

@@ -13,6 +13,8 @@
 
 
 
+Route::get('/', 'IndexController@index');
+
 Route::get('threads', 'ThreadsController@index')->name('threads');
 
 Route::get('threads/create','ThreadsController@create');

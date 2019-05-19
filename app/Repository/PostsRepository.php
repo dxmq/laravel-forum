@@ -24,4 +24,9 @@ class PostsRepository
     {
         return $this->post->create($params);
     }
+
+    public function getPosts()
+    {
+        return $this->post->with(['topics', 'creator', 'category'])->latest()->paginate(6);
+    }
 }
