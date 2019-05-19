@@ -8,6 +8,7 @@
 
 namespace App\Repository;
 
+use App\Post;
 use App\Topic;
 
 class TopicsRepository
@@ -27,5 +28,22 @@ class TopicsRepository
     public function createTopic($topics)
     {
         return $this->topic->create($topics);
+    }
+
+    public function updatePostTopics(Post $post, $topics)
+    {
+        $topics = $this->topic->find($topics);
+        $myTopics = $post->topics;
+
+        // 对已经有的专题
+        $addTopics = $topics->diff($myTopics);
+        foreach ($addTopics as $topic) {
+            $post->topics()->save($topic);
+        }
+
+        $deleteTopics = $myTopics->diff($topics);
+        foreach ($deleteTopics as $topic) {
+            $post->deleteTopics($topic);
+        }
     }
 }

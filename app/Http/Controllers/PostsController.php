@@ -34,16 +34,17 @@ class PostsController extends Controller
 
     public function store()
     {
-        $postData = request()->validate([
+        request()->validate([
             'category_id' => 'required',
             'title' => 'required|max:200',
-            'body' => 'required|min:6'
+            'topics' => 'required',
+            'body' => 'required|min:6',
         ]);
 
         // 转为标准的topics
         $topics = $this->topicsService->normalizeTopic(request('topics'));
 
-        $params = array_merge($postData, ['user_id' => auth()->id()]);
+        $params = array_merge(request(['category_id', 'title', 'body']), ['user_id' => auth()->id()]);
 
         $post = $this->postsService->createPost($params);
 
@@ -64,5 +65,44 @@ class PostsController extends Controller
         visits($post)->increment(); // 增加访问量
 
         return view('posts.show', compact('post'));
+    }
+
+    public function edit(Post $post)
+    {
+        $post->load('topics');
+
+        $categories = $this->categoriesService->getCategories();
+
+        return view('posts.edit', compact('post', 'categories'));
+    }
+
+    public function update(Post $post)
+    {
+        request()->validate([
+            'category_id' => 'required',
+            'title' => 'required|max:200',
+            'topics' => 'required',
+            'body' => 'required|min:6',
+        ]);
+
+        $this->authorize('update', $post);
+
+        $params = request(['category_id', 'title', 'body']);
+
+        $this->postsService->updatePost($post, $params);
+
+        $this->topicsService->updatePostTopics($post, request('topics')); // 维护中间表
+
+        return redirect('/')
+            ->with('flash', '文章修改成功！');
+    }
+
+    public function destroy(Post $post)
+    {
+        // 策略验证
+        $this->authorize('update', $post);
+        $this->postsService->deletePost($post);
+        return redirect("/")
+            ->with('你在文章已经删除！');
     }
 }

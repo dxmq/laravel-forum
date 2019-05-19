@@ -29,4 +29,14 @@ class PostsRepository
     {
         return $this->post->with(['topics', 'creator', 'category'])->latest()->paginate(6);
     }
+
+    public function update($post, $params)
+    {
+        return $post->update($params);
+    }
+
+    public function delete(Post $post)
+    {
+        $post->delete();
+    }
 }

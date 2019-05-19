@@ -10,32 +10,48 @@
                         <div class="level">
                             <div class="flex">
                                 <div class="media-left">
-                                    <a href="{{ route('profile', $post->creator->slug) }}" title="{{ $post->creator->name }}">
-                                        <img class="media-object" width="35px" src="{{ $post->creator->avatar_path }}" alt="{{ $post->creator->name }}">
+                                    <a href="{{ route('profile', $post->creator->slug) }}"
+                                       title="{{ $post->creator->name }}">
+                                        <img class="media-object" width="35px" src="{{ $post->creator->avatar_path }}"
+                                             alt="{{ $post->creator->name }}">
                                     </a>
                                 </div>
                                 <div class="media-body">
                                     <h4>{{ $post->title }}</h4>
                                 </div>
+
                                 <div class="media-bottom">
                                     <span title="创建于">{{ $post->created_at->format('Y-m-d H:i') }}</span> /
                                     <span aria-hidden="true" class="glyphicon glyphicon-eye-open" title="查看数"></span>
                                     <span title="阅读数">{{ visits($post)->count() }}</span>&nbsp;/
                                     <span title="评论数"><i class="fa fa-commenting-o" aria-hidden="true"></i> 2</span>
+                                    @can('update', $post)
+                                        <span class="pull-right">
+                                        <a href="/posts/{{$post->slug}}/edit">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                        编辑
+                                    </a>
+                                    <a href="javascript:;" onclick="deletePost({{ $post->slug }})">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        删除
+                                    </a>
+                                    </span>
+                                    @endcan
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="panel-body">
-                        <div class="body">{!! $post->body !!}</div>
+                    <div class="panel-body" style="margin-right: 30px; margin-left: 30px">
+                        {!! $post->body !!}
                     </div>
 
                     <div class="comment">
                         <h4 class="bl-title">相关评价</h4>
                         <form class="bl-comment-form">
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="想说就说吧..." id="exampleFormControlTextarea1" rows="5"></textarea>
+                                <textarea class="form-control" placeholder="想说就说吧..." id="exampleFormControlTextarea1"
+                                          rows="5"></textarea>
                             </div>
                             <button type="button">发表</button>
                             <span class="clearfix"></span>
@@ -76,4 +92,26 @@
             @include('posts.partials._right')
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        function deletePost(post) {
+            Swal(
+                {
+                    title: "确认删除?",
+                    text: "确定要删除吗？",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: '确定',
+                    cancelButtonText: "取消"
+                }
+            ).then((res) => {
+                if (res.value) {
+                    window.location.href = '/posts/' + post + '/delete';
+                }
+            });
+        }
+    </script>
 @endsection

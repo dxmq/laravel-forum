@@ -29,4 +29,14 @@ class PostsService
     {
         return $this->postsRepository->getPosts();
     }
+
+    public function updatePost($post, $params)
+    {
+        return $this->postsRepository->update($post, $params);
+    }
+
+    public function deletePost($post)
+    {
+        $this->postsRepository->delete($post);
+    }
 }

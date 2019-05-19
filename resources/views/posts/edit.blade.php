@@ -6,62 +6,67 @@
 @endsection
 
 @section('content')
-   <div class="container" style="margin-top:38px;">
-       <div class="row">
-           <div class="col-md-10 col-md-offset-1">
-               <div class="panel panel-default">
-                   <div class="panel-heading">创建文章</div>
+    <div class="container" style="margin-top:38px;">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">修改文章</div>
 
-                   <div class="panel-body">
-                       <form class="form-horizontal" method="POST" action="/posts/store">
-                           {{ csrf_field() }}
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="/posts/{{ $post->slug }}">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
+                            @include('layouts.partials.error')
 
-                          @include('layouts.partials.error')
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <select name="category_id" class="input-xlarge form-control">
+                                        @foreach($categories as $category)
+                                            <option @if($post->category_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-9">
+                                    <input class="form-control" name="title" value="{{ $post->title }}" required autofocus placeholder="请输入标题">
+                                </div>
+                            </div>
 
-                           <div class="form-group">
-                               <div class="col-md-3">
-                                   <select name="category_id" class="input-xlarge form-control">
-                                       @foreach($categories as $category)
-                                           <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                       @endforeach
-                                   </select>
-                               </div>
-                               <div class="col-md-9">
-                                   <input class="form-control" name="title" value="{{ old('title') }}"  autofocus placeholder="请输入标题">
-                               </div>
-                           </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <select class="form-control topics" multiple="multiple" name="topics[]">
+                                        @foreach($post->topics as $topic)
+                                            <option value="{{ $topic->id }}" selected="selected">{{ $topic->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
-                           <div class="form-group">
-                               <div class="col-md-12">
-                                   <select class="form-control topics" multiple="multiple" name="topics[]">
-                                   </select>
-                               </div>
-                           </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <textarea rows="9" id="editor" style="resize:none" name="body" class="form-control">{{ $post->body }}</textarea>
+                                </div>
+                            </div>
 
-                           <div class="form-group">
-                               <div class="col-md-12">
-                                   <textarea rows="9" id="editor" style="resize:none" name="body" class="form-control"> </textarea>
-                               </div>
-                           </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-md-offset-10">
+                                    <button type="submit" class="btn btn-success">
+                                        保存修改
+                                    </button>
+                                </div>
+                            </div>
 
-                           <div class="form-group">
-                               <div class="col-md-12 col-md-offset-10">
-                                   <button type="submit" class="btn btn-success">
-                                       发布文章
-                                   </button>
-                               </div>
-                           </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-                       </form>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </div>
+            @include('posts.partials._right')
+        </div>
+    </div>
 @endsection
 
 @section('js')
- <script src="{{ asset('/js/vendor/simplemde.min.js') }}"></script>
+    <script src="{{ asset('/js/vendor/simplemde.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/i18n/zh-CN.js"></script>
     <script>

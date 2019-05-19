@@ -61,7 +61,7 @@ Route::prefix('posts')->group(function () {
     Route::get('/{post}/edit','PostsController@edit');
     Route::put('/{post}','PostsController@update');
     // 删除文章
-    Route::get('/{post}/delete','PostsController@delete');
+    Route::get('/{post}/delete','PostsController@destroy');
 
 });
 

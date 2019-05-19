@@ -21,6 +21,12 @@ class Post extends Model
                 'slug' => $post->title,
             ]);
         });
+
+        static::updated(function ($post) {
+            $post->update([
+                'slug' => $post->title
+            ]);
+        });
     }
 
     public function getRouteKeyName()
@@ -31,6 +37,11 @@ class Post extends Model
     public function topics()
     {
         return $this->belongsToMany(Topic::class, 'post_topics', 'post_id', 'topic_id')->withTimestamps();
+    }
+
+    public function deleteTopics($topics) // 删除与topic的关联
+    {
+        $this->topics()->detach($topics);
     }
 
     public function creator()

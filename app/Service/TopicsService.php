@@ -9,6 +9,7 @@
 namespace App\Service;
 
 
+use App\Post;
 use App\Repository\TopicsRepository;
 
 class TopicsService
@@ -33,4 +34,10 @@ class TopicsService
             return $newTopic->id;
         })->toArray();
     }
+
+    public function updatePostTopics(Post $post, $topics)
+    {
+        $this->topicsRepository->updatePostTopics($post, $topics);
+    }
+
 }
