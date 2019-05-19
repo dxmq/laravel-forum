@@ -23,4 +23,9 @@ class TopicsRepository
     {
         return $this->topic->where('name', 'like', '%' . $query . '%')->get();
     }
+
+    public function createTopic($topics)
+    {
+        return $this->topic->create($topics);
+    }
 }

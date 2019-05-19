@@ -13,18 +13,10 @@
                    <div class="panel-heading">创建文章</div>
 
                    <div class="panel-body">
-                       <form class="form-horizontal" method="POST" action="/post/store">
+                       <form class="form-horizontal" method="POST" action="/posts/store">
                            {{ csrf_field() }}
-                           @if(count($errors))
-                               <div class="form-group">
-                                   <div class="col-md-12">
-                                       @foreach($errors->all() as $error)
-                                           <div style="padding: 8px;
-       margin-bottom: 10px;" class="alert alert-danger" role="alert">{{ $error }}</div>
-                                       @endforeach
-                                   </div>
-                               </div>
-                           @endif
+
+                          @include('layouts.partials.error')
 
                            <div class="form-group">
                                <div class="col-md-3">
@@ -141,7 +133,7 @@
 
         $(".topics").select2({
             tags: true,
-            placeholder: '选择相关话题，输出字符会自动检索',
+            placeholder: '选择相关专题，输出字符会自动检索',
             minimumInputLength: 1,
             ajax: {
                 url: '/api/topics',
@@ -153,7 +145,6 @@
                     };
                 },
                 processResults: function (data) {
-                console.log(data);
                     return {
                         results: data.topics
                     };
