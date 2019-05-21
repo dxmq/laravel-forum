@@ -19,7 +19,7 @@ class PostsController extends Controller
         PostsService $postsService,
         TopicsService $topicsService
     ) {
-        $this->middleware(['auth'])->except(['show', 'index']);
+        $this->middleware(['auth', 'must-be-confirmed'])->except(['show', 'index']);
         $this->categoriesService = $categoriesService;
         $this->postsService = $postsService;
         $this->topicsService = $topicsService;
@@ -97,12 +97,16 @@ class PostsController extends Controller
             ->with('flash', '文章修改成功！');
     }
 
-    public function destroy(Post $post)
+    public function destroy($id)
     {
+        $post = new Post();
+
         // 策略验证
         $this->authorize('update', $post);
-        $this->postsService->deletePost($post);
+
+        $this->postsService->deletePost($id);
+
         return redirect("/")
-            ->with('你在文章已经删除！');
+            ->with('文章已经删除！');
     }
 }

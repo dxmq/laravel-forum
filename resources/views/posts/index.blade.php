@@ -4,8 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-sm-12">
+
+                @include('layouts.partials.email_alert')
+
                 @forelse($posts as $post)
-                <div class="panel panel-default">
+                <div class="panel panel-success">
                     <div class="panel-heading">
                         <div class="level">
                             <div class="flex">
@@ -24,7 +27,7 @@
                     </div>
 
                     <div class="panel-body">
-                        <div class="body">{!! str_limit($post->body, 300, '...') !!}</div>
+                        <div class="body">{!! str_limit($post->body, 420, '...') !!}</div>
                     </div>
 
                     <div class="panel-footer" >

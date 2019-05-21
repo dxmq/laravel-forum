@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Mail\PleaseConfirmYourEmail;
 use Cxp\Avatar\Facades\Avatar;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Mail;
 use Valiner\IdenticonAvatar\Identicon;
 
 class User extends Authenticatable
@@ -129,5 +131,11 @@ class User extends Authenticatable
         }
 
         return asset($this->attributes['avatar_path']);
+    }
+
+    // 获取验证email的链接
+    public function getSendConfirmMailLink()
+    {
+        Mail::to(auth()->user())->send();
     }
 }

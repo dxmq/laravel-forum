@@ -35,8 +35,8 @@ class PostsService
         return $this->postsRepository->update($post, $params);
     }
 
-    public function deletePost($post)
+    public function deletePost($id)
     {
-        $this->postsRepository->delete($post);
+        $this->postsRepository->delete($id);
     }
 }

@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-sm-9">
-                <div class="panel panel-default">
+                <div class="panel panel-success">
                     <div class="panel-heading">
                         <div class="level">
                             <div class="flex">
@@ -31,7 +31,7 @@
                                         <span class="glyphicon glyphicon-pencil"></span>
                                         编辑
                                     </a>
-                                    <a href="javascript:;" onclick="deletePost({{ $post->slug }})">
+                                    <a href="javascript:;" onclick="deletePost({{ $post->id }})">
                                         <span class="glyphicon glyphicon-remove"></span>
                                         删除
                                     </a>
@@ -95,23 +95,24 @@
 @endsection
 
 @section('js')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function deletePost(post) {
-            Swal(
-                {
-                    title: "确认删除?",
-                    text: "确定要删除吗？",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: '确定',
-                    cancelButtonText: "取消"
-                }
-            ).then((res) => {
-                if (res.value) {
-                    window.location.href = '/posts/' + post + '/delete';
-                }
-            });
+            swal({
+                title: '你确定要删除"{{ $post->title }}"这篇文章吗?',
+                text: "一但删除，将不能恢复！",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = '/posts/' + post + '/delete';
+                        swal('文章"{{ $post->title }}已被删除！"', {
+                            icon: "success",
+                        });
+                    }
+                });
         }
     </script>
 @endsection

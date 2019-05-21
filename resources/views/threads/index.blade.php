@@ -4,21 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 col-md-9 topic-list">
-                @if(session('email_error') != null)
-                    <div class="alert alert-danger">
-                        <ul>
-                            <li style="color: red">{{ session('email_error') }}</li>
-                        </ul>
-                    </div>
-                @endif
 
-                @if (!Auth::guest() && !auth()->user()->confirmed)
-                    <div class="alert alert-warning">
-                        <ul>
-                            <li>你的邮箱还未验证，这将导致你不能发贴，请前往你的邮箱{{auth()->user()->email}}查收邮件并验证。</li>
-                        </ul>
-                    </div>
-                @endif
+               @include('layouts.partials.email_alert')
 
                 <div class="panel panel-default">
                     <div class="panel-heading">

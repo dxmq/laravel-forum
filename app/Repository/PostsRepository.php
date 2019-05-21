@@ -35,8 +35,10 @@ class PostsRepository
         return $post->update($params);
     }
 
-    public function delete(Post $post)
+    public function delete($id)
     {
+        $post = $this->post->findOrFail($id);
+
         $post->delete();
     }
 }

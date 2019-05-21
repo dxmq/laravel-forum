@@ -22,7 +22,7 @@ Route::get('threads/search', 'SearchController@show');
 Route::get('threads/{channel}/{thread}','ThreadsController@show');
 Route::patch('threads/{channel}/{thread}', 'ThreadsController@update');
 Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy');
-Route::post('threads','ThreadsController@store')->middleware('must-be-confirmed');
+Route::post('threads','ThreadsController@store');
 Route::get('threads/{channel}','ThreadsController@index');
 Route::get('/threads/{channel}/{thread}/replies','RepliesController@index');
 Route::post('/threads/{channel}/{thread}/replies','RepliesController@store');
@@ -48,7 +48,7 @@ Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index');
 Route::get('api/users', 'Api\UsersController@index');
 Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')
     ->name('avatar');
-
+Route::get('/users/send_verification_mail', 'UsersController@sendVerificationMail')->name('users.send-verification-mail'); // 发送邮件
 
 // posts
 Route::prefix('posts')->group(function () {
@@ -61,7 +61,7 @@ Route::prefix('posts')->group(function () {
     Route::get('/{post}/edit','PostsController@edit');
     Route::put('/{post}','PostsController@update');
     // 删除文章
-    Route::get('/{post}/delete','PostsController@destroy');
+    Route::get('/{id}/delete','PostsController@destroy');
 
 });
 
