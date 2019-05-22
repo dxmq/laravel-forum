@@ -2,11 +2,14 @@
     <div :id="'reply'+id" class="panel" :class="isBest ? 'panel-success' : 'panel-default'">
         <div class="panel-heading">
             <div class="level">
-                <h5 class="flex">
+                <a :href="'/profiles/'+reply.owner.slug" :title="reply.owner.name" class="media-object img-thumbnail">
+                    <img  width="30" :src="reply.owner.avatar_path" alt="reply.owner.name">
+                </a>&nbsp;
+                <span class="flex">
                     <a :href="'/profiles/'+reply.owner.slug"
                        v-text="reply.owner.name">
                     </a> 在 <span v-text="ago"></span> 说：
-                </h5>
+                </span>
 
                 <div class="level" v-if="authorize('owns',reply) || authorize('owns',reply.thread)">
                     <div v-if="authorize('owns',reply)">

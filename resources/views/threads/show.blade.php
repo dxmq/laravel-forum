@@ -19,7 +19,7 @@
                         <div class="panel-body">
                             <p>
                                 创建于 {{ $thread->created_at->diffForHumans() }} by
-                                <a href="#">{{ $thread->creator->name }}</a> 回复数 <span v-text="repliesCount"></span> {{ str_plural('comment',$thread->replies_count) }}
+                                <a href="#">{{ $thread->creator->name }}</a> 回复数 <span v-text="repliesCount"></span>
                             </p>
 
                             <p>

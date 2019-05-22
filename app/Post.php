@@ -58,4 +58,15 @@ class Post extends Model
     {
         $this->setSlug($value);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    // 获取这篇文章的评论并以parent_id分组
+    public function getComments()
+    {
+        return $this->comments()->with('owner')->get()->groupBy('parent_id');
+    }
 }

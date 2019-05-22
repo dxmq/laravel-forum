@@ -8,12 +8,32 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Valiner\IdenticonAvatar\Identicon;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -133,9 +153,4 @@ class User extends Authenticatable
         return asset($this->attributes['avatar_path']);
     }
 
-    // 获取验证email的链接
-    public function getSendConfirmMailLink()
-    {
-        Mail::to(auth()->user())->send();
-    }
 }

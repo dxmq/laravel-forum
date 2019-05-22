@@ -138,3 +138,18 @@ $factory->define(App\PostTopic::class, function (Faker $faker) {
         },
     ];
 });
+
+// comments
+$factory->define(App\Comment::class, function (Faker $faker) {
+    return [
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
+        'post_id' => function () {
+            return factory('App\Post')->create()->id;
+        },
+        'parent_id' => 0,
+        'body' => $faker->sentence(6),
+        'level' => 0
+    ];
+});

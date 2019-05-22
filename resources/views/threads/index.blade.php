@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 topic-list">
 
-               @include('layouts.partials.email_alert')
+               @include('layouts.partials._email_alert')
 
                 <div class="panel panel-default">
                     <div class="panel-heading">

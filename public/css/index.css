@@ -183,61 +183,21 @@ body {
 }
 
 /*comment panel*/
-.comment-panel{
-    padding-bottom:0.5rem;
-    margin-top:2rem;
-    border-bottom:1px solid #dee2e6;
+.bl-comments .bl-title{
+    margin-left: 12px;
+}
+
+.praise-box {
     position: relative;
-}
-.bl-comment-form button{
-    float: right;
-    background-color: #154fa1;
-    color:#fff;
-    padding:0.5rem 1rem;
-    border:1px solid #154fa1;
-    border-radius: 2px;
-    margin-right: 10px;
-}
-.comment-panel .comment-panel-portrait{
-    position: absolute;
-    top:0;
-    left:0;
-    border:1px solid #eee;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 3rem;
-    height: 3rem;
-}
-.comment-panel-portrait img{
-    max-width: 100%;
-}
-.comment-panel-content-item span{
-    color:#666;
-    margin:0 1rem 0 0;
-}
-.comment-panel-content p{
-    font-size:16px;
-    margin:0.5rem 0 0 0;
-}
-.comment-panel .bl-reply{
-    text-align: right;
-    color:#154fa1;
-    margin-right: 25px;
-}
-.comment-panel .comment-panel-content{
-    padding:0 0 0 4rem;
     width: 100%;
+    margin: 48px 0 0 0;
+    text-align: center;
 }
-.comment-panel .comment-panel-content .comment-panel-content-item div{
-    display: inline;
-    padding:0 1rem 0 0;
-}
-.comment-panel .comment-panel-secondary{
-    border:1px solid #e5e5e5;
-    padding:0.5rem 1rem;
-    margin:1rem 0;
-    background-color: #fffffb;
-}
-.comment-panel-secondary span{
-    color:#17a2b8;
+
+.praise-box {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #545c63;
+    line-height: 22px;
+    cursor: pointer;
 }

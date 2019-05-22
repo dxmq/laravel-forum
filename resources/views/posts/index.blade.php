@@ -5,17 +5,17 @@
         <div class="row">
             <div class="col-md-9 col-sm-12">
 
-                @include('layouts.partials.email_alert')
+                @include('layouts.partials._email_alert')
 
                 @forelse($posts as $post)
-                <div class="panel panel-success">
-                    <div class="panel-heading">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="padding: 4px;">
                         <div class="level">
                             <div class="flex">
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="{{ route('profile', $post->creator->slug) }}" title="{{ $post->creator->name }}">
-                                            <img class="media-object" width="35px" src="{{ $post->creator->avatar_path }}" alt="{{ $post->creator->name }}">
+                                            <img class="media-object img-circle" width="40px" src="{{ $post->creator->avatar_path }}" alt="{{ $post->creator->name }}">
                                         </a>
                                     </div>
                                     <div class="media-body">
@@ -30,7 +30,7 @@
                         <div class="body">{!! str_limit($post->body, 420, '...') !!}</div>
                     </div>
 
-                    <div class="panel-footer" >
+                    <div class="panel-footer" style="padding: 3px;background-color: #ffffaa">
                         <span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span>
                         <span title="阅读数">{{ visits($post)->count() }}</span>&nbsp;
                         <span title="喜欢数"><i class="fa fa-heart-o" aria-hidden="true"></i> 156</span>&nbsp;

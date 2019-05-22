@@ -24,6 +24,12 @@ Vue.component('avatar-form', require('./components/AvatarForm').default);
 Vue.component('wysiwyg', require('./components/Wysiwyg.vue').default);
 
 Vue.component('thread-view', require('./pages/Thread.vue').default);
+
+Vue.component('comment-post', require('./components/CommentPost.vue').default);
+Vue.component('comment-root', require('./components/CommentRoot.vue').default);
+Vue.component('comment-child', require('./components/CommentChild.vue').default);
+
+Vue.component('zan', require('./components/Zan.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

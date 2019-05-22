@@ -228,7 +228,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
-        'Avatar' => Cxp\Avatar\Facades\Avatar::class
+        'Avatar' => Cxp\Avatar\Facades\Avatar::class,
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
+        'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
     ],
 
 ];

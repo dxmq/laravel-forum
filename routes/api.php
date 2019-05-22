@@ -18,3 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/topics', 'Api\TopicsController@index');
+
+Route::middleware('auth:api')->group(function ($route) {
+});
+Route::post('/posts/{id}/comment', 'Api\PostsController@comment');

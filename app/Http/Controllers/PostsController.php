@@ -59,12 +59,14 @@ class PostsController extends Controller
     {
         $post->load('creator');
 
-        $parseDown = new \Parsedown();
+        $parseDown = new \Parsedown(); // 解析markdown
         $post->body = $parseDown->text($post->body);
 
         visits($post)->increment(); // 增加访问量
 
-        return view('posts.show', compact('post'));
+        $comments = $post->getComments();
+
+        return view('posts.show', compact('post', 'comments'));
     }
 
     public function edit(Post $post)
