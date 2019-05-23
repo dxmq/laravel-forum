@@ -69,4 +69,16 @@ class Post extends Model
     {
         return $this->comments()->with('owner')->get()->groupBy('parent_id');
     }
+
+    // 此文章所有赞
+    public function zans()
+    {
+        return $this->hasMany(Zan::class, 'post_id', 'id');
+    }
+
+    public function isZan() // 判断一个用户是否点赞过
+    {
+        return !!$this->zans()->where('user_id', auth()->id())->count();
+    }
+
 }

@@ -165,7 +165,6 @@ return [
          * Package Service Providers...
          */
         Overtrue\LaravelPinyin\ServiceProvider::class,
-        Cxp\Avatar\AvatarProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,9 +227,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
-        'Avatar' => Cxp\Avatar\Facades\Avatar::class,
-        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
-        'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
     ],
 
 ];

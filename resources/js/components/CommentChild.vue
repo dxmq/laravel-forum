@@ -2,11 +2,11 @@
     <div class="col-md-12" :class="{ padding : show_level }">
         <h5>
             <a :href="'/profiles/'+comment['owner'].slug">
-                <img :src="comment['owner'].avatar_path" width="40px" class="img-circle"/>
+                <img :src="comment['owner'].avatar_path" width="40px" class="img-thumbnail"/>
             </a>
             <span style="color:#37f">{{comment['owner'].name}}</span>
             :
-            <span>{{comment.body}}</span>
+            <span>{{comment.body}}</span><span v-text="ago" class="date-span"></span>
         </h5>
         <div v-if="signedIn">
             <span v-if="get_is_show_reply()"><a class="reply_btn" @click="show_reply">回复</a></span>
@@ -29,6 +29,8 @@
     </div>
 </template>
 <script>
+    import moment from 'moment';
+
     export default {
         props: ['comment', 'comments', 'user_id', 'post_id'],
         data() {
@@ -39,6 +41,12 @@
                 real_comments: this.comments,
             }
         },
+        computed: {
+            ago() {
+                return moment(this.comments.created_at).format('lll');
+            }
+        },
+
         mounted() {
             if (this.comment.level > 2) {
                 this.show_level = false;
@@ -97,6 +105,10 @@
         .btn-submit {
             background: #37f;
             color: #fff;
+        }
+        .date-span {
+            float: right;
+            padding-right: 30px
         }
     }
 </style>

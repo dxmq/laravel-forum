@@ -18,16 +18,16 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    static $password;
     $name = $faker->name;
 
     return [
         'name' => $name,
         'slug' => str_slug($name),
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt($password), // password
+        'password' => bcrypt(123456), // password
         'description' => $faker->sentence(10),
         'remember_token' => Str::random(10),
+        'api_token' => Str::random(60),
         'confirmed' => true,
     ];
 });
@@ -110,7 +110,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
     return [
         'title' => $title,
         'slug' => str_slug($title),
-        'body' => $faker->paragraph(10),
+        'body' => $faker->paragraph(2),
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },

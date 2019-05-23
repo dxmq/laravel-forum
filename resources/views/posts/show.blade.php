@@ -12,7 +12,7 @@
                                 <div class="media-left">
                                     <a href="{{ route('profile', $post->creator->slug) }}"
                                        title="{{ $post->creator->name }}">
-                                        <img class="media-object img-circle" width="40px"
+                                        <img class="media-object img-thumbnail" width="40px"
                                              src="{{ $post->creator->avatar_path }}"
                                              alt="{{ $post->creator->name }}">
                                     </a>
@@ -25,7 +25,7 @@
                                     <span title="创建于">{{ $post->created_at->format('Y-m-d H:i') }}</span> /
                                     <span aria-hidden="true" class="glyphicon glyphicon-eye-open" title="查看数"></span>
                                     <span title="阅读数">{{ visits($post)->count() }}</span>&nbsp;/
-                                    <span title="评论数"><i class="fa fa-commenting-o" aria-hidden="true"></i> 2</span>
+                                    <span title="评论数"><i class="fa fa-commenting-o" aria-hidden="true"></i> {{ $post->comments->count()}}</span>
                                     @can('update', $post)
                                         <span class="pull-right">
                                         <a href="/posts/{{$post->slug}}/edit">

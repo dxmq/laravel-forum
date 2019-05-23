@@ -36,7 +36,7 @@ class PostsController extends Controller
             $level = 0;
         }
 
-        $params = array_merge(request(['parent_id', 'body']), ['level' => $level, 'user_id' => 48]);
+        $params = array_merge(request(['parent_id', 'body']), ['level' => $level, 'user_id' => auth()->id()]);
 
         $post = Post::findOrfail($id);
         $comment = $this->commentsService->createComment($post, $params);
@@ -44,6 +44,28 @@ class PostsController extends Controller
 
         return response()->json([
             'reply_block' => $comment
+        ]);
+    }
+
+    public function isZan($id)
+    {
+        $zan_post = Post::findOrfail($id);
+
+        return response()->json([
+            'is_zan' => $zan_post->isZan(),
+            'fav_count' => $zan_post->zans()->count()
+        ]);
+    }
+
+    public function zanOrCancel($id)
+    {
+        $zan_post = Post::findOrfail($id);
+
+        $zan_post->isZan() ? $this->postsService->doUnZan($zan_post) : $this->postsService->doZan($zan_post);
+
+        return response()->json([
+            'is_zan' => $zan_post->isZan(),
+            'fav_count' => $zan_post->zans()->count()
         ]);
     }
 }

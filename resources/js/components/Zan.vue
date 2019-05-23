@@ -19,17 +19,23 @@
             post_id: Number
         },
         mounted() {
-            axios.get('/api/posts/is-zan/' + this.post_id).then(response => {
+            axios.get('/api/posts/is-zan/' + this.post_id)
+                .then(response => {
                 this.is_zan = response.data.is_zan;
                 this.fav_count = response.data.fav_count;
             })
         },
         methods: {
             zanOrCancel() {
-                axios.get('/api/posts/zan-or-cancel/'+this.post_id).then(response => {
-                    this.is_zan = response.data.is_zan;
-                    this.fav_count = response.data.fav_count;
-                })
+                if (this.signedIn) {
+                    axios.get('/api/posts/zan-or-cancel/'+this.post_id)
+                        .then(response => {
+                            this.is_zan = response.data.is_zan;
+                            this.fav_count = response.data.fav_count;
+                        })
+                } else {
+                    flash('请先登录，然后再点赞！', 'danger');
+                }
             }
         }
     }

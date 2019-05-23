@@ -10,14 +10,17 @@ namespace App\Service;
 
 
 use App\Repository\PostsRepository;
+use App\Repository\ZanRepository;
 
 class PostsService
 {
     protected $postsRepository;
+    protected $zanRepository;
 
-    public function __construct(PostsRepository $postsRepository)
+    public function __construct(PostsRepository $postsRepository, ZanRepository $zanRepository)
     {
         $this->postsRepository = $postsRepository;
+        $this->zanRepository = $zanRepository;
     }
 
     public function createPost($params)
@@ -38,5 +41,15 @@ class PostsService
     public function deletePost($id)
     {
         $this->postsRepository->delete($id);
+    }
+
+    public function doZan($zan_post) // 点赞
+    {
+        $this->zanRepository->createZan($zan_post);
+    }
+
+    public function doUnZan($zan_post) // 取消赞
+    {
+        $this->zanRepository->deleteZan($zan_post);
     }
 }

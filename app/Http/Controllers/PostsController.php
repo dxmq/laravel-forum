@@ -58,6 +58,7 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         $post->load('creator');
+        $post->load('comments');
 
         $parseDown = new \Parsedown(); // 解析markdown
         $post->body = $parseDown->text($post->body);

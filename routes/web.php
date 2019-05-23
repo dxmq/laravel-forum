@@ -65,9 +65,14 @@ Route::prefix('posts')->group(function () {
 
 });
 
+Route::middleware('auth:web')->group(function () {
+    Route::get('api/posts/is-zan/{id}', 'Api\PostsController@isZan');
+    Route::get('api/posts/zan-or-cancel/{id}', 'Api\PostsController@zanOrCancel');
+
+    Route::post('api/posts/{id}/comment', 'Api\PostsController@comment');
+});
+
 Auth::routes();
 
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
