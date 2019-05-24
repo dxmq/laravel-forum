@@ -6,6 +6,7 @@ use App\Category;
 use App\Service\CategoriesService;
 use App\Service\PostsService;
 use App\Service\TopicsService;
+use App\Topic;
 use Illuminate\Http\Request;
 use App\Post;
 
@@ -118,10 +119,20 @@ class PostsController extends Controller
 
     public function category(Category $category)
     {
-        $posts = $this->categoriesService->getPostsbyCategory($category);
+        $posts = $this->categoriesService->getPostsByCategory($category);
 
         $category = $category->name;
 
         return view('posts.category', compact('posts', 'category'));
     }
+
+    public function topic(Topic $topic)
+    {
+        $posts = $this->topicsService->getPostsByTopic($topic);
+
+        $topic = $topic->name;
+
+        return view('posts.topic', compact('posts', 'topic'));
+    }
+
 }

@@ -40,7 +40,7 @@
                 5 => 'danger'
             ];?>
             @foreach($topics as $topic)
-                <a href="">
+                <a href="{{ url('/posts/topics', [$topic->id]) }}">
                 <span class="label label-{{ $topicStyle[$loop->index] }}" style="margin-left: 2px; font-size: 11px">
                     {{ $topic->name }} ({{ $topic->posts()->count() }})
                 </span>

@@ -40,4 +40,8 @@ class TopicsService
         $this->topicsRepository->updatePostTopics($post, $topics);
     }
 
+    public function getPostsByTopic($topic)
+    {
+        return $this->topicsRepository->getPostsByTopic($topic);
+    }
 }

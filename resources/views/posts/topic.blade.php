@@ -6,16 +6,16 @@
             <div class="col-md-9 col-sm-12">
 
                 @if($posts->count())
-                    <div class="alert alert-success alert-dismissible fade in" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        分类为 "{{ $category }}" 下的文章有：
-                    </div>
+                <div class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    专题为 "{{ $topic }}" 下的文章有：
+                </div>
                 @else
                     <div class="alert alert-warning alert-dismissible fade in" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                        没有分类为 "{{ $category }}" 的文章！
+                        没有专题为 "{{ $topic }}" 的文章！
                     </div>
                 @endif
                 @foreach($posts as $post)

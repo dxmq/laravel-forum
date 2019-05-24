@@ -46,4 +46,9 @@ class TopicsRepository
             $post->deleteTopics($topic);
         }
     }
+
+    public function getPostsByTopic($topic)
+    {
+        return $topic->posts()->paginate(6);
+    }
 }
