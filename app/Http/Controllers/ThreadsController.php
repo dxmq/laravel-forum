@@ -8,9 +8,6 @@ use App\Inspections\Spam;
 use App\Thread;
 use App\Trending;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
-use Laravolt\Avatar\Avatar as a;
-use Cxp\Avatar\Avatar;
 
 class ThreadsController extends Controller
 {
@@ -96,7 +93,7 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread, Trending $trending, Avatar $avatar)
+    public function show($channelId, Thread $thread, Trending $trending)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);

@@ -123,12 +123,11 @@ body {
 
 .search-warp {
     float: right;
-    width: 300px;
+    width: 280px;
     /*height: 36px;*/
     background: #f3f5f6;
     border-radius: 8px;
-    padding-right: 56px;
-    margin: 7px 100px 1px 300px;
+    margin: 7px 10px 1px 320px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
@@ -201,3 +200,16 @@ body {
     line-height: 22px;
     cursor: pointer;
 }
+/*
+分享条
+ */
+.active-box {
+    position: fixed;
+    top: 250px;
+    left: 50%;
+    margin-left: -675px;
+    z-index: 10000;
+}
+
+
+

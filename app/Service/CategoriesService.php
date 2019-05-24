@@ -32,4 +32,9 @@ class CategoriesService
 
         return $categories;
     }
+
+    public function getPostsByCategory($category)
+    {
+        return $this->categoriesRepository->getPostsByCategory($category);
+    }
 }

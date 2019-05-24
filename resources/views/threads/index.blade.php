@@ -67,17 +67,12 @@
             </div>
 
             <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <a href="{{ url('/threads/create') }}" aria-label="Left Align" class="btn btn-success btn-block"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span> 新建帖子
-                        </a>
-                    </div>
-                </div>
+                @include('threads._new_thread_panel')
 
                 @if (count($trending))
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Trending Threads
+                            活跃话题
                         </div>
 
                         <div class="panel-body">

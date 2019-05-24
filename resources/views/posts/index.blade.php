@@ -30,13 +30,13 @@
                         <div class="body">{!! str_limit($post->body, 420, '...') !!}</div>
                     </div>
 
-                    <div class="panel-footer" style="padding: 3px;background-color: #ffffaa">
+                    <div class="panel-footer" style="padding: 4px;">
                         <span title="评论数"><i class="fa fa-commenting-o" aria-hidden="true"></i> {{ $post->comments->count() }}</span>&nbsp;
                         <span title="点赞数"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ $post->zans->count() }}</span>&nbsp;
                         <span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span>
                         <span title="阅读数">{{ visits($post)->count() }}</span>&nbsp;
                         @if($post->category)
-                        <span title="分类"><i class="fa fa-list" aria-hidden="true"></i> <a href="">{{ $post->category->name }}</a></span>&nbsp;
+                        <span title="分类"><i class="fa fa-list" aria-hidden="true"></i> <a href="{{ url('/posts/categories/' . $post->category_id) }}">{{ $post->category->name }}</a></span>&nbsp;
                         @endif
                         @if(count($post->topics))
                         <span title="专题"><i class="fa fa-tags" aria-hidden="true"></i>

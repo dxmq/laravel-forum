@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Category;
 use App\Channel;
+use App\Topic;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
@@ -38,6 +40,20 @@ class AppServiceProvider extends ServiceProvider
            });
            $view->with('channels', $channel);
         });
+
+        View::composer(['posts.index', 'posts.show', 'posts.category'], function ($view) {
+            $categories = Cache::rememberForever('categories', function () {
+                return Category::with('posts')->get();
+            });
+
+            $topics = Cache::rememberForever('topics', function () {
+                return Topic::with('posts')->get();
+            });
+
+            $view->with(['categories' => $categories, 'topics' => $topics]);
+        });
+
+
 
         Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
     }

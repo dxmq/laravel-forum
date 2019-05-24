@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Service\CategoriesService;
 use App\Service\PostsService;
 use App\Service\TopicsService;
@@ -92,6 +93,8 @@ class PostsController extends Controller
 
         $params = request(['category_id', 'title', 'body']);
 
+        $params['slug'] = request('title');
+
         $this->postsService->updatePost($post, $params);
 
         $this->topicsService->updatePostTopics($post, request('topics')); // 维护中间表
@@ -111,5 +114,14 @@ class PostsController extends Controller
 
         return redirect("/")
             ->with('文章已经删除！');
+    }
+
+    public function category(Category $category)
+    {
+        $posts = $this->categoriesService->getPostsbyCategory($category);
+
+        $category = $category->name;
+
+        return view('posts.category', compact('posts', 'category'));
     }
 }

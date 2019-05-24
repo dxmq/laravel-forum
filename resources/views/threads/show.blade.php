@@ -7,14 +7,20 @@
 @section('content')
     <thread-view :thread="{{ $thread }}" inline-template>
         <div class="container">
+            <div class="active-box">
+                <share></share>
+            </div>
+
             <div class="row">
-                <div class="col-md-8" v-cloak>
+                <div class="col-md-9" v-cloak>
                     @include('threads._topic')
 
                     <replies @added="repliesCount++" @removed="repliesCount--"></replies>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    @include('threads._new_thread_panel')
+
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p>

@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="container">
+        <div class="active-box">
+            <share></share>
+        </div>
+
         <div class="row">
 
             <div class="col-sm-9">
@@ -30,11 +34,11 @@
                                         <span class="pull-right">
                                         <a href="/posts/{{$post->slug}}/edit">
                                         <span class="glyphicon glyphicon-pencil"></span>
-                                        编辑
+                                        <span style="font-size: 12px">编辑</span>
                                     </a>
                                     <a href="javascript:;" onclick="deletePost({{ $post->id }})">
                                         <span class="glyphicon glyphicon-remove"></span>
-                                        删除
+                                        <span style="font-size: 12px">删除</span>
                                     </a>
                                     </span>
                                     @endcan

@@ -24,10 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('avatar_path')->nullable();
             $table->boolean('confirmed')->default(false);
             $table->string('confirmation_token', 25)->nullable()->unique();
-            $table->string('api_token', 60)
-                ->unique()
-                ->nullable()
-                ->default(null);
             $table->rememberToken();
             $table->timestamps();
         });

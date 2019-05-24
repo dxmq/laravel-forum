@@ -63,6 +63,11 @@ Route::prefix('posts')->group(function () {
     // 删除文章
     Route::get('/{id}/delete','PostsController@destroy');
 
+    // 某个分类下的文章
+    Route::get('/categories/{category}', 'PostsController@category');
+
+    // 某个专题下的文章
+    Route::get('/topics/{topic}', 'PostsController@topic');
 });
 
 Route::middleware('auth:web')->group(function () {

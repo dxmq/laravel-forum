@@ -25,9 +25,8 @@ $factory->define(User::class, function (Faker $faker) {
         'slug' => str_slug($name),
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt(123456), // password
-        'description' => $faker->sentence(10),
+        'description' => $faker->sentence(5),
         'remember_token' => Str::random(10),
-        'api_token' => Str::random(60),
         'confirmed' => true,
     ];
 });
@@ -105,18 +104,19 @@ $factory->define(App\Category::class, function (Faker $faker) {
 
 // posts
 $factory->define(App\Post::class, function (Faker $faker) {
-    $title = $faker->sentence(6);
+    $title = $faker->sentence;
 
     return [
-        'title' => $title,
-        'slug' => str_slug($title),
-        'body' => $faker->paragraph(2),
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
         'category_id' => function () {
             return factory('App\Category')->create()->id;
         },
+
+        'title' => $title,
+        'body' => $faker->paragraph,
+        'slug' => str_slug($title),
     ];
 });
 
