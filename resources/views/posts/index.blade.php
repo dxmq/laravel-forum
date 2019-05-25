@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-9 col-sm-12">
+            <div class="col-md-9 col-sm-9">
 
                 @include('layouts.partials._email_alert')
 

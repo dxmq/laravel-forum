@@ -1,4 +1,4 @@
-<div class="col-md-3">
+<div class="col-md-3 col-sm-3">
     <div class="panel panel-default">
         <div class="panel-body">
             <a href="{{ url('/posts/create') }}" aria-label="Left Align" class="btn btn-success btn-block"><span

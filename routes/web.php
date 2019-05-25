@@ -13,12 +13,11 @@
 
 
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('posts.index');
 
 Route::get('threads', 'ThreadsController@index')->name('threads');
 
 Route::get('threads/create','ThreadsController@create');
-Route::get('threads/search', 'SearchController@show');
 Route::get('threads/{channel}/{thread}','ThreadsController@show');
 Route::patch('threads/{channel}/{thread}', 'ThreadsController@update');
 Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy');
@@ -55,7 +54,7 @@ Route::prefix('posts')->group(function () {
     // 创建文章
     Route::get('/create','PostsController@create');
     // 查看文章
-    Route::get('/{post}','PostsController@show');
+    Route::get('/{post}','PostsController@show')->name('posts.show');
     Route::post('/store','PostsController@store');
     // 更新文章
     Route::get('/{post}/edit','PostsController@edit');
@@ -76,6 +75,7 @@ Route::middleware('auth:web')->group(function () {
 
     Route::post('api/posts/{id}/comment', 'Api\PostsController@comment');
 });
+
 
 Auth::routes();
 

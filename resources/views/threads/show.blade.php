@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="col-md-3">
-                    @include('threads._new_thread_panel')
+                    @include('threads._new_threads_panel')
 
                     <div class="panel panel-default">
                         <div class="panel-body">

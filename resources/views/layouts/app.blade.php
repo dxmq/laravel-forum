@@ -15,7 +15,7 @@
     <link href="{{ asset('css/trix.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-<!-- Scripts -->
+    <!-- Scripts -->
     <script>
         window.App = {!! json_encode([
         'csrfToken' => csrf_token(),
@@ -25,6 +25,7 @@
     </script>
 
     @yield('css')
+
 </head>
 <body style="padding-bottom: 100px;">
 <div id="app" class="topics-index-page">
@@ -37,7 +38,8 @@
     <footer class="footer">
         <div class="container">
             <p class="pull-left">
-                由 <a href="https://github.com/dxmq" target="_blank">Dxmq</a> 设计和编码 <span style="color: #e27575;font-size: 14px;">❤</span>
+                由 <a href="https://github.com/dxmq" target="_blank">Dxmq</a> 设计和编码 <span
+                        style="color: #e27575;font-size: 14px;">❤</span>
             </p>
         </div>
     </footer>
@@ -52,7 +54,14 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    $(document).ready(function () { // 搜索弹出框
+        $('[data-toggle="popover"]').popover();
+    });
 </script>
+
+<script>window.search_url = '{{route("searching")}}';</script>
+<script src="{{ asset('js/searching.js') }}" defer></script>
 @yield('js')
 </body>
 </html>

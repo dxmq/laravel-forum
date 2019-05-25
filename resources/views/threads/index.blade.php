@@ -57,7 +57,7 @@
                             </li>
                             <hr>
                                 @empty
-
+                                暂无话题！
                             @endforelse
                         </ul>
                     </div>
@@ -66,29 +66,8 @@
                 {{ $threads->links() }}
             </div>
 
-            <div class="col-md-3">
-                @include('threads._new_thread_panel')
-
-                @if (count($trending))
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            活跃话题
-                        </div>
-
-                        <div class="panel-body">
-                            <ul class="list-group">
-                                @foreach ($trending as $thread)
-                                    <li class="list-group-item">
-                                        <a href="{{ url($thread->path) }}">
-                                            {{ $thread->title }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                @endif
-            </div>
+            {{-- 右侧部分 --}}
+            @include('threads._right')
         </div>
     </div>
 @endsection

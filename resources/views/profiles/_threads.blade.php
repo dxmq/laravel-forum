@@ -1,3 +1,4 @@
+@if(count($threads))
 <ul class="list-group">
     @foreach ($threads as $thread)
         <li class="list-group-item"><a href="{{ $thread->path() }}">
@@ -10,4 +11,7 @@
         </li>
     @endforeach
 </ul>
+@else
+    <div class="empty-block">暂无数据 ~_~</div>
+@endif
 {{ $threads->links() }}

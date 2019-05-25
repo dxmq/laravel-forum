@@ -4,9 +4,15 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Searching\Interfaces\SearchingInterface;
+use Searching\Prototypes\CategoryNamePrototype;
+use Searching\Prototypes\ColumnsPrototype;
+use Searching\Prototypes\ShortcutsPrototype;
+use Searching\Prototypes\CategoryUrlPrototype;
+use Searching\Prototypes\UrlPrototype;
 use Valiner\IdenticonAvatar\Identicon;
 
-class User extends Authenticatable
+class User extends Authenticatable implements SearchingInterface
 {
     use Notifiable;
 
@@ -89,6 +95,11 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany('App\Post')->latest();
+    }
+
     /**
      * 用户浏览话题的动作
      * @param $thread
@@ -129,4 +140,50 @@ class User extends Authenticatable
         return asset($this->attributes['avatar_path']);
     }
 
+    // 实现SearchingInterFace相关方法
+    /**
+     * 获取搜索组名
+     *
+     * @return CategoryNamePrototype
+     */
+    public static function getSearchableCategoryName() : CategoryNamePrototype
+    {
+        return new CategoryNamePrototype('用户');
+    }
+    /**
+     * 获取可被搜索的字段
+     *
+     * @return ColumnsPrototype
+     */
+    public static function getSearchableColumns() : ColumnsPrototype
+    {
+        return new ColumnsPrototype('name', 'description');
+    }
+    /**
+     * 获取搜索分组快捷键
+     *
+     * @return ShortcutsPrototype
+     */
+    public static function getSearchableShortcuts() : ShortcutsPrototype
+    {
+        return new ShortcutsPrototype('yh');
+    }
+    /**
+     * 模型列表路由
+     *
+     * @return CategoryUrlPrototype
+     */
+    public static function getSearchableCategoryUrl() : CategoryUrlPrototype
+    {
+        return new CategoryUrlPrototype('posts.index');
+    }
+    /**
+     * 模型详情路由
+     *
+     * @return UrlPrototype
+     */
+    public function getSearchableUrl() : UrlPrototype
+    {
+        return new UrlPrototype('profile', $this);
+    }
 }

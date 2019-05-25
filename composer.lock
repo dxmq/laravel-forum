@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb96e973582a33de1fcbd513897b94d3",
+    "content-hash": "f1c601ed76959b9b38ab2d8399776540",
     "packages": [
         {
             "name": "awssat/laravel-visits",
@@ -5239,6 +5239,60 @@
                 "validate"
             ],
             "time": "2018-12-25T11:19:39+00:00"
+        },
+        {
+            "name": "xiaohuilam/searching",
+            "version": "v2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xiaohuilam/searching.git",
+                "reference": "2e73e6547d0c238c60c61c74a906d04e50697a21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xiaohuilam/searching/zipball/2e73e6547d0c238c60c61c74a906d04e50697a21",
+                "reference": "2e73e6547d0c238c60c61c74a906d04e50697a21",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "laravel/framework": ">=5.5",
+                "php": ">7.0.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Searching\\Providers\\SearchingServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Searching\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "xiaohui.lam",
+                    "email": "xiaohui.lam@icloud.com"
+                }
+            ],
+            "description": "Laravel 顶级搜索功能",
+            "time": "2018-12-21T13:44:17+00:00"
         }
     ],
     "packages-dev": [

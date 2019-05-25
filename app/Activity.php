@@ -9,7 +9,7 @@ class Activity extends Model
         return $this->morphTo();
     }
 
-    public static function feed($user, $take = 50)
+    public static function feed($user, $take = 20)
     {
         return $user->activity()
             ->latest()

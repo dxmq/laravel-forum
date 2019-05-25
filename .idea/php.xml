@@ -91,6 +91,7 @@
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-referer" />
       <path value="$PROJECT_DIR$/vendor/awssat/laravel-visits" />
       <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/xiaohuilam/searching" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

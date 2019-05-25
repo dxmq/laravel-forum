@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
            $view->with('channels', $channel);
         });
 
-        View::composer(['posts.index', 'posts.show', 'posts.category', 'posts.topic'], function ($view) {
+        View::composer(['posts.*'], function ($view) {
             $categories = Cache::rememberForever('categories', function () {
                 return Category::with('posts')->get();
             });

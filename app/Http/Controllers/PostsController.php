@@ -7,7 +7,6 @@ use App\Service\CategoriesService;
 use App\Service\PostsService;
 use App\Service\TopicsService;
 use App\Topic;
-use Illuminate\Http\Request;
 use App\Post;
 
 class PostsController extends Controller
@@ -106,7 +105,7 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        $post = new Post();
+        $post = Post::findOrFail($id);
 
         // 策略验证
         $this->authorize('update', $post);

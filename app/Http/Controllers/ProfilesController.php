@@ -14,11 +14,14 @@ class ProfilesController extends Controller
 
         $replies = $user->replies()->paginate(10);
 
+        $posts = $user->posts()->paginate(10);
+
         return view('profiles.show', [
             'profileUser' => $user,
             'activities' => Activity::feed($user),
             'threads' => $threads,
-            'replies' => $replies
+            'replies' => $replies,
+            'posts' => $posts
         ]);
     }
 }

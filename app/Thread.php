@@ -4,13 +4,16 @@ namespace App;
 
 use App\Events\ThreadHasNewReply;
 use App\Events\ThreadReceivedNewReply;
-use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Redis;
-use Overtrue\Pinyin\Pinyin;
 use App\Traits\RecordsActivity;
+use Searching\Interfaces\SearchingInterface;
+use Searching\Prototypes\CategoryNamePrototype;
+use Searching\Prototypes\ColumnsPrototype;
+use Searching\Prototypes\ShortcutsPrototype;
+use Searching\Prototypes\CategoryUrlPrototype;
+use Searching\Prototypes\UrlPrototype;
 
-class Thread extends Model
+class Thread extends Model implements SearchingInterface
 {
     use RecordsActivity;
 
@@ -158,9 +161,6 @@ class Thread extends Model
 
     public function hasUpdatesFor($user)
     {
-        // Look in the cache for the proper key
-        // compare that carbon instance with the $thread->updated_at
-
         $key = $user->visitedThreadCacheKey($this); // 获取用户浏览该话题的key
 
         return $this->updated_at > cache($key);
@@ -176,8 +176,51 @@ class Thread extends Model
         $this->update(['best_reply_id' => $reply->id]);
     }
 
-    public function search($search)
+
+    // 实现SearchingInterFace相关方法
+    /**
+     * 获取搜索组名
+     *
+     * @return CategoryNamePrototype
+     */
+    public static function getSearchableCategoryName() : CategoryNamePrototype
     {
-        return $this->where('title', 'like', "$search%")->orderBy('replies_count', 'desc')->paginate(20);
+        return new CategoryNamePrototype('话题');
+    }
+    /**
+     * 获取可被搜索的字段
+     *
+     * @return ColumnsPrototype
+     */
+    public static function getSearchableColumns() : ColumnsPrototype
+    {
+        return new ColumnsPrototype('title', 'body');
+    }
+    /**
+     * 获取搜索分组快捷键
+     *
+     * @return ShortcutsPrototype
+     */
+    public static function getSearchableShortcuts() : ShortcutsPrototype
+    {
+        return new ShortcutsPrototype('ht');
+    }
+    /**
+     * 模型列表路由
+     *
+     * @return CategoryUrlPrototype
+     */
+    public static function getSearchableCategoryUrl() : CategoryUrlPrototype
+    {
+        return new CategoryUrlPrototype('posts.index');
+    }
+    /**
+     * 模型详情路由
+     *
+     * @return UrlPrototype
+     */
+    public function getSearchableUrl() : UrlPrototype
+    {
+        return new UrlPrototype('threads', $this);
     }
 }
