@@ -20,7 +20,7 @@
                 @endif
                 @foreach($posts as $post)
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="padding: 4px;">
+                        <div class="panel-heading" style="padding: 4px; background-color: #ffffee">
                             <div class="level">
                                 <div class="flex">
                                     <div class="media">
@@ -44,7 +44,7 @@
                             <div class="body">{!! str_limit($post->body, 420, '...') !!}</div>
                         </div>
 
-                        <div class="panel-footer" style="padding: 3px;background-color: #ffffaa">
+                        <div class="panel-footer" style="padding: 3px;background-color: #ffffff">
                             <span title="评论数"><i class="fa fa-commenting-o"
                                                  aria-hidden="true"></i> {{ $post->comments->count() }}</span>&nbsp;
                             <span title="点赞数"><i class="fa fa-thumbs-o-up"

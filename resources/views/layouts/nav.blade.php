@@ -22,16 +22,6 @@
                 <li><a href="/">首页</a></li>
                 <li><a href="/threads">问答</a></li>
                 <li><a href="/documents">文档</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">频道 <span class="caret"></span></a>
-
-                    <ul class="dropdown-menu">
-                        @foreach ($channels as $channel)
-                            <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </li>
                 @include('layouts.search')
             </ul>
 
@@ -53,6 +43,10 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="{{ route('profile', Auth::user()) }}">个人中心</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('profile', Auth::user()) }}">Dashboard</a>
                             </li>
 
                             <li>

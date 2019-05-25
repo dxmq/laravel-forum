@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link href="{{ asset('css/prism-a11y-dark.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="active-box">
@@ -84,6 +88,7 @@
 
 @section('js')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('js/vendor/prism.js') }}"></script>
     <script>
         function deletePost(post) {
             swal({

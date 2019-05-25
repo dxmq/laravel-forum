@@ -13,8 +13,6 @@ use Searching\Prototypes\UrlPrototype;
 
 class Post extends Model implements SearchingInterface
 {
-    use RecordsActivity;
-
     protected static function boot()
     {
         parent::boot();
@@ -23,7 +21,23 @@ class Post extends Model implements SearchingInterface
             $post->update([
                 'slug' => $post->title,
             ]);
+
+            Activity::create([ // 活动记录
+                'user_id' => auth()->id(),
+                'type' => 'created_post',
+                'subject_id' => $post->id,
+                'subject_type' => 'App\Post'
+            ]);
         });
+
+        static::deleting(function ($post) {
+            $post->activity()->delete();
+        });
+    }
+
+    protected function activity()
+    {
+        return $this->morphMany('App\Activity', 'subject');
     }
 
     public function getRouteKeyName()

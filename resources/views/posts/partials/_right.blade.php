@@ -38,10 +38,13 @@
                 3 => 'success',
                 4 => 'warning',
                 5 => 'danger'
-            ];?>
+            ];
+            $i = 0; ?>
             @foreach($topics as $topic)
+                <?php $i++; ?>
+                <?php $i=$i==5 ? 0 : $i;?>
                 <a href="{{ url('/posts/topics', [$topic->id]) }}">
-                <span class="label label-{{ $topicStyle[$loop->index] }}" style="margin-left: 2px; font-size: 11px">
+                <span class="label label-{{ $topicStyle[$i] }}" style="margin-left: 2px; font-size: 11px">
                     {{ $topic->name }} ({{ $topic->posts()->count() }})
                 </span>
                 </a>

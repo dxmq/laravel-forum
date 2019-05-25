@@ -20,7 +20,7 @@ class PostsController extends Controller
         PostsService $postsService,
         TopicsService $topicsService
     ) {
-        $this->middleware(['auth', 'must-be-confirmed'])->except(['show', 'index']);
+        $this->middleware(['auth', 'must-be-confirmed'])->except(['show', 'index', 'category', 'topic']);
         $this->categoriesService = $categoriesService;
         $this->postsService = $postsService;
         $this->topicsService = $topicsService;

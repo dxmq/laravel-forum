@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container">
+
+        <div class="active-box">
+            <share></share>
+        </div>
+
+
         <div class="row">
             <div class="col-lg-3 col-md-3 hidden-sm hidden-xs user-info">
                 <div class="panel panel-default">
@@ -56,7 +62,7 @@
                         </ul>
                         @if (request('tab') == 'replies')
                             @include('profiles._replies', ['replies' => $replies])
-                        @elseif (request('tab') == 'posts')
+                        @elseif (request('tab') == 'threads')
                             @include('profiles._threads', ['threads' => $threads])
                         @else
                             @include('profiles._posts', ['posts' => $posts])
