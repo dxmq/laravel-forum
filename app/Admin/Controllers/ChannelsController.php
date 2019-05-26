@@ -22,6 +22,8 @@ class ChannelsController extends Controller
      */
     public function index(Content $content)
     {
+        admin_toastr('删除频道会同时删除该频道下的所有话题，请慎重！', 'warning');
+
         return $content
             ->header('Channels')
             ->description('list')

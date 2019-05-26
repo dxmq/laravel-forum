@@ -22,6 +22,8 @@ class TopicsController extends Controller
      */
     public function index(Content $content)
     {
+        admin_toastr('删除专题会同时删除该专题下的所有文章，请慎重！', 'warning');
+
         return $content
             ->header('Topics')
             ->description('list')

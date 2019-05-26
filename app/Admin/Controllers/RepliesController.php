@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Thread;
+use App\Reply;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class ThreadsController extends Controller
+class RepliesController extends Controller
 {
     use HasResourceActions;
 
@@ -23,7 +23,7 @@ class ThreadsController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Threads')
+            ->header('Replies')
             ->description('list')
             ->body($this->grid());
     }
@@ -35,13 +35,14 @@ class ThreadsController extends Controller
      * @param Content $content
      * @return Content
      */
-    public function show(Thread $thread, Content $content)
+    public function show($id, Content $content)
     {
         return $content
-            ->header('Thread')
+            ->header('Reply')
             ->description('detail')
-            ->body($this->detail($thread));
+            ->body($this->detail($id));
     }
+
 
     /**
      * Make a grid builder.
@@ -50,18 +51,13 @@ class ThreadsController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Thread);
+        $grid = new Grid(new Reply);
 
         $grid->id('Id');
-        $grid->creator()->name('creator');
-        $grid->channel()->name('Channel');
-        $grid->replies_count('Replies count');
-        $grid->title('Title');
-        $grid->best_reply_id('Best reply id')->display(function ($bestReplyId) {
-            return $bestReplyId ?: 'null';
-        });
-        $grid->locked('Locked')->display(function ($locked) {
-            return $locked ? '是' : '否';
+        $grid->thread()->title('Thread title');
+        $grid->owner()->name('owner');
+        $grid->body('Body')->display(function ($body) {
+            return strip_tags($body);
         });
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
@@ -73,24 +69,21 @@ class ThreadsController extends Controller
         });
 
         $grid->filter(function ($filter) {
-            $filter->like('title');
-
-
             $filter->where(function ($query) {
 
-                $query->whereHas('channel', function ($query) {
-                    $query->where('name', 'like', "%{$this->input}%");
+                $query->whereHas('thread', function ($query) {
+                    $query->where('title', 'like', "%{$this->input}%");
                 });
 
-            }, '频道');
+            }, '根据话题筛选回复（thread）');
 
             $filter->where(function ($query) {
 
-                $query->whereHas('creator', function ($query) {
+                $query->whereHas('owner', function ($query) {
                     $query->where('name', 'like', "%{$this->input}%")->orWhere('email', 'like', "%{$this->input}%");
                 });
 
-            }, '创建者名字或邮箱');
+            }, '谁回复的（name or email）');
 
             $filter->between('created_at', 'Created Time')->datetime();
         });
@@ -103,26 +96,20 @@ class ThreadsController extends Controller
      * @param mixed $id
      * @return Show
      */
-    protected function detail($thread)
+    protected function detail($id)
     {
-        $show = new Show($thread);
+        $show = new Show(Reply::findOrFail($id));
 
         $show->id('Id');
-        $show->slug('Slug');
-        $show->replies_count('Replies count');
-        $show->title('Title');
-        $show->body('Body')->display(function ($body) {
-            return strip_tags($body);
-        });
-        $show->best_reply_id('Best reply id');
-        $show->locked('Locked');
+        $show->thread_id('Thread id');
+        $show->user_id('User id');
+        $show->body('Body');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
 
-        $show->panel()
-            ->tools(function ($tools) {
-                $tools->disableEdit();
-            });
+        $show->panel()->tools(function ($tools) {
+            $tools->disableEdit();
+        });
 
         return $show;
     }
@@ -134,16 +121,11 @@ class ThreadsController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Thread);
+        $form = new Form(new Reply);
 
-        $form->text('slug', 'Slug');
+        $form->number('thread_id', 'Thread id');
         $form->number('user_id', 'User id');
-        $form->number('channel_id', 'Channel id');
-        $form->number('replies_count', 'Replies count');
-        $form->text('title', 'Title');
         $form->textarea('body', 'Body');
-        $form->number('best_reply_id', 'Best reply id');
-        $form->switch('locked', 'Locked');
 
         return $form;
     }

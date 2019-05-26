@@ -64,7 +64,7 @@ class PostsController extends Controller
         $grid->creator()->name('创建者');
         $grid->category()->name('分类');
         $grid->topics()->display(function ($topics) {
-            $topics = array_map(function($topic) {
+            $topics = array_map(function ($topic) {
                 return "<span class='label label-success'>{$topic['name']}</span>";
             }, $topics);
 
@@ -123,10 +123,9 @@ class PostsController extends Controller
         $show->created_at('Created at');
         $show->updated_at('Updated at');
 
-        $show->panel()
-            ->tools(function ($tools) {
-                $tools->disableEdit();
-            });;
+        $show->panel()->tools(function ($tools) {
+            $tools->disableEdit();
+        });;
 
         return $show;
     }

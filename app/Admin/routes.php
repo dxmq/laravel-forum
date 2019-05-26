@@ -29,4 +29,11 @@ Route::group([
     $router->get('/channels', 'ChannelsController@index');
     $router->get('/channels/{channel}', 'ChannelsController@show');
     $router->delete('/channels/{id}', 'ChannelsController@destroy');
+
+    $router->resource('replies', 'RepliesController', [
+        'only' => ['index', 'show', 'destroy']
+    ]);
+
+    $router->resource('users', 'UsersController');
+
 });

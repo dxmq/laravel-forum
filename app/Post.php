@@ -32,6 +32,8 @@ class Post extends Model implements SearchingInterface
 
         static::deleting(function ($post) {
             $post->activity()->delete();
+            $post->comments()->delete();
+            $post->zans()->delete();
         });
     }
 
