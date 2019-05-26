@@ -2,18 +2,15 @@
 
 namespace App\Admin\Controllers;
 
-use App\Topic;
+use App\Comment;
 use App\Http\Controllers\Controller;
-use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class TopicsController extends Controller
+class CommentsController extends Controller
 {
-    use HasResourceActions;
-
     /**
      * Index interface.
      *
@@ -23,7 +20,7 @@ class TopicsController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Topics')
+            ->header('Comments')
             ->description('list')
             ->body($this->grid());
     }
@@ -38,38 +35,9 @@ class TopicsController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Topic')
+            ->header('Comment')
             ->description('detail')
             ->body($this->detail($id));
-    }
-
-    /**
-     * Edit interface.
-     *
-     * @param mixed $id
-     * @param Content $content
-     * @return Content
-     */
-    public function edit($id, Content $content)
-    {
-        return $content
-            ->header('Edit')
-            ->description('description')
-            ->body($this->form()->edit($id));
-    }
-
-    /**
-     * Create interface.
-     *
-     * @param Content $content
-     * @return Content
-     */
-    public function create(Content $content)
-    {
-        return $content
-            ->header('Create')
-            ->description('description')
-            ->body($this->form());
     }
 
     /**
@@ -79,12 +47,28 @@ class TopicsController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Topic);
+        $grid = new Grid(new Comment);
 
         $grid->id('Id');
-        $grid->name('Name');
+        $grid->owner()->name('Creator');
+        $grid->post()->title('Title');
+        $grid->body('Body');
+        $grid->parent_id('Parent id');
+        $grid->level('Level');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
+
+        $grid->disableCreateButton();
+
+        $grid->actions(function ($actions) {
+            $actions->disableEdit();
+        });
+
+        $grid->filter(function ($filer) {
+            $filer->like('title');
+            $filer->like('body');
+            $filer->between('created_at', 'Created Time')->datetime();
+        });
 
         return $grid;
     }
@@ -97,12 +81,21 @@ class TopicsController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(Topic::findOrFail($id));
+        $show = new Show(Comment::findOrFail($id));
 
         $show->id('Id');
-        $show->name('Name');
+        $show->user_id('User id');
+        $show->post_id('Post id');
+        $show->parent_id('Parent id');
+        $show->body('Body');
+        $show->level('Level');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
+
+        $show->panel()
+            ->tools(function ($tools) {
+                $tools->disableEdit();
+            });
 
         return $show;
     }
@@ -114,10 +107,19 @@ class TopicsController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Topic);
+        $form = new Form(new Comment);
 
-        $form->text('name', 'Name');
+        $form->number('user_id', 'User id');
+        $form->number('post_id', 'Post id');
+        $form->number('parent_id', 'Parent id');
+        $form->textarea('body', 'Body');
+        $form->number('level', 'Level');
 
         return $form;
+    }
+
+    public function destroy($id)
+    {
+        return $this->form()->destroy($id);
     }
 }

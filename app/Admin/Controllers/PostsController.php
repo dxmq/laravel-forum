@@ -67,12 +67,14 @@ class PostsController extends Controller
         $grid->updated_at('更新时间');
 
         $grid->disableCreateButton();
+
         $grid->actions(function ($actions) {
             //关闭行操作 编辑
             $actions->disableEdit();
         });
 
         $grid->filter(function ($filter) {
+            $filter->like('title');
             // 设置created_at字段的范围查询
             $filter->between('created_at', 'Created Time')->datetime();
         });

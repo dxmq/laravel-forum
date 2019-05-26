@@ -23,8 +23,8 @@ class CategoriesController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
-            ->description('description')
+            ->header('Category')
+            ->description('list')
             ->body($this->grid());
     }
 
