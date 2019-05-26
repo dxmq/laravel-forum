@@ -51,7 +51,7 @@ class CommentsController extends Controller
 
         $grid->id('Id');
         $grid->owner()->name('Creator');
-        $grid->post()->title('Title');
+        $grid->post()->title('Post');
         $grid->body('Body');
         $grid->parent_id('Parent id');
         $grid->level('Level');

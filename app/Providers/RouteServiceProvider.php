@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Post;
+use App\Thread;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -29,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
 
         Route::model('post', Post::class);
+        Route::model('thread', Thread::class);
     }
 
     /**

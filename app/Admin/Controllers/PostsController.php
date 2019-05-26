@@ -63,6 +63,13 @@ class PostsController extends Controller
         $grid->title('标题');
         $grid->creator()->name('创建者');
         $grid->category()->name('分类');
+        $grid->topics()->display(function ($topics) {
+            $topics = array_map(function($topic) {
+                return "<span class='label label-success'>{$topic['name']}</span>";
+            }, $topics);
+
+            return join('&nbsp;', $topics) ?: '无';
+        });
         $grid->created_at('创建时间');
         $grid->updated_at('更新时间');
 
@@ -75,6 +82,23 @@ class PostsController extends Controller
 
         $grid->filter(function ($filter) {
             $filter->like('title');
+
+            $filter->where(function ($query) {
+
+                $query->whereHas('creator', function ($query) {
+                    $query->where('name', 'like', "%{$this->input}%")->orWhere('email', 'like', "%{$this->input}%");
+                });
+
+            }, '创建者名字或邮箱');
+
+            $filter->where(function ($query) {
+
+                $query->whereHas('category', function ($query) {
+                    $query->where('name', 'like', "%{$this->input}%");
+                });
+
+            }, '分类');
+
             // 设置created_at字段的范围查询
             $filter->between('created_at', 'Created Time')->datetime();
         });

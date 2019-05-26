@@ -21,4 +21,12 @@ Route::group([
     $router->resource('comments', 'CommentsController', [
         'only' => ['index', 'show', 'destroy']
     ]);
+
+    $router->get('/threads', 'ThreadsController@index');
+    $router->get('/threads/{thread}', 'ThreadsController@show');
+    $router->delete('/threads/{id}', 'ThreadsController@destroy');
+
+    $router->get('/channels', 'ChannelsController@index');
+    $router->get('/channels/{channel}', 'ChannelsController@show');
+    $router->delete('/channels/{id}', 'ChannelsController@destroy');
 });
