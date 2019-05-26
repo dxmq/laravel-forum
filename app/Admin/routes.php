@@ -12,4 +12,10 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
 
+    $router->get('/posts', 'PostsController@index');
+    $router->get('/posts/{post}', 'PostsController@show');
+    $router->delete('/posts/{id}', 'PostsController@destroy');
+
+    $router->resource('categories', 'CategoriesController');
+    $router->resource('topics', 'TopicsController');
 });

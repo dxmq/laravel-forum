@@ -22,7 +22,7 @@ class Model extends EloquentModel
             $slug = str_slug(pinyin_sentence($value));
         }
 
-        if (static::whereSlug($slug)->exists()) {
+        if (static::where('slug', $slug)->exists()) {
             $slug = "{$slug}-" . $this->id;
         }
 
