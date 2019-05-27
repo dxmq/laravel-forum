@@ -22,7 +22,7 @@ class CategoriesController extends Controller
      */
     public function index(Content $content)
     {
-        admin_toastr('删除分类会同时删除该分类下的所有文章，请慎重！', 'warning');
+        $content->withInfo('注意：', '删除分类会同时删除该分类下的所有文章，请慎重！');
 
         return $content
             ->header('Category')
