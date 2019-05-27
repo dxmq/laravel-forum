@@ -62,6 +62,11 @@
 
 <script>window.search_url = '{{route("searching")}}';</script>
 <script src="{{ asset('js/searching.js') }}" defer></script>
+<script>
+    $('#updateButton').click(function () {
+        $('#profileForm').submit();
+    });
+</script>
 @yield('js')
 </body>
 </html>
