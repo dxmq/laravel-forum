@@ -59,6 +59,15 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 col-md-offset-9">
+                                <a class="btn btn-link" href="{{ route('github') }}">
+                                    <span class="iconfont icon-github"></span>
+                                    github 登录
+                                </a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

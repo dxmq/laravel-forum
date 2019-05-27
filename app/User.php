@@ -28,6 +28,9 @@ class User extends Authenticatable implements SearchingInterface
         'password',
         'description',
         'avatar_path',
+        'confirmed',
+        'github_name',
+        'provider'
     ];
 
     /**

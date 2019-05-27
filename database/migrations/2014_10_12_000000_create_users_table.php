@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('github_name')->comment('github')->nullable();
+            $table->enum('provider', ['web', 'mobile', 'github', 'qq', 'wechat'])->default('web');
             $table->string('description', 200)->nullable();
             $table->string('avatar_path')->nullable();
             $table->boolean('confirmed')->default(false);

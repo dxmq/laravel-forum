@@ -44,4 +44,9 @@ return [
         ],
     ],
 
+    'github' => [
+        'client_id' => '074684398d78dab26597',
+        'client_secret' => 'fccc2fcdb0f584705c0bf9f3090a14789cb7489d',
+        'redirect' => 'http://forum.test/oauth/github/callback',
+    ],
 ];

@@ -77,6 +77,9 @@ Route::middleware('auth:web')->group(function () {
     Route::post('api/posts/{id}/comment', 'Api\PostsController@comment');
 });
 
+// github 登录
+Route::get('/oauth/github', 'Auth\GithubController@redirectToProvider')->name('github');
+Route::get('/oauth/github/callback', 'Auth\GithubController@handleProviderCallback');
 
 Auth::routes();
 
