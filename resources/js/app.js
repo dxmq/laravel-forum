@@ -20,14 +20,9 @@ require('./bootstrap');
 Vue.component('flash', require('./components/Flash.vue').default);
 Vue.component('paginator', require('./components/Paginator.vue').default);
 Vue.component('user-notifications', require('./components/UserNotifications').default);
-Vue.component('avatar-form', require('./components/AvatarForm').default);
 Vue.component('wysiwyg', require('./components/Wysiwyg.vue').default);
 
 Vue.component('thread-view', require('./pages/Thread.vue').default);
-
-Vue.component('comment-post', require('./components/CommentPost.vue').default);
-Vue.component('comment-root', require('./components/CommentRoot.vue').default);
-Vue.component('comment-child', require('./components/CommentChild.vue').default);
 
 Vue.component('zan', require('./components/Zan.vue').default);
 Vue.component('go-top', require('./components/GoTop.vue').default);

@@ -61,24 +61,8 @@
                         <zan :post_id="{{ $post->id }}"></zan>
                     </div>
                 </div>
-                <div class="bl-comment">
-                    <h4 class="bl-title" style="margin-left: 10px">相关评论</h4>
-                    @if (count($comments) != 0)
-                        @if(!Auth::guest())
-                            <comment-post :user_id="{{\Auth::id()}}" :comments="{{$comments}}"
-                                          :post_id="{{$post->id}}"
-                                          :collections="{{$comments[0]}}"></comment-post>
-                        @else
-                            <comment-post :user_id="0" :comments="{{$comments}}" :post_id="{{$post->id}}"
-                                          :collections="{{$comments[0]}}"></comment-post>
-                        @endif
-
-                    @else
-                        <comment-post :user_id="0" :comments="{{$comments}}" :post_id="{{$post->id}}"
-                                      :collections="{{$comments}}"></comment-post>
-                    @endif
-
-                </div>
+                @comments(['model' => $post])
+                @endcomments
 
             </div>
             @include('posts.partials._right')

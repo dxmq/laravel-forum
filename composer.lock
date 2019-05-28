@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fec798345f7de23dbdc6425bc3a4a85",
+    "content-hash": "7ba43a55223cffcecceb4f896342eabb",
     "packages": [
         {
             "name": "awssat/laravel-visits",
@@ -1586,6 +1586,64 @@
                 "psysh"
             ],
             "time": "2018-10-12T19:39:35+00:00"
+        },
+        {
+            "name": "laravelista/comments",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravelista/comments.git",
+                "reference": "6940da1c250c702c80983b8f9a4d41a2ef759f64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravelista/comments/zipball/6940da1c250c702c80983b8f9a4d41a2ef759f64",
+                "reference": "6940da1c250c702c80983b8f9a4d41a2ef759f64",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "erusev/parsedown": "^1.7",
+                "illuminate/database": "^5.6",
+                "illuminate/http": "^5.6",
+                "illuminate/support": "^5.6",
+                "php": "^7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravelista\\Comments\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravelista\\Comments\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mario Bašić",
+                    "email": "mario@laravelista.hr",
+                    "homepage": "https://laravelista.com"
+                }
+            ],
+            "description": "Comments for Laravel.",
+            "keywords": [
+                "comments",
+                "laravel"
+            ],
+            "time": "2019-02-18T07:54:37+00:00"
         },
         {
             "name": "league/flysystem",

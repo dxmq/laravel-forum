@@ -9,10 +9,12 @@ use Searching\Prototypes\ColumnsPrototype;
 use Searching\Prototypes\ShortcutsPrototype;
 use Searching\Prototypes\CategoryUrlPrototype;
 use Searching\Prototypes\UrlPrototype;
-
+use Laravelista\Comments\Commentable;
 
 class Post extends Model implements SearchingInterface
 {
+    use Commentable;
+
     protected static function boot()
     {
         parent::boot();
@@ -22,12 +24,12 @@ class Post extends Model implements SearchingInterface
                 'slug' => $post->title,
             ]);
 
-            Activity::create([ // 活动记录
+            /*Activity::create([ // 活动记录
                 'user_id' => auth()->id(),
                 'type' => 'created_post',
                 'subject_id' => $post->id,
                 'subject_type' => 'App\Post'
-            ]);
+            ]);*/
         });
 
         static::deleting(function ($post) {
@@ -72,16 +74,6 @@ class Post extends Model implements SearchingInterface
         $this->setSlug($value);
     }
 
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
-    // 获取这篇文章的评论并以parent_id分组
-    public function getComments()
-    {
-        return $this->comments()->with('owner')->get()->groupBy('parent_id');
-    }
 
     // 此文章所有赞
     public function zans()

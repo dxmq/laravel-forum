@@ -2,12 +2,12 @@
 
 namespace App\Admin\Controllers;
 
-use App\Comment;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Laravelista\Comments\Comment;
 
 class CommentsController extends Controller
 {
@@ -25,20 +25,6 @@ class CommentsController extends Controller
             ->body($this->grid());
     }
 
-    /**
-     * Show interface.
-     *
-     * @param mixed $id
-     * @param Content $content
-     * @return Content
-     */
-    public function show($id, Content $content)
-    {
-        return $content
-            ->header('Comment')
-            ->description('detail')
-            ->body($this->detail($id));
-    }
 
     /**
      * Make a grid builder.
@@ -47,14 +33,14 @@ class CommentsController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Comment);
+        $grid = new Grid(new Comment());
 
         $grid->id('Id');
-        $grid->owner()->name('Creator');
-        $grid->post()->title('Post');
-        $grid->body('Body');
-        $grid->parent_id('Parent id');
-        $grid->level('Level');
+        $grid->commenter()->name('评论者');
+        $grid->commentable_type('Commentable type');
+        $grid->commentable()->title('评论的文章');
+        $grid->comment('Comment');
+        $grid->child_id('Child id');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
 
@@ -62,42 +48,22 @@ class CommentsController extends Controller
 
         $grid->actions(function ($actions) {
             $actions->disableEdit();
+            $actions->disableView();
         });
 
-        $grid->filter(function ($filer) {
-            $filer->like('title');
-            $filer->like('body');
-            $filer->between('created_at', 'Created Time')->datetime();
+        $grid->filter(function ($filter) {
+            $filter->like('comment', '评论内容');
+            $filter->where(function ($query) {
+
+                $query->whereHas('commenter', function ($query) {
+                    $query->where('name', 'like', "%{$this->input}%");
+                });
+
+            }, '用户');
+            $filter->between('created_at', 'Created Time')->datetime();
         });
 
         return $grid;
-    }
-
-    /**
-     * Make a show builder.
-     *
-     * @param mixed $id
-     * @return Show
-     */
-    protected function detail($id)
-    {
-        $show = new Show(Comment::findOrFail($id));
-
-        $show->id('Id');
-        $show->user_id('User id');
-        $show->post_id('Post id');
-        $show->parent_id('Parent id');
-        $show->body('Body');
-        $show->level('Level');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
-
-        $show->panel()
-            ->tools(function ($tools) {
-                $tools->disableEdit();
-            });
-
-        return $show;
     }
 
     /**
@@ -107,13 +73,13 @@ class CommentsController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Comment);
+        $form = new Form(new Comment());
 
-        $form->number('user_id', 'User id');
-        $form->number('post_id', 'Post id');
-        $form->number('parent_id', 'Parent id');
-        $form->textarea('body', 'Body');
-        $form->number('level', 'Level');
+        $form->number('commenter_id', 'Commenter id');
+        $form->text('commentable_type', 'Comentable type');
+        $form->number('commentable_id', 'Commentable id');
+        $form->text('comment', 'Comment');
+        $form->number('child_id', 'Child id');
 
         return $form;
     }

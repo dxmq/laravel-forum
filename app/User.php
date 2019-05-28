@@ -11,10 +11,11 @@ use Searching\Prototypes\ShortcutsPrototype;
 use Searching\Prototypes\CategoryUrlPrototype;
 use Searching\Prototypes\UrlPrototype;
 use Valiner\IdenticonAvatar\Identicon;
+use Laravelista\Comments\Commenter;
 
 class User extends Authenticatable implements SearchingInterface
 {
-    use Notifiable;
+    use Notifiable, Commenter;
 
     /**
      * The attributes that are mass assignable.
@@ -114,11 +115,6 @@ class User extends Authenticatable implements SearchingInterface
     public function posts()
     {
         return $this->hasMany('App\Post')->latest();
-    }
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
     }
 
     public function zans()

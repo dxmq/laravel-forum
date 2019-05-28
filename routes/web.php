@@ -72,7 +72,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('api/posts/is-zan/{id}', 'Api\PostsController@isZan');
     Route::get('api/posts/zan-or-cancel/{id}', 'Api\PostsController@zanOrCancel');
 
-    Route::post('api/posts/{id}/comment', 'Api\PostsController@comment');
+//    Route::post('api/posts/{id}/comment', 'Api\PostsController@comment');
 });
 
 // github 登录

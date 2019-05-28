@@ -82,14 +82,18 @@ class UsersController extends Controller
         $grid = new Grid(new User);
 
         $grid->id('Id');
-        $grid->name('Name');
+        $grid->name('名字');
         $grid->slug('Slug');
-        $grid->email('Email');
-        $grid->email_verified_at('Email verified at')->display(function ($emailVerifiedAt) {
+        $grid->email('邮箱');
+        $grid->email_verified_at('邮箱验证时间')->display(function ($emailVerifiedAt) {
             return $emailVerifiedAt ?: 'null';
         });
-        $grid->description('Description');
-        $grid->avatar_path('Avatar path');
+        $grid->description('简介');
+        $grid->github_name()->display(function ($githubName) {
+            return $githubName ?: 'null';
+        });
+        $grid->provider('登录方式');
+        $grid->avatar_path('头像地址');
         $grid->confirmed('Email is confirmed?')->display(function ($confirmed) {
             return $confirmed ? '是' : '否';
         });

@@ -8,7 +8,7 @@ use App\Service\PostsService;
 use App\Service\TopicsService;
 use App\Topic;
 use App\Post;
-
+use App\Activity;
 class PostsController extends Controller
 {
     protected $categoriesService;
@@ -52,6 +52,13 @@ class PostsController extends Controller
         // 添加关联
         $post->topics()->attach($topics);
 
+        Activity::create([ // 活动记录
+            'user_id' => auth()->id(),
+            'type' => 'created_post',
+            'subject_id' => $post->id,
+            'subject_type' => 'App\Post'
+        ]);
+
         return redirect("/")
             ->with('flash', '你的文章已经创建！');
     }
@@ -66,9 +73,7 @@ class PostsController extends Controller
 
         visits($post)->increment(); // 增加访问量
 
-        $comments = $post->getComments();
-
-        return view('posts.show', compact('post', 'comments'));
+        return view('posts.show', compact('post'));
     }
 
     public function edit(Post $post)
