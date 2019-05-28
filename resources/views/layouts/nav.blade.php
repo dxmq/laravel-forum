@@ -34,10 +34,10 @@
                 @else
                     <user-notifications></user-notifications>
 
-                    <li class="dropdown">
+                    <li class="dropdown" style="height: 50px">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-expanded="false">
-                            <img src="{{ Auth::user()->avatar_path }}" alt="" class="img-rounded" style="border-radius:500px; height: 30px; width:30px;">&nbsp;
+                            <img src="{{ Auth::user()->avatar_path }}" alt="" class="img-rounded" style="border-radius:500px; width: 30px ">&nbsp;
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 

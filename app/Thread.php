@@ -69,7 +69,7 @@ class Thread extends Model implements SearchingInterface
 
     public function path()
     {
-        return "/threads/{$this->channel->slug}/{$this->slug}";
+        return "/threads/{$this->slug}";
     }
 
 
@@ -212,7 +212,7 @@ class Thread extends Model implements SearchingInterface
      */
     public static function getSearchableCategoryUrl() : CategoryUrlPrototype
     {
-        return new CategoryUrlPrototype('posts.index');
+        return new CategoryUrlPrototype('threads');
     }
     /**
      * 模型详情路由
@@ -221,6 +221,6 @@ class Thread extends Model implements SearchingInterface
      */
     public function getSearchableUrl() : UrlPrototype
     {
-        return new UrlPrototype('threads', $this);
+        return new UrlPrototype('threads.show', $this);
     }
 }

@@ -36,7 +36,7 @@ body {
 .navbar-static-top {
     border-color: #e7e7e7;
     background-color: #fff;
-    -webkit-box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
+    -webkit-box-shadow: 0 1px 11px 2px rgba(42, 42, 42, 0.1);
     border-top: 4px solid #00b5ad;
     border-top-color: rgb(0, 181, 173);
     margin-bottom: 40px;
@@ -118,61 +118,6 @@ body {
     margin-bottom: 12px;
     border: 0;
     border-top: 1px solid #dcebf5;
-}
-
-
-.search-warp {
-    float: right;
-    width: 280px;
-    /*height: 36px;*/
-    background: #f3f5f6;
-    border-radius: 8px;
-    margin: 7px 10px 1px 320px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    position: relative;
-}
-
-.search-warp .search-area {
-    width: 100% !important;
-    /*height: 36px;*/
-    background: #f3f5f6;
-    font-size: 14px;
-    color: #9199a1;
-    padding: 0;
-    margin: 0;
-    border-radius: 8px;
-}
-
-.search-warp .search-area .search-input {
-    width: 100%;
-    /*height: 36px;*/
-    line-height: 20px;
-    padding: 8px 16px;
-    font-size: 14px;
-    color: #9199a1;
-    background: #f3f5f6;
-    border-radius: 8px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 0;
-    outline: none;
-}
-
-.search-warp .showhide-search {
-    position: absolute;
-    right: 16px;
-    top: 0;
-    font-size: 20px;
-    color: #9199a1;
-    line-height: 24px;
-    padding: 6px 16px;
-    border-radius: 8px;
-    bottom: 24px;
-    width: 20px;
-    height: 24px;
-    text-align: right;
-    display: inline-block;
 }
 
 .submit {

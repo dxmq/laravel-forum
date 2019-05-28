@@ -18,7 +18,7 @@ class RepliesController extends Controller
         $this->middleware('auth', ['except' => 'index']); // 只有登录的用户才能回复
     }
 
-    public function index($channelId, Thread $thread)
+    public function index(Thread $thread)
     {
         return $thread->replies()->paginate(20);
     }
@@ -27,7 +27,7 @@ class RepliesController extends Controller
      * @param Thread $thread
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store($channelId, Thread $thread, CreatePostRequest $request)
+    public function store(Thread $thread, CreatePostRequest $request)
     {
         if ($thread->locked) {
             return response('话题被锁定，不能被回复', 422);

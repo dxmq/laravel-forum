@@ -90,7 +90,7 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread)
+    public function show(Thread $thread)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
@@ -137,7 +137,7 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function destroy($channel, Thread $thread)
+    public function destroy(Thread $thread)
     {
         $this->authorize('update', $thread);
 
@@ -147,7 +147,7 @@ class ThreadsController extends Controller
             return response([], 204);
         }
 
-        return redirect('/threads');
+        return redirect('/threads')->with('flash', '删除话题成功！');
     }
 
 }

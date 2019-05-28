@@ -18,13 +18,13 @@ Route::get('/', 'IndexController@index')->name('posts.index');
 Route::get('threads', 'ThreadsController@index')->name('threads');
 
 Route::get('threads/create','ThreadsController@create');
-Route::get('threads/{channel}/{thread}','ThreadsController@show');
-Route::patch('threads/{channel}/{thread}', 'ThreadsController@update');
-Route::delete('threads/{channel}/{thread}', 'ThreadsController@destroy');
-Route::post('threads','ThreadsController@store');
 Route::get('threads/{channel}','ThreadsController@index');
-Route::get('/threads/{channel}/{thread}/replies','RepliesController@index');
-Route::post('/threads/{channel}/{thread}/replies','RepliesController@store');
+Route::get('threads/{thread}','ThreadsController@show')->name('threads.show');
+Route::patch('threads/{channel}/{thread}', 'ThreadsController@update');
+Route::delete('threads/{thread}', 'ThreadsController@destroy');
+Route::post('threads','ThreadsController@store');
+Route::get('/threads/{thread}/replies','RepliesController@index');
+Route::post('/threads/{thread}/replies','RepliesController@store');
 
 Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store')->middleware('admin');
 Route::delete('locked-threads/{thread}','LockedThreadsController@destroy')->name('locked-threads.destroy')->middleware('admin');
@@ -46,8 +46,6 @@ Route::delete('/profiles/{user}/notifications/{notification}','UserNotifications
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index');
 
 Route::get('api/users', 'Api\UsersController@index');
-Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')->middleware('auth')
-    ->name('avatar');
 Route::get('/users/send_verification_mail', 'UsersController@sendVerificationMail')->name('users.send-verification-mail'); // 发送邮件
 
 // posts
