@@ -169,3 +169,11 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+    <script>
+        $('#updateButton').click(function () {
+            $('#profileForm').submit();
+        });
+    </script>
+@endsection

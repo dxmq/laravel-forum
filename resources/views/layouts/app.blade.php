@@ -55,18 +55,14 @@
         }
     });
 
-    $(document).ready(function () { // 搜索弹出框
+    $(function () {
         $('[data-toggle="popover"]').popover();
-    });
+    })
 </script>
 
-<script>window.search_url = '{{route("searching")}}';</script>
+<script>window.search_url = '{{ route("searching") }}';</script>
 <script src="{{ asset('js/searching.js') }}" defer></script>
-<script>
-    $('#updateButton').click(function () {
-        $('#profileForm').submit();
-    });
-</script>
+
 @yield('js')
 </body>
 </html>

@@ -49,4 +49,10 @@ return [
         'client_secret' => 'fccc2fcdb0f584705c0bf9f3090a14789cb7489d',
         'redirect' => 'http://forum.test/oauth/github/callback',
     ],
+
+    'qq' => [
+        'client_id' => env('QQ_KEY'),
+        'client_secret' => env('QQ_SECRET'),
+        'redirect' => env('QQ_REDIRECT_URI'),
+    ],
 ];

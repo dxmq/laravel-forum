@@ -1,5 +1,5 @@
 @if($model->comments->count() < 1)
-    <div class="alert alert-warning">说些什么吧...</div>
+    <div class="alert alert-warning">仍然没有评论...</div>
 @endif
 
 <ul class="list-unstyled">
@@ -12,9 +12,8 @@
     @include('comments::_form')
 @else
     <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">权限要求</h5>
-            <p class="card-text">你必须先登录</p>
+        <div class="card-body text-center">
+            <h5 class="card-title">权限要求，你必须先登录</h5>
             <a href="{{ route('login') }}" class="btn btn-primary">登录</a>
         </div>
     </div>

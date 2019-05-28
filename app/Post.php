@@ -13,7 +13,7 @@ use Laravelista\Comments\Commentable;
 
 class Post extends Model implements SearchingInterface
 {
-    use Commentable;
+    use Commentable, RecordsActivity;
 
     protected static function boot()
     {
@@ -24,12 +24,6 @@ class Post extends Model implements SearchingInterface
                 'slug' => $post->title,
             ]);
 
-            /*Activity::create([ // 活动记录
-                'user_id' => auth()->id(),
-                'type' => 'created_post',
-                'subject_id' => $post->id,
-                'subject_type' => 'App\Post'
-            ]);*/
         });
 
         static::deleting(function ($post) {
@@ -37,11 +31,6 @@ class Post extends Model implements SearchingInterface
             $post->comments()->delete();
             $post->zans()->delete();
         });
-    }
-
-    protected function activity()
-    {
-        return $this->morphMany('App\Activity', 'subject');
     }
 
     public function getRouteKeyName()

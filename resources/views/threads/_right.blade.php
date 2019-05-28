@@ -9,7 +9,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            专题
+            频道
         </div>
 
         <div class="panel-body">
@@ -26,7 +26,7 @@
             @foreach($channels as $channel)
                 <?php $i++;?>
                 <?php $i=$i==5 ? 0 : $i;?>
-                <a href="{{ url('/threads', [$channel->slug])}}">
+                <a href="{{ url('/threads/' . $channel->slug) . '/thread' }}">
                 <span class="label label-{{ $channelStyle[$i] }}" style="margin-left: 2px; font-size: 11px">
                     {{ $channel->name }} ({{ $channel->threads()->count() }})
                 </span>

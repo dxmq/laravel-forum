@@ -28,7 +28,11 @@ class EventServiceProvider extends ServiceProvider
 
         Registered::class => [
             'App\Listeners\SendEmailConfirmationRequest'
-        ]
+        ],
+
+/*        'SocialiteProviders\Manager\SocialiteWasCalled' => [
+            'SocialiteProviders\QQ\QqExtendSocialite@handle'
+        ],*/
     ];
 
     /**

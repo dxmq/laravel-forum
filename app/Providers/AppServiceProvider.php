@@ -35,20 +35,23 @@ class AppServiceProvider extends ServiceProvider
         /*View::share('channels', \App\Channel::all()); // 共享channel数据*/
 
         View::composer('*', function ($view) {
-           $channel = Cache::rememberForever('channels', function () {
+           /*$channel = Cache::rememberForever('channels', function () {
                return Channel::all();
-           });
+           });*/
+           $channel = Channel::all();
            $view->with('channels', $channel);
         });
 
         View::composer(['posts.*'], function ($view) {
-            $categories = Cache::rememberForever('categories', function () {
+            /*$categories = Cache::rememberForever('categories', function () {
                 return Category::with('posts')->get();
             });
 
             $topics = Cache::rememberForever('topics', function () {
                 return Topic::with('posts')->get();
-            });
+            });*/
+            $categories = Category::with('posts')->get();
+            $topics = Topic::with('posts')->get();
 
             $view->with(['categories' => $categories, 'topics' => $topics]);
         });

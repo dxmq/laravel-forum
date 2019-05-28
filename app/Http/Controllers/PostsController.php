@@ -52,13 +52,6 @@ class PostsController extends Controller
         // 添加关联
         $post->topics()->attach($topics);
 
-        Activity::create([ // 活动记录
-            'user_id' => auth()->id(),
-            'type' => 'created_post',
-            'subject_id' => $post->id,
-            'subject_type' => 'App\Post'
-        ]);
-
         return redirect("/")
             ->with('flash', '你的文章已经创建！');
     }

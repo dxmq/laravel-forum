@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="/">首页</a></li>
                 <li><a href="/threads">问答</a></li>
-                <li><a href="/documents">文档</a></li>
+                <li><a href="/docs">文档</a></li>
                 @include('layouts.search')
             </ul>
 
@@ -35,19 +35,15 @@
                     <user-notifications></user-notifications>
 
                     <li class="dropdown" style="height: 50px">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-expanded="false">
+                        <div class="navbar-form dropdown-toggle" data-toggle="dropdown" role="button"
+                              aria-expanded="false" style="padding-left: 1px">
                             <img src="{{ Auth::user()->avatar_path }}" alt="" class="img-rounded" style="border-radius:500px; width: 30px ">&nbsp;
                             {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
+                        </div>
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="{{ route('profile', Auth::user()) }}">个人中心</a>
-                            </li>
-
-                            <li>
-                                <a href="{{ route('profile', Auth::user()) }}">Dashboard</a>
                             </li>
 
                             <li>
