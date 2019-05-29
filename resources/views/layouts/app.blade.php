@@ -54,10 +54,9 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
     $(function () {
         $('[data-toggle="popover"]').popover();
-    })
+    });
 </script>
 
 <script>window.search_url = '{{ route("searching") }}';</script>

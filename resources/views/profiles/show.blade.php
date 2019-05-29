@@ -15,7 +15,9 @@
                         <div class="media">
                             <div align="center"><img src="{{ $profileUser->avatar_path }}" width="300px" height="300px"
                                                      class="thumbnail img-responsive"></div>
-                            <footer>关注：{{ $profileUser->stars_count }}｜粉丝：{{ $profileUser->fans_count }}｜文章：{{ $profileUser->posts_count }}｜话题：{{ $profileUser->threads_count }}</footer>
+                            <footer><span id="stars">关注：{{ $profileUser->stars_count }}</span>｜<span
+                                        id="fans">粉丝：{{ $profileUser->fans_count }}</span>｜文章：{{ $profileUser->posts_count }}
+                                ｜话题：{{ $profileUser->threads_count }}</footer>
 
                             @include('layouts.partials._user_like', ['target_user' => $profileUser])
                             <div class="media-body">
@@ -43,97 +45,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">个人资料</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('profiles', [$profileUser->slug]) }}" id="profileForm">
-                                {{ csrf_field() }}
 
-                                @method('PUT')
-
-                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">名字</label>
-
-                                    <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control" name="name" value="{{ $profileUser->name }}" autocomplete>
-
-                                        @if ($errors->has('name'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('origin_password') ? ' has-error' : '' }}">
-                                    <label for="origin_password" class="col-md-4 control-label">原密码</label>
-
-                                    <div class="col-md-6">
-                                        <input id="origin_password" type="password" class="form-control" name="origin_password" autocomplete>
-
-                                        <span class="help-block">原密码为空就不修改密码！</span>
-                                        @if ($errors->has('origin_password'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('origin_password') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password" class="col-md-4 control-label">新密码</label>
-
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control" name="password" autocomplete>
-                                        @if ($errors->has('password'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password-confirm" class="col-md-4 control-label">确认新密码</label>
-
-                                    <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete>
-                                    </div>
-                                </div>
-
-                                <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                                    <label for="description" class="col-md-4 control-label">个人介绍</label>
-
-                                    <div class="col-md-6">
-                                        <textarea  class="form-control" name="description" id="description" cols="30" rows="5">{{ $profileUser->description }}</textarea>
-
-                                        @if ($errors->has('description'))
-                                            <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-6 col-md-offset-4">
-                                        <button type="button" id="updateButton" class="btn btn-primary">
-                                            保存修改
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -141,7 +53,8 @@
                             <small>{{ $profileUser->email }}</small>
                         </h1>
                         @can('update', $profileUser)
-                            <a href="#"  data-toggle="modal" data-target="#myModal" style="float: right; margin-top: 10px">修改资料</a>
+                            <a href="#" data-toggle="modal" data-target="#myModal"
+                               style="float: right; margin-top: 10px">修改资料</a>
                         @endcan
                     </div>
                 </div>
@@ -170,6 +83,8 @@
                 </div>
             </div>
         </div>
+
+        @include('profiles._modal')
     </div>
 
 @endsection
@@ -178,6 +93,15 @@
     <script>
         $('#updateButton').click(function () {
             $('#profileForm').submit();
+        });
+
+
+        $('#stars').mouseover(function () {
+            $('#starsModal').modal('show');
+        });
+
+        $('#fans').mouseover(function () {
+           $('#fansModal').modal('show');
         });
 
         $(".like-button").click(function (event) {

@@ -19,12 +19,18 @@ class ProfilesController extends Controller
 
         $posts = $user->posts()->paginate(10);
 
+        $fans = $user->fans()->with('fuser')->get();
+
+        $stars = $user->stars()->with('suser')->get();
+
         return view('profiles.show', [
             'profileUser' => $profileUser,
             'activities' => Activity::feed($user),
             'threads' => $threads,
             'replies' => $replies,
             'posts' => $posts,
+            'fans' => $fans,
+            'stars' => $stars
         ]);
     }
 
