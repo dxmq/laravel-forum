@@ -115,7 +115,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
         },
 
         'title' => $title,
-        'body' => $faker->paragraph,
+        'body' => $faker->paragraph(10),
         'slug' => str_slug($title),
     ];
 });
