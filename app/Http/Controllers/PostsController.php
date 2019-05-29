@@ -8,7 +8,7 @@ use App\Service\PostsService;
 use App\Service\TopicsService;
 use App\Topic;
 use App\Post;
-use App\Activity;
+
 class PostsController extends Controller
 {
     protected $categoriesService;

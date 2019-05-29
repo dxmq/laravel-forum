@@ -35,8 +35,9 @@ Route::delete('/replies/{reply}', 'RepliesController@destroy')->name('replies.de
 Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
 
-Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
-Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth');
+// 订阅与取消订阅
+Route::post('/threads/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
+Route::delete('/threads/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth');
 
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::put('/profiles/{user}', 'ProfilesController@update');

@@ -31,8 +31,8 @@
                     </div>
 
                     <div class="panel-footer" style="padding: 4px; background-color: #ffffff">
-                        <span title="评论数"><i class="fa fa-commenting-o" aria-hidden="true"></i> {{ $post->comments->count() }}</span>&nbsp;
-                        <span title="点赞数"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ $post->zans->count() }}</span>&nbsp;
+                        <span title="评论数"><i class="fa fa-commenting-o" aria-hidden="true"></i> {{ $post->comments_count }}</span>&nbsp;
+                        <span title="点赞数"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ $post->zans_count }}</span>&nbsp;
                         <span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span>
                         <span title="阅读数">{{ visits($post)->count() }}</span>&nbsp;
                         @if($post->category)

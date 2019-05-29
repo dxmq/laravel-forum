@@ -37,7 +37,7 @@
                                         </a>
                                     </div>
                                     <div class="media-right meta">
-                                        <a href="/threads/{{ $thread->channel->slug }}" title="{{ $thread->channel->title }}">
+                                        <a href="/threads/{{ $thread->channel->slug }}/thread" title="{{ $thread->channel->title }}">
                                             <span aria-hidden="true" class="glyphicon glyphicon-folder-open"></span>
                                              {{ $thread->channel->name }}
                                         </a>

@@ -53,7 +53,7 @@
                         </div>
                     </div>
 
-                    <div class="panel-body" style="margin-right: 30px; margin-left: 30px">
+                    <div class="panel-body" style="margin-right: 5px; margin-left: 5px">
                         {!! $post->body !!}
                     </div>
 
