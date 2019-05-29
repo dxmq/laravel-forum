@@ -145,6 +145,24 @@ class User extends Authenticatable implements SearchingInterface
         return $this->hasOne(Reply::class)->latest();
     }
 
+    // 我的粉丝
+    public function fans()
+    {
+        return $this->hasMany(Fan::class, 'star_id', 'id');
+    }
+
+    public function hasFan($user_id)
+    {
+        return $this->fans()->where('fan_id', $user_id)->count();
+    }
+
+    // 我关注(粉)的人
+    public function stars()
+    {
+        return $this->hasMany(Fan::class, 'fan_id', 'id');
+    }
+
+
     public function getAvatarPathAttribute()
     {
         if (empty($this->attributes['avatar_path'])) {

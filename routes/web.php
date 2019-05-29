@@ -47,6 +47,8 @@ Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index');
 
 Route::get('api/users', 'Api\UsersController@index');
 Route::get('/users/send_verification_mail', 'UsersController@sendVerificationMail')->name('users.send-verification-mail'); // 发送邮件
+Route::post('user/{id}/fan', 'UsersController@fan');
+Route::post('user/{id}/unfan', 'UsersController@unfan');
 
 // posts
 Route::prefix('posts')->group(function () {

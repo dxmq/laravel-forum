@@ -15,6 +15,9 @@
                         <div class="media">
                             <div align="center"><img src="{{ $profileUser->avatar_path }}" width="300px" height="300px"
                                                      class="thumbnail img-responsive"></div>
+                            <footer>关注：{{ $profileUser->stars_count }}｜粉丝：{{ $profileUser->fans_count }}｜文章：{{ $profileUser->posts_count }}｜话题：{{ $profileUser->threads_count }}</footer>
+
+                            @include('layouts.partials._user_like', ['target_user' => $profileUser])
                             <div class="media-body">
                                 <hr>
                                 <h4><strong>个人简介</strong></h4>
@@ -138,7 +141,7 @@
                             <small>{{ $profileUser->email }}</small>
                         </h1>
                         @can('update', $profileUser)
-                        <a href="#"  data-toggle="modal" data-target="#myModal" style="float: right; margin-top: 10px">修改资料</a>
+                            <a href="#"  data-toggle="modal" data-target="#myModal" style="float: right; margin-top: 10px">修改资料</a>
                         @endcan
                     </div>
                 </div>
@@ -168,6 +171,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @section('js')
@@ -175,5 +179,49 @@
         $('#updateButton').click(function () {
             $('#profileForm').submit();
         });
+
+        $(".like-button").click(function (event) {
+            target = $(event.target);
+            var current_like = target.attr("like-value");
+            var user_id = target.attr("like-user");
+            //var _token = target.attr("_token");
+            // 已经关注了
+            if (current_like == 1) {
+                // 取消关注
+                $.ajax({
+                    url: "/user/" + user_id + "/unfan",
+                    method: "POST",
+                    //data: {"_token": _token},
+                    dataType: "json",
+                    success: function success(data) {
+                        if (data.error != 0) {
+                            alert(data.msg);
+                            return;
+                        }
+
+                        target.attr("like-value", 0);
+                        target.text("关注");
+                    }
+                });
+            } else {
+                // 取消关注
+                $.ajax({
+                    url: "/user/" + user_id + "/fan",
+                    method: "POST",
+                    //data: {"_token": _token},
+                    dataType: "json",
+                    success: function success(data) {
+                        if (data.error != 0) {
+                            alert(data.msg);
+                            return;
+                        }
+
+                        target.attr("like-value", 1);
+                        target.text("取消关注");
+                    }
+                });
+            }
+        });
     </script>
+
 @endsection

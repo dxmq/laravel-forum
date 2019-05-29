@@ -11,6 +11,8 @@ class ProfilesController extends Controller
 {
     public function show(User $user)
     {
+        $profileUser = User::withCount(['stars', 'fans', 'posts', 'threads'])->find($user->id);
+
         $threads = $user->threads()->paginate(10);
 
         $replies = $user->replies()->paginate(10);
@@ -18,11 +20,11 @@ class ProfilesController extends Controller
         $posts = $user->posts()->paginate(10);
 
         return view('profiles.show', [
-            'profileUser' => $user,
+            'profileUser' => $profileUser,
             'activities' => Activity::feed($user),
             'threads' => $threads,
             'replies' => $replies,
-            'posts' => $posts
+            'posts' => $posts,
         ]);
     }
 
