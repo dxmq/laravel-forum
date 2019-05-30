@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="/">首页</a></li>
                 <li><a href="/threads">问答</a></li>
-                <li><a href="/docs">文档</a></li>
+                <li style="margin-right: 343px"><a href="/docs">文档</a></li>
                 @include('layouts.search')
             </ul>
 

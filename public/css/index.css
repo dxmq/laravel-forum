@@ -159,5 +159,15 @@ body {
     z-index: 10000;
 }
 
+/**
+最新评论
+ */
+.comment-li span{
+    font-size: 12px;
+}
+
+.comment-li p {
+    margin-top: 8px
+}
 
 

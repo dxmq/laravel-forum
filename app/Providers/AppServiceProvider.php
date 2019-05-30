@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Laravelista\Comments\Comment;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -53,7 +54,9 @@ class AppServiceProvider extends ServiceProvider
             $categories = Category::with('posts')->get();
             $topics = Topic::with('posts')->get();
 
-            $view->with(['categories' => $categories, 'topics' => $topics]);
+            $comments = Comment::with(['commenter', 'commentable', 'children', 'parent'])->latest()->paginate(3);
+
+            $view->with(['categories' => $categories, 'topics' => $topics, 'comments' => $comments]);
         });
 
 
