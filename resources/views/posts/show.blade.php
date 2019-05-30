@@ -33,7 +33,8 @@
                                     <span title="创建于">{{ $post->created_at->format('Y-m-d H:i') }}</span> /
                                     <span aria-hidden="true" class="glyphicon glyphicon-eye-open" title="查看数"></span>
                                     <span title="阅读数">{{ visits($post)->count() }}</span>&nbsp;/
-                                    <span title="评论数"><i class="fa fa-commenting-o" aria-hidden="true"></i> {{ $post->comments->count()}}</span>
+                                    <span title="评论数"><i class="fa fa-commenting-o"
+                                                         aria-hidden="true"></i> {{ $post->comments->count()}}</span>
                                     @can('update', $post)
                                         <span class="pull-right">
                                         <a href="/posts/{{$post->slug}}/edit">
@@ -53,12 +54,33 @@
                         </div>
                     </div>
 
+
                     <div class="panel-body" style="margin-right: 5px; margin-left: 5px">
                         {!! $post->body !!}
                     </div>
 
                     <div class="praise-box">
+                        @if (Auth::user())
                         <zan :post_id="{{ $post->id }}"></zan>
+                            @else
+                            <div>
+                                <div class="count">{{ $post->zans()->count() }}人点赞</div>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="panel-footer">
+                        @if ($previousPost)
+                            <span title="{{ $previousPost->title }}"><a
+                                        href="{{ route('posts.show', $previousPost->slug) }}"><span class="fa fa-reply"></span>上一篇</a>
+                        </span>
+                        @else
+                            <span class="fa fa-info"></span>
+                            <span>
+                                已经是第一篇了
+                            </span>
+                        @endif
+                        <span class="pull-right" title="{{ $nextPost->title }}"><a
+                                    href="{{ route('posts.show', $nextPost->slug) }}"><span class="fa fa-share"></span>下一篇</a></span>
                     </div>
                 </div>
                 @comments(['model' => $post])

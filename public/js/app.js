@@ -3705,10 +3705,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/posts/is-zan/' + this.post_id).then(function (response) {
-      _this.is_zan = response.data.is_zan;
-      _this.fav_count = response.data.fav_count;
-    });
+    if (this.signedIn) {
+      axios.get('/api/posts/is-zan/' + this.post_id).then(function (response) {
+        _this.is_zan = response.data.is_zan;
+        _this.fav_count = response.data.fav_count;
+      });
+    }
   },
   methods: {
     zanOrCancel: function zanOrCancel() {

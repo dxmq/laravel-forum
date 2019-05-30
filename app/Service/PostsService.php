@@ -52,4 +52,14 @@ class PostsService
     {
         $this->zanRepository->deleteZan($zan_post);
     }
+
+    public function getPreviousPost($id) // 获取上一篇
+    {
+        return $this->postsRepository->getPreviousPost($id);
+    }
+
+    public function getNextPost($id) // 获取上一篇
+    {
+        return $this->postsRepository->getNextPost($id);
+    }
 }

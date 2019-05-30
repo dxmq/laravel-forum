@@ -41,4 +41,18 @@ class PostsRepository
 
         $post->delete();
     }
+
+    public function getPreviousPost($id)
+    {
+        $previousId = $this->post->where('id', '<', $id)->max('id');
+
+        return $this->post->select(['title', 'slug'])->find($previousId);
+    }
+
+    public function getNextPost($id)
+    {
+        $nextId = $this->post->where('id', '>', $id)->min('id');
+
+        return $this->post->select(['title', 'slug'])->find($nextId);
+    }
 }

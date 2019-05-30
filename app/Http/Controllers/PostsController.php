@@ -66,7 +66,10 @@ class PostsController extends Controller
 
         visits($post)->increment(); // 增加访问量
 
-        return view('posts.show', compact('post'));
+        $previousPost = $this->postsService->getPreviousPost($post->id); // 获取上一篇和下一篇
+        $nextPost = $this->postsService->getNextPost($post->id);
+
+        return view('posts.show', compact('post', 'previousPost', 'nextPost'));
     }
 
     public function edit(Post $post)

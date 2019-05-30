@@ -131,6 +131,9 @@ body {
     margin-left: 12px;
 }
 
+/*
+点赞
+ */
 .praise-box {
     position: relative;
     width: 100%;
@@ -156,31 +159,5 @@ body {
     z-index: 10000;
 }
 
-.users-show .users-show-avatar {
-    margin: 4px 54px 0px 0px; }
 
-.users-show dl dt {
-    width: 110px;
-    font-weight: normal;
-    color: #bbb; }
-
-.users-show dl dd {
-    margin-left: 127px; }
-
-.users-show dl dt, .users-show dl dd {
-    font-size: 13px;
-    line-height: 150%;
-    border-bottom: 1px dashed #eee; }
-
-.users-show .user-info-nav {
-    border: none; }
-
-.users-show .dl-horizontal dt {
-    width: 50px;
-    white-space: nowrap;
-    font-weight: normal;
-    color: #999; }
-
-.users-show .dl-horizontal dd {
-    margin-left: 58px; }
 

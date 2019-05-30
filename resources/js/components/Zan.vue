@@ -19,16 +19,18 @@
             post_id: Number
         },
         mounted() {
-            axios.get('/api/posts/is-zan/' + this.post_id)
-                .then(response => {
-                this.is_zan = response.data.is_zan;
-                this.fav_count = response.data.fav_count;
-            })
+            if (this.signedIn) {
+                axios.get('/api/posts/is-zan/' + this.post_id)
+                    .then(response => {
+                        this.is_zan = response.data.is_zan;
+                        this.fav_count = response.data.fav_count;
+                    })
+            }
         },
         methods: {
             zanOrCancel() {
                 if (this.signedIn) {
-                    axios.get('/api/posts/zan-or-cancel/'+this.post_id)
+                    axios.get('/api/posts/zan-or-cancel/' + this.post_id)
                         .then(response => {
                             this.is_zan = response.data.is_zan;
                             this.fav_count = response.data.fav_count;
@@ -50,17 +52,19 @@
         text-align: center;
         margin: 0 auto;
         line-height: 66px;
-        background: rgba(255,170,0,.1);
+        background: rgba(255, 170, 0, .1);
         color: #fa0;
         cursor: pointer;
         .iconfont {
             font-size: 30px;
         }
     }
+
     .is_zan {
         background: rgb(255, 170, 0);
         color: #fff;
     }
+
     .count {
         margin-top: 4px;
         margin-bottom: 4px;
