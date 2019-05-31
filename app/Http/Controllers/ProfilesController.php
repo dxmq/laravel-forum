@@ -39,24 +39,45 @@ class ProfilesController extends Controller
         if (!empty(request('origin_password'))) {
             request()->validate([
                 'name' => 'required|max:255',
+                'avatar' => 'image',
                 'origin_password' => 'required',
                 'password' => 'required|min:8|confirmed',
                 'description' => 'max:200'
             ]);
 
+
             if (!Hash::check(request('origin_password'), $user->password)) {
                 return back()->with('flash', '原密码输入错误！');
             }
 
-            $user->update(array_merge(request(['name', 'description']), ['password' => bcrypt(request('password'))]));
+            if (request('avatar')) {
+                $avatar_path = 'storage/' . request()->file('avatar')->store('uploads/images', 'public');
+
+                $user->update(array_merge(request(['name', 'description']), [
+                    'password' => bcrypt(request('password')),
+                    'avatar_path' => $avatar_path,
+                    'slug' => request('name')
+                ]));
+            } else {
+                $user->update(array_merge(request(['name', 'description']),
+                    ['password' => bcrypt(request('password')), 'slug' => request('name')]));
+            }
 
         } else {
             request()->validate([
                 'name' => 'required|max:255',
+                'avatar' => 'image',
                 'description' => 'max:200'
             ]);
 
-            $user->update(array_merge(request(['name', 'description']), ['slug' => request('name')]));
+            if (request('avatar')) {
+                $avatar_path = 'storage/' . request()->file('avatar')->store('uploads/avatars', 'public');
+
+                $user->update(array_merge(request(['name', 'description']),
+                    ['slug' => request('name'), 'avatar_path' => $avatar_path]));
+            } else {
+                $user->update(array_merge(request(['name', 'description']), ['slug' => request('name')]));
+            }
         }
 
         return redirect('/profiles/' . $user->slug)->with('flash', '资料修改成功！');

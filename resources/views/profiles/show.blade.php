@@ -13,7 +13,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="media">
-                            <div align="center"><img src="{{ $profileUser->avatar_path }}" width="300px" height="300px"
+                            <div align="center" title="修改头像"><img src="{{ $profileUser->avatar_path }}" width="300px" height="300px"
                                                      class="thumbnail img-responsive"></div>
                             <footer><span id="stars">关注：{{ $profileUser->stars_count }}</span>｜<span
                                         id="fans">粉丝：{{ $profileUser->fans_count }}</span>｜文章：{{ $profileUser->posts_count }}

@@ -14,6 +14,7 @@ try {
     require('jquery-qrcode');
 
     require('bootstrap');
+
 } catch (e) {}
 
 /**

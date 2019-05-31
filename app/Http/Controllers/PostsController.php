@@ -123,7 +123,7 @@ class PostsController extends Controller
 
         $category = $category->name;
 
-        return view('posts.category', compact('posts', 'category'));
+        return view('posts.index', compact('posts', 'category'));
     }
 
     public function topic(Topic $topic)
@@ -132,7 +132,7 @@ class PostsController extends Controller
 
         $topic = $topic->name;
 
-        return view('posts.topic', compact('posts', 'topic'));
+        return view('posts.index', compact('posts', 'topic'));
     }
 
 }

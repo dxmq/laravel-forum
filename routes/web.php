@@ -17,6 +17,8 @@ Route::get('/', 'IndexController@index')->name('posts.index');
 
 Route::get('threads', 'ThreadsController@index')->name('threads');
 
+Route::get('comments', 'Controller@comments');
+
 Route::get('threads/create','ThreadsController@create');
 Route::get('threads/{channel}/thread','ThreadsController@index');
 Route::get('threads/{thread}','ThreadsController@show')->name('threads.show');

@@ -40,7 +40,6 @@
                         <p>{!! str_limit($comment->comment, 30, '...') !!}</p>
                     </li>
                 @endforeach
-                {{ $comments->links() }}
             </ul>
         </div>
     </div>
@@ -55,7 +54,7 @@
                 @foreach($categories as $category)
                     <li class="list-group-item">
                         <a href="{{ url('/posts/categories/' . $category->id) }}">
-                            {{ $category->name }} ({{ $category->posts_count }})
+                            {{ $category->name }} ({{ $category->posts()->count() }})
                         </a>
                     </li>
                 @endforeach
@@ -83,7 +82,7 @@
                 <?php $i = $i == 5 ? 0 : $i;?>
                 <a href="{{ url('/posts/topics', [$topic->id]) }}">
                 <span class="label label-{{ $topicStyle[$i] }}" style="margin-left: 2px; font-size: 11px">
-                    {{ $topic->name }} ({{ $topic->posts_count }})
+                    {{ $topic->name }} ({{ $topic->posts()->count() }})
                 </span>
                 </a>
 

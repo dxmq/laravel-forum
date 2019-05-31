@@ -33,28 +33,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Carbon::setLocale('zh');
-        /*View::share('channels', \App\Channel::all()); // 共享channel数据*/
 
         View::composer(['threads.index'], function ($view) {
-           /*$channel = Cache::rememberForever('channels', function () {
-               return Channel::all();
-           });*/
            $channel = Channel::with('threads')->get();
            $view->with('channels', $channel);
         });
 
-        View::composer(['posts.index', 'posts.show', 'posts.category', 'posts.topic'], function ($view) {
-            /*$categories = Cache::rememberForever('categories', function () {
-                return Category::with('posts')->get();
-            });
-
-            $topics = Cache::rememberForever('topics', function () {
-                return Topic::with('posts')->get();
-            });*/
+        View::composer(['posts.index', 'posts.show'], function ($view) {
             $categories = Category::with('posts')->get();
             $topics = Topic::with('posts')->get();
 
-            $comments = Comment::with(['commenter', 'commentable', 'children', 'parent'])->latest()->paginate(3);
+            $comments = Comment::with(['commenter', 'commentable', 'children', 'parent'])->take(4)->latest()->get();
 
             $view->with(['categories' => $categories, 'topics' => $topics, 'comments' => $comments]);
         });

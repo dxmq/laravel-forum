@@ -12,20 +12,23 @@
                             {{ csrf_field() }}
 
                             <div class="form-group">
-                                <label for="channel_id">选择一频道</label>
+                                <label for="channel_id">选择一个频道</label>
                                 <select name="channel_id" id="channel_id" class="form-control" required>
                                     <option value="">选择一个...</option>
-                                    @foreach($channels as $channel)
-                                        <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected' : ''}}>
-                                            {{ $channel->name }}
-                                        </option>
-                                    @endforeach
+                                    @if(! empty($channels))
+                                        @foreach($channels as $channel)
+                                            <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected' : ''}}>
+                                                {{ $channel->name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="title">标题</label>
-                                <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+                                <input type="text" class="form-control" id="title" name="title"
+                                       value="{{ old('title') }}">
                             </div>
 
                             <div class="form-group">

@@ -27,6 +27,7 @@ Vue.component('thread-view', require('./pages/Thread.vue').default);
 Vue.component('zan', require('./components/Zan.vue').default);
 Vue.component('go-top', require('./components/GoTop.vue').default);
 Vue.component('share', require('./components/Share.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

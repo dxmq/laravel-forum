@@ -63,7 +63,7 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form" method="POST"
-                      action="{{ url('profiles', [$profileUser->slug]) }}" id="profileForm">
+                      action="{{ url('profiles', [$profileUser->slug]) }}" id="profileForm" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
                     @method('PUT')
@@ -73,7 +73,7 @@
 
                         <div class="col-md-6">
                             <input id="name" type="text" class="form-control" name="name"
-                                   value="{{ $profileUser->name }}" autocomplete>
+                                   value="{{ $profileUser->name }}" autocomplete required>
 
                             @if ($errors->has('name'))
                                 <span class="help-block">
@@ -82,6 +82,22 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
+                        <label for="name" class="col-md-4 control-label">头像</label>
+
+                        <div class="col-md-6">
+                            <input id="avatar" type="file" class="form-control" name="avatar"
+                                   value="{{ $profileUser->name }}" autocomplete>
+
+                            @if ($errors->has('avatar'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
 
                     <div class="form-group{{ $errors->has('origin_password') ? ' has-error' : '' }}">
                         <label for="origin_password" class="col-md-4 control-label">原密码</label>
@@ -150,3 +166,4 @@
         </div>
     </div>
 </div>
+
