@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Activitylog\Models\Activity;
 
 class ProfilesController extends Controller
 {
@@ -23,9 +23,17 @@ class ProfilesController extends Controller
 
         $stars = $user->stars()->with('suser')->get();
 
+        $activities = Activity::latest()
+            ->with(['subject', 'causer'])
+            ->take(15)
+            ->get()
+            ->groupBy(function ($activity) {
+                return $activity->created_at->format('Y-m-d');
+            });
+
         return view('profiles.show', [
             'profileUser' => $profileUser,
-            'activities' => Activity::feed($user),
+            'activities' => $activities,
             'threads' => $threads,
             'replies' => $replies,
             'posts' => $posts,

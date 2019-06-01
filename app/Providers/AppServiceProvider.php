@@ -9,7 +9,6 @@ use App\Thread;
 use App\Topic;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
@@ -37,12 +36,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Carbon::setLocale('zh');
 
-        View::composer(['threads.index'], function ($view) {
+        View::composer(['threads.index', 'threads.create'], function ($view) {
             $channel = Channel::with('threads')->get();
             $view->with('channels', $channel);
         });
 
-        View::composer(['posts.index', 'posts.show', 'posts.edit'], function ($view) {
+        View::composer(['posts.index', 'posts.show', 'posts.edit', 'posts.create'], function ($view) {
             $categories = Category::with('posts')->get();
             $topics = Topic::with('posts')->get();
 

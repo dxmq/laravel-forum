@@ -10,6 +10,7 @@ use Searching\Prototypes\ColumnsPrototype;
 use Searching\Prototypes\ShortcutsPrototype;
 use Searching\Prototypes\CategoryUrlPrototype;
 use Searching\Prototypes\UrlPrototype;
+use Spatie\Activitylog\Models\Activity;
 use Valiner\IdenticonAvatar\Identicon;
 use Laravelista\Comments\Commenter;
 
@@ -64,6 +65,7 @@ class User extends Authenticatable implements SearchingInterface
             $user->replies()->delete();
             $user->comments()->delete();
             $user->zans()->delete();
+            $user->activity()->delete();
         });
     }
 

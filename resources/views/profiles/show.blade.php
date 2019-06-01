@@ -13,8 +13,9 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="media">
-                            <div align="center" title="修改头像"><img src="{{ $profileUser->avatar_path }}" width="300px" height="300px"
-                                                     class="thumbnail img-responsive"></div>
+                            <div align="center" title="修改头像"><img src="{{ $profileUser->avatar_path }}" width="300px"
+                                                                  height="300px"
+                                                                  class="thumbnail img-responsive"></div>
                             <footer><span id="stars">关注：{{ $profileUser->stars_count }}</span>｜<span
                                         id="fans">粉丝：{{ $profileUser->fans_count }}</span>｜文章：{{ $profileUser->posts_count }}
                                 ｜话题：{{ $profileUser->threads_count }}</footer>
@@ -29,17 +30,25 @@
                                 <p>{{ $profileUser->created_at->diffForHumans() }}</p>
                                 <hr>
                                 <h4><strong>最近活动</strong></h4>
-                                @forelse($activities as $date => $activity)
+                                @foreach($activities as $date => $activity)
                                     <h4 class="page-header">{{ $date }}</h4>
 
                                     @foreach($activity as $record)
-                                        @if(view()->exists("profiles.activities.{$record->type}"))
-                                            @include("profiles.activities.{$record->type}",['activity'  => $record])
+                                        @if($record->subject && $profileUser->id==$record->causer->id)
+                                            @if($record->log_name == 'posts')
+                                                @include('profiles.activities._post', ['record' => $record])
+                                            @elseif($record->log_name == 'threads')
+                                                @include('profiles.activities._thread', ['record' => $record])
+                                            @elseif($record->log_name == 'favorite')
+                                                @include('profiles.activities._favorite', ['record' => $record])
+                                            @elseif($record->log_name == 'replies')
+                                                @include('profiles.activities._reply', ['record' => $record])
+                                                @elseif($record->log_name == 'comments')
+                                                @include('profiles.activities._comments', ['record' => $record])
+                                            @endif
                                         @endif
                                     @endforeach
-                                @empty
-                                    <p>Ta 仍然没有任何活动。</p>
-                                @endforelse
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -101,7 +110,7 @@
         });
 
         $('#fans').mouseover(function () {
-           $('#fansModal').modal('show');
+            $('#fansModal').modal('show');
         });
 
         $(".like-button").click(function (event) {

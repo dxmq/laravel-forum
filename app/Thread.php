@@ -5,7 +5,6 @@ namespace App;
 use App\Events\ThreadHasNewReply;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Traits\RecordsActivity;
 use Searching\Interfaces\SearchingInterface;
 use Searching\Prototypes\CategoryNamePrototype;
 use Searching\Prototypes\ColumnsPrototype;
@@ -15,8 +14,6 @@ use Searching\Prototypes\UrlPrototype;
 
 class Thread extends Model implements SearchingInterface
 {
-    use RecordsActivity;
-
     protected $with = ['creator', 'channel'];
     protected $appends = ['isSubscribedTo'];
     protected $casts = [
@@ -47,7 +44,7 @@ class Thread extends Model implements SearchingInterface
 
     public function setSlugAttribute($value)
     {
-       $this->setSlug($value);
+        $this->setSlug($value);
     }
 
     protected function incrementSlug($slug)
@@ -178,48 +175,53 @@ class Thread extends Model implements SearchingInterface
 
 
     // 实现SearchingInterFace相关方法
+
     /**
      * 获取搜索组名
      *
      * @return CategoryNamePrototype
      */
-    public static function getSearchableCategoryName() : CategoryNamePrototype
+    public static function getSearchableCategoryName(): CategoryNamePrototype
     {
         return new CategoryNamePrototype('话题');
     }
+
     /**
      * 获取可被搜索的字段
      *
      * @return ColumnsPrototype
      */
-    public static function getSearchableColumns() : ColumnsPrototype
+    public static function getSearchableColumns(): ColumnsPrototype
     {
         return new ColumnsPrototype('title', 'body');
     }
+
     /**
      * 获取搜索分组快捷键
      *
      * @return ShortcutsPrototype
      */
-    public static function getSearchableShortcuts() : ShortcutsPrototype
+    public static function getSearchableShortcuts(): ShortcutsPrototype
     {
         return new ShortcutsPrototype('ht');
     }
+
     /**
      * 模型列表路由
      *
      * @return CategoryUrlPrototype
      */
-    public static function getSearchableCategoryUrl() : CategoryUrlPrototype
+    public static function getSearchableCategoryUrl(): CategoryUrlPrototype
     {
         return new CategoryUrlPrototype('threads');
     }
+
     /**
      * 模型详情路由
      *
      * @return UrlPrototype
      */
-    public function getSearchableUrl() : UrlPrototype
+    public function getSearchableUrl(): UrlPrototype
     {
         return new UrlPrototype('threads.show', $this);
     }

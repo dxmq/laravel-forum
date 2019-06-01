@@ -6,8 +6,4 @@
             </span>
         </div>
     </div>
-
-    <div class="panel-body">
-        {{ $body }}
-    </div>
 </div>

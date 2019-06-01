@@ -52,6 +52,9 @@ class PostsController extends Controller
         // 添加关联
         $post->topics()->attach($topics);
 
+        activity('posts')->performedOn($post)
+            ->log('创建了文章');
+
         return redirect("/")
             ->with('flash', '你的文章已经创建！');
     }

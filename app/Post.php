@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Traits\RecordsActivity;
 use Searching\Interfaces\SearchingInterface;
 use Searching\Prototypes\CategoryNamePrototype;
 use Searching\Prototypes\ColumnsPrototype;
@@ -13,7 +12,7 @@ use Laravelista\Comments\Commentable;
 
 class Post extends Model implements SearchingInterface
 {
-    use Commentable, RecordsActivity;
+    use Commentable;
 
     protected static function boot()
     {
@@ -23,6 +22,8 @@ class Post extends Model implements SearchingInterface
             $post->update([
                 'slug' => $post->title,
             ]);
+
+
 
         });
 
@@ -80,43 +81,47 @@ class Post extends Model implements SearchingInterface
      *
      * @return CategoryNamePrototype
      */
-    public static function getSearchableCategoryName() : CategoryNamePrototype
+    public static function getSearchableCategoryName(): CategoryNamePrototype
     {
         return new CategoryNamePrototype('文章');
     }
+
     /**
      * 获取可被搜索的字段
      *
      * @return ColumnsPrototype
      */
-    public static function getSearchableColumns() : ColumnsPrototype
+    public static function getSearchableColumns(): ColumnsPrototype
     {
         return new ColumnsPrototype('title', 'body');
     }
+
     /**
      * 获取搜索分组快捷键
      *
      * @return ShortcutsPrototype
      */
-    public static function getSearchableShortcuts() : ShortcutsPrototype
+    public static function getSearchableShortcuts(): ShortcutsPrototype
     {
         return new ShortcutsPrototype('wz');
     }
+
     /**
      * 模型列表路由
      *
      * @return CategoryUrlPrototype
      */
-    public static function getSearchableCategoryUrl() : CategoryUrlPrototype
+    public static function getSearchableCategoryUrl(): CategoryUrlPrototype
     {
         return new CategoryUrlPrototype('posts.index');
     }
+
     /**
      * 模型详情路由
      *
      * @return UrlPrototype
      */
-    public function getSearchableUrl() : UrlPrototype
+    public function getSearchableUrl(): UrlPrototype
     {
         return new UrlPrototype('posts.show', $this);
     }

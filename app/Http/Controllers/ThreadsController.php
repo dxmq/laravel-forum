@@ -80,6 +80,10 @@ class ThreadsController extends Controller
             return response($thread, 201);
         }
 
+        activity('threads')
+            ->performedOn($thread)
+            ->log('发表了话题');
+
         return redirect($thread->path())
             ->with('flash', '你的话题已经被创建！');
     }

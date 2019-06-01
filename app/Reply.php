@@ -4,11 +4,10 @@ namespace App;
 
 use Carbon\Carbon;
 use App\Traits\Favoritable;
-use App\Traits\RecordsActivity;
 
 class Reply extends Model
 {
-    use Favoritable, RecordsActivity;
+    use Favoritable;
 
     protected $with = ['owner', 'favorites'];
 
@@ -21,6 +20,10 @@ class Reply extends Model
         static::created(function ($reply) {
             $reply->thread->increment('replies_count');
             $reply->body = clean($reply->body, 'thread_or_reply_body');
+
+            activity('replies')->performedOn($reply)
+                ->log('回复了');
+
         });
 
         static::deleted(function ($reply) {
