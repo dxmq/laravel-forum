@@ -55,7 +55,7 @@
                     </div>
 
 
-                    <div class="panel-body" style="margin-right: 5px; margin-left: 5px">
+                    <div class="panel-body">
                         {!! $post->body !!}
                     </div>
 
@@ -69,7 +69,7 @@
                         @endif
                     </div>
                     <div class="panel-footer">
-                        @if ($previousPost)
+                        @if (!empty($previousPost))
                             <span title="{{ $previousPost->title }}"><a
                                         href="{{ route('posts.show', $previousPost->slug) }}"><span class="fa fa-reply"></span>上一篇</a>
                         </span>
@@ -79,8 +79,17 @@
                                 已经是第一篇了
                             </span>
                         @endif
+                        @if (!empty($nextPost))
                         <span class="pull-right" title="{{ $nextPost->title }}"><a
                                     href="{{ route('posts.show', $nextPost->slug) }}"><span class="fa fa-share"></span>下一篇</a></span>
+                            @else
+                            <div class="pull-right">
+                                <span class="fa fa-info"></span>
+                                <span>
+                                已经是最后一篇了
+                            </span>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 @comments(['model' => $post])

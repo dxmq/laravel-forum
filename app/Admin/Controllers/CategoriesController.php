@@ -84,7 +84,7 @@ class CategoriesController extends Controller
         $grid = new Grid(new Category);
 
         $grid->id('Id');
-        $grid->name('Name');
+        $grid->name('名称');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
 
@@ -102,7 +102,7 @@ class CategoriesController extends Controller
         $show = new Show(Category::findOrFail($id));
 
         $show->id('Id');
-        $show->name('Name');
+        $show->name('名字');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
 

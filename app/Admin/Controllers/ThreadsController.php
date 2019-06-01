@@ -53,10 +53,10 @@ class ThreadsController extends Controller
         $grid = new Grid(new Thread);
 
         $grid->id('Id');
-        $grid->creator()->name('creator');
-        $grid->channel()->name('Channel');
-        $grid->replies_count('Replies count');
-        $grid->title('Title');
+        $grid->creator()->name('创建者');
+        $grid->channel()->name('频道');
+        $grid->replies_count('回复数');
+        $grid->title('标题');
         $grid->best_reply_id('Best reply id')->display(function ($bestReplyId) {
             return $bestReplyId ?: 'null';
         });

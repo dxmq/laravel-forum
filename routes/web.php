@@ -16,9 +16,6 @@
 Route::get('/', 'IndexController@index')->name('posts.index');
 
 Route::get('threads', 'ThreadsController@index')->name('threads');
-
-Route::get('comments', 'Controller@comments');
-
 Route::get('threads/create','ThreadsController@create');
 Route::get('threads/{channel}/thread','ThreadsController@index');
 Route::get('threads/{thread}','ThreadsController@show')->name('threads.show');
@@ -28,8 +25,10 @@ Route::post('threads','ThreadsController@store');
 Route::get('/threads/{thread}/replies','RepliesController@index');
 Route::post('/threads/{thread}/replies','RepliesController@store');
 
+
 Route::post('locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store')->middleware('admin');
 Route::delete('locked-threads/{thread}','LockedThreadsController@destroy')->name('locked-threads.destroy')->middleware('admin');
+
 
 Route::post('/replies/{reply}/best', 'BestRepliesController@store')->name('best-replies.store');
 Route::patch('/replies/{reply}', 'RepliesController@update');
@@ -41,12 +40,14 @@ Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
 Route::post('/threads/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
 Route::delete('/threads/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth');
 
+
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::put('/profiles/{user}', 'ProfilesController@update');
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
 Route::delete('/profiles/{user}/notifications/{notification}','UserNotificationsController@destroy');
 
 Route::get('/register/confirm', 'Auth\RegisterConfirmationController@index');
+
 
 Route::get('api/users', 'Api\UsersController@index');
 Route::get('/users/send_verification_mail', 'UsersController@sendVerificationMail')->name('users.send-verification-mail'); // 发送邮件
@@ -80,11 +81,9 @@ Route::middleware('auth:web')->group(function () {
 //    Route::post('api/posts/{id}/comment', 'Api\PostsController@comment');
 });
 
+
 // github 登录
 Route::get('/oauth/github', 'Auth\GithubController@redirectToProvider')->name('github');
 Route::get('/oauth/github/callback', 'Auth\GithubController@handleProviderCallback');
 
 Auth::routes();
-
-
-Route::get('/home', 'HomeController@index')->name('home');

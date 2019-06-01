@@ -8,7 +8,6 @@
                     {{ $reply->thread->title }}
                 </a>
                 <span class="meta pull-right">
-                {!! $reply->body !!}
                     {{ $reply->created_at->diffForHumans() }}</span>
             </li>
         @endforeach

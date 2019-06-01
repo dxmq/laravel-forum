@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
-use App\Notifications\YouWereMentioned;
 use App\Reply;
-use App\Inspections\Spam;
 use App\Thread;
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
+
 
 class RepliesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'index']); // 只有登录的用户才能回复
+        $this->middleware(['auth', 'must-be-confirmed'], ['except' => 'index']); // 只有登录的用户才能回复
     }
 
     public function index(Thread $thread)

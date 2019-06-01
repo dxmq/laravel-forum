@@ -21,20 +21,6 @@ class TopicsService
         $this->topicsRepository = $topicsRepository;
     }
 
-    public function normalizeTopic(array $topics)
-    {
-        return collect($topics)->map(function ($topic) {
-            if (is_numeric($topic)) {
-                return $topic;
-            }
-
-            $newTopic = $this->topicsRepository->createTopic([ // 如果不是数字就创建
-                'name' => $topic
-            ]);
-            return $newTopic->id;
-        })->toArray();
-    }
-
     public function updatePostTopics(Post $post, $topics)
     {
         $this->topicsRepository->updatePostTopics($post, $topics);

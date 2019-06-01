@@ -4,7 +4,10 @@ namespace App\Providers;
 
 use App\Category;
 use App\Channel;
+use App\Post;
+use App\Thread;
 use App\Topic;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
@@ -35,11 +38,11 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('zh');
 
         View::composer(['threads.index'], function ($view) {
-           $channel = Channel::with('threads')->get();
-           $view->with('channels', $channel);
+            $channel = Channel::with('threads')->get();
+            $view->with('channels', $channel);
         });
 
-        View::composer(['posts.index', 'posts.show'], function ($view) {
+        View::composer(['posts.index', 'posts.show', 'posts.edit'], function ($view) {
             $categories = Category::with('posts')->get();
             $topics = Topic::with('posts')->get();
 
@@ -48,7 +51,13 @@ class AppServiceProvider extends ServiceProvider
             $view->with(['categories' => $categories, 'topics' => $topics, 'comments' => $comments]);
         });
 
+        View::composer(['*'], function ($view) {
+            $postCount = Post::count();
+            $threadCount = Thread::count();
+            $userCount = User::count();
 
+            $view->with(compact('postCount', 'threadCount', 'userCount'));
+        });
 
         Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
     }

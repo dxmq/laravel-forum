@@ -82,12 +82,12 @@
                                 @if(count($post->topics))
                                     <span title="专题"><i class="fa fa-tags" aria-hidden="true"></i>
                                         @foreach($post->topics as $topic)
-                                            <a href="">\ {{ $topic->name }}</a>
+                                            <a href="{{ url('/posts/topics', [$topic->id]) }}">\ {{ $topic->name }}</a>
                                         @endforeach
                         </span>
                                 @endif
                                 <span aria-hidden="true" class="glyphicon glyphicon-time"></span>
-                                <span title="创建于">{{ $post->created_at->diffForHumans()}}</span>
+                                <span title="创建于">{{ $post->created_at->diffForHumans() }}</span>
 
                             </div>
                         </div>

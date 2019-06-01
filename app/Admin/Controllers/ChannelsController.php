@@ -53,7 +53,7 @@ class ChannelsController extends Controller
         $grid = new Grid(new Channel);
 
         $grid->id('Id');
-        $grid->name('Name');
+        $grid->name('名字');
         $grid->slug('Slug');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');

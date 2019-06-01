@@ -84,7 +84,7 @@ class TopicsController extends Controller
         $grid = new Grid(new Topic);
 
         $grid->id('Id');
-        $grid->name('Name');
+        $grid->name('名称');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
 

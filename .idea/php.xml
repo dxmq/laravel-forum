@@ -107,6 +107,10 @@
       <path value="$PROJECT_DIR$/vendor/laravelista/comments" />
       <path value="$PROJECT_DIR$/vendor/erusev/parsedown-extra" />
       <path value="$PROJECT_DIR$/vendor/binarytorch/larecipe" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-activitylog" />
+      <path value="$PROJECT_DIR$/vendor/spatie/string" />
+      <path value="$PROJECT_DIR$/vendor/anahkiasen/underscore-php" />
+      <path value="$PROJECT_DIR$/vendor/patchwork/utf8" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

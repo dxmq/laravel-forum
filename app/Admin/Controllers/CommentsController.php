@@ -39,7 +39,7 @@ class CommentsController extends Controller
         $grid->commenter()->name('评论者');
         $grid->commentable_type('Commentable type');
         $grid->commentable()->title('评论的文章');
-        $grid->comment('Comment');
+        $grid->comment('内容');
         $grid->child_id('Child id');
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');

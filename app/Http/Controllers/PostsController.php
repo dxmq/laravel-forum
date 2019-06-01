@@ -38,12 +38,12 @@ class PostsController extends Controller
         request()->validate([
             'category_id' => 'required',
             'title' => 'required|max:200',
-            'topics' => 'required',
+            'topics' => 'array',
             'body' => 'required|min:6',
         ]);
 
         // 转为标准的topics
-        $topics = $this->topicsService->normalizeTopic(request('topics'));
+        $topics = request('topics');
 
         $params = array_merge(request(['category_id', 'title', 'body']), ['user_id' => auth()->id()]);
 

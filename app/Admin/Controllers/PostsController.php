@@ -63,7 +63,7 @@ class PostsController extends Controller
         $grid->title('标题');
         $grid->creator()->name('创建者');
         $grid->category()->name('分类');
-        $grid->topics()->display(function ($topics) {
+        $grid->topics('专题')->display(function ($topics) {
             $topics = array_map(function ($topic) {
                 return "<span class='label label-success'>{$topic['name']}</span>";
             }, $topics);
