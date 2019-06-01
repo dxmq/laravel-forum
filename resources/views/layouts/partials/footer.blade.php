@@ -12,7 +12,7 @@
                 <span>话题{{ $threadCount }}</span>|
                 <span>用户{{ $userCount }}</span>
                 <br>
-                <span class="fa fa-code"></span>
+                <span class="fa fa-github"></span>
                 <a href="https://github.com/dxmq/laravel-forum">
                     项目源码
                 </a>

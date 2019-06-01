@@ -67,6 +67,7 @@ class ChannelsController extends Controller
         $grid->filter(function ($filter) {
             $filter->like('name');
         });
+
         return $grid;
     }
 

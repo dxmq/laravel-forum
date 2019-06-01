@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Show;
 use Laravelista\Comments\Comment;
 
 class CommentsController extends Controller

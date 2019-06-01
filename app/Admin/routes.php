@@ -36,4 +36,8 @@ Route::group([
 
     $router->resource('users', 'UsersController');
 
+    $router->resource('activities', 'ActivitiesController', [
+        'only' => ['index', 'destroy']
+    ]);
+
 });
