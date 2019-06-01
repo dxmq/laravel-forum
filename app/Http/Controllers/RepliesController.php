@@ -63,4 +63,15 @@ class RepliesController extends Controller
         return back();
     }
 
+    public function favorite(Reply $reply)
+    {
+        $reply->favorite();
+
+        return back();
+    }
+
+    public function unFavorite(Reply $reply)
+    {
+        $reply->unFavorite();
+    }
 }

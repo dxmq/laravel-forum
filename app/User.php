@@ -64,7 +64,6 @@ class User extends Authenticatable implements SearchingInterface
             $user->threads()->delete();
             $user->replies()->delete();
             $user->comments()->delete();
-            $user->zans()->delete();
             $user->activity()->delete();
         });
     }
@@ -117,11 +116,6 @@ class User extends Authenticatable implements SearchingInterface
     public function posts()
     {
         return $this->hasMany('App\Post')->latest();
-    }
-
-    public function zans()
-    {
-        return $this->hasMany('App\Zan');
     }
 
     /**

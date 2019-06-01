@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Favoritable;
 use Searching\Interfaces\SearchingInterface;
 use Searching\Prototypes\CategoryNamePrototype;
 use Searching\Prototypes\ColumnsPrototype;
@@ -12,7 +13,11 @@ use Laravelista\Comments\Commentable;
 
 class Post extends Model implements SearchingInterface
 {
-    use Commentable;
+    use Commentable, Favoritable;
+
+    protected $with = ['favorites'];
+
+    protected $appends = ['favoritesCount', 'isFavorited'];
 
     protected static function boot()
     {
@@ -22,15 +27,11 @@ class Post extends Model implements SearchingInterface
             $post->update([
                 'slug' => $post->title,
             ]);
-
-
-
         });
 
         static::deleting(function ($post) {
             $post->activity()->delete();
             $post->comments()->delete();
-            $post->zans()->delete();
         });
     }
 
@@ -64,17 +65,6 @@ class Post extends Model implements SearchingInterface
         $this->setSlug($value);
     }
 
-
-    // 此文章所有赞
-    public function zans()
-    {
-        return $this->hasMany(Zan::class, 'post_id', 'id');
-    }
-
-    public function isZan() // 判断一个用户是否点赞过
-    {
-        return !!$this->zans()->where('user_id', auth()->id())->count();
-    }
 
     /**
      * 获取搜索组名

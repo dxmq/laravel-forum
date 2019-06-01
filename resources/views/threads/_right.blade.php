@@ -28,7 +28,7 @@
                 <?php $i=$i==5 ? 0 : $i;?>
                 <a href="{{ url('/threads/' . $channel->slug) . '/thread' }}">
                 <span class="label label-{{ $channelStyle[$i] }}" style="margin-left: 2px; font-size: 11px">
-                    {{ $channel->name }} ({{ $channel->threads_count }})
+                    {{ $channel->name }} ({{ $channel->threads()->count() }})
                 </span>
                 </a>
             @endforeach

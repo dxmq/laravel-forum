@@ -120,6 +120,21 @@ class PostsController extends Controller
             ->with('文章已经删除！');
     }
 
+    public function zan($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->favorite();
+
+        return back();
+    }
+
+    public function unzan($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->unFavorite();
+    }
+
+
     public function category(Category $category)
     {
         $posts = $this->categoriesService->getPostsByCategory($category);

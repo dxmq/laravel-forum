@@ -3693,37 +3693,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['post'],
   data: function data() {
     return {
-      fav_count: 0,
-      is_zan: false
+      count: this.post.favoritesCount,
+      active: this.post.isFavorited
     };
   },
-  props: {
-    post_id: Number
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    if (this.signedIn) {
-      axios.get('/api/posts/is-zan/' + this.post_id).then(function (response) {
-        _this.is_zan = response.data.is_zan;
-        _this.fav_count = response.data.fav_count;
-      });
+  computed: {
+    classes: function classes() {
+      return this.active;
+    },
+    endpoint: function endpoint() {
+      return '/posts/' + this.post.id + '/favorites';
     }
   },
   methods: {
-    zanOrCancel: function zanOrCancel() {
-      var _this2 = this;
-
+    toggle: function toggle() {
       if (this.signedIn) {
-        axios.get('/api/posts/zan-or-cancel/' + this.post_id).then(function (response) {
-          _this2.is_zan = response.data.is_zan;
-          _this2.fav_count = response.data.fav_count;
-        });
+        this.active ? this.destroy() : this.create();
       } else {
-        flash('请先登录，然后再点赞！', 'danger');
+        flash('请先登录，然后再点赞！', 'warning');
       }
+    },
+    create: function create() {
+      axios.post(this.endpoint);
+      this.active = true;
+      this.count++;
+    },
+    destroy: function destroy() {
+      axios["delete"](this.endpoint);
+      this.active = false;
+      this.count--;
     }
   }
 });
@@ -57961,15 +57962,13 @@ var render = function() {
       "div",
       {
         staticClass: "zan_wrap",
-        class: [{ is_zan: _vm.is_zan }],
-        on: { click: _vm.zanOrCancel }
+        class: [{ is_zan: _vm.classes }],
+        on: { click: _vm.toggle }
       },
       [_c("span", { staticClass: "iconfont icon-dianzan" })]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "count" }, [
-      _vm._v(_vm._s(_vm.fav_count) + "人点赞")
-    ])
+    _c("div", { staticClass: "count" }, [_vm._v(_vm._s(_vm.count) + "人点赞")])
   ])
 }
 var staticRenderFns = []

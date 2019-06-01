@@ -33,8 +33,8 @@ Route::delete('locked-threads/{thread}','LockedThreadsController@destroy')->name
 Route::post('/replies/{reply}/best', 'BestRepliesController@store')->name('best-replies.store');
 Route::patch('/replies/{reply}', 'RepliesController@update');
 Route::delete('/replies/{reply}', 'RepliesController@destroy')->name('replies.destroy');
-Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
-Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
+Route::post('/replies/{reply}/favorites', 'RepliesController@favorite');
+Route::delete('/replies/{reply}/favorites', 'RepliesController@unFavorite');
 
 // 订阅与取消订阅
 Route::post('/threads/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
@@ -67,20 +67,14 @@ Route::prefix('posts')->group(function () {
     // 删除文章
     Route::get('/{id}/delete','PostsController@destroy');
 
+    Route::post('/{id}/favorites', 'PostsController@zan');
+    Route::delete('/{id}/favorites', 'PostsController@unzan');
     // 某个分类下的文章
     Route::get('/categories/{category}', 'PostsController@category');
 
     // 某个专题下的文章
     Route::get('/topics/{topic}', 'PostsController@topic');
 });
-
-Route::middleware('auth:web')->group(function () {
-    Route::get('api/posts/is-zan/{id}', 'Api\PostsController@isZan');
-    Route::get('api/posts/zan-or-cancel/{id}', 'Api\PostsController@zanOrCancel');
-
-//    Route::post('api/posts/{id}/comment', 'Api\PostsController@comment');
-});
-
 
 // github 登录
 Route::get('/oauth/github', 'Auth\GithubController@redirectToProvider')->name('github');

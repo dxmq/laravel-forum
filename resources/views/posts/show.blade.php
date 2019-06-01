@@ -60,14 +60,9 @@
                     </div>
 
                     <div class="praise-box">
-                        @if (Auth::user())
-                        <zan :post_id="{{ $post->id }}"></zan>
-                            @else
-                            <div>
-                                <div class="count">{{ $post->zans()->count() }}人点赞</div>
-                            </div>
-                        @endif
+                        <zan :post="{{ $post }}"></zan>
                     </div>
+
                     <div class="panel-footer">
                         @if (!empty($previousPost))
                             <span title="{{ $previousPost->title }}"><a

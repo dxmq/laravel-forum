@@ -1,43 +1,52 @@
 <template>
     <div>
-        <div class="zan_wrap" @click="zanOrCancel" :class="[{is_zan:is_zan}]">
+        <div class="zan_wrap" @click="toggle" :class="[{is_zan:classes}]">
             <span class="iconfont icon-dianzan"></span>
         </div>
-        <div class="count">{{ fav_count }}人点赞</div>
+        <div class="count">{{ count }}人点赞</div>
     </div>
 </template>
 
 <script>
     export default {
+        props: ['post'],
+
         data() {
             return {
-                fav_count: 0,
-                is_zan: false,
+                count: this.post.favoritesCount,
+                active:this.post.isFavorited
             }
         },
-        props: {
-            post_id: Number
-        },
-        mounted() {
-            if (this.signedIn) {
-                axios.get('/api/posts/is-zan/' + this.post_id)
-                    .then(response => {
-                        this.is_zan = response.data.is_zan;
-                        this.fav_count = response.data.fav_count;
-                    })
+
+        computed: {
+            classes() {
+                return this.active;
+            },
+
+            endpoint() {
+                return '/posts/' + this.post.id + '/favorites';
             }
         },
         methods: {
-            zanOrCancel() {
+            toggle() {
                 if (this.signedIn) {
-                    axios.get('/api/posts/zan-or-cancel/' + this.post_id)
-                        .then(response => {
-                            this.is_zan = response.data.is_zan;
-                            this.fav_count = response.data.fav_count;
-                        })
+                    this.active ? this.destroy() : this.create();
                 } else {
-                    flash('请先登录，然后再点赞！', 'danger');
+                    flash('请先登录，然后再点赞！', 'warning');
                 }
+            },
+            create() {
+                axios.post(this.endpoint);
+
+                this.active = true;
+                this.count++;
+            },
+
+            destroy() {
+                axios.delete(this.endpoint);
+
+                this.active = false;
+                this.count--;
             }
         }
     }
