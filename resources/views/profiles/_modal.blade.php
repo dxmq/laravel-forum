@@ -87,8 +87,7 @@
                         <label for="name" class="col-md-4 control-label">头像</label>
 
                         <div class="col-md-6">
-                            <input id="avatar" type="file" class="form-control" name="avatar"
-                                   value="{{ $profileUser->name }}" autocomplete>
+                            <input id="avatar" type="file" class="form-control" name="avatar" autocomplete multiple="multiple">
 
                             @if ($errors->has('avatar'))
                                 <span class="help-block">

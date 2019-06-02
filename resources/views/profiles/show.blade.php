@@ -101,6 +101,7 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('js/vendor/bootstrap-prettyfile.js') }}"></script>
     <script>
         $('#updateButton').click(function () {
             $('#profileForm').submit();
@@ -114,6 +115,8 @@
         $('#fans').mouseover(function () {
             $('#fansModal').modal('show');
         });
+
+        $( 'input[type="file"]' ).prettyFile();
 
         $(".like-button").click(function (event) {
             target = $(event.target);
