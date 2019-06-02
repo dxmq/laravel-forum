@@ -80,4 +80,8 @@ Route::prefix('posts')->group(function () {
 Route::get('/oauth/github', 'Auth\GithubController@redirectToProvider')->name('github');
 Route::get('/oauth/github/callback', 'Auth\GithubController@handleProviderCallback');
 
+// qq 登录
+Route::get('/oauth/qq', 'Auth\QqController@redirectToProvider')->name('qq');
+Route::get('/oauth/qq/callback', 'Auth\QqController@handleProviderCallback');
+
 Auth::routes();
