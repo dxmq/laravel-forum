@@ -19,15 +19,13 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li><a href="/">首页</a></li>
-                <li><a href="/threads">问答</a></li>
-                <li style="margin-right: 343px"><a href="/docs">文档</a></li>
+                <li class="{{ $ekko->isActive(['/', '/posts/create', '/posts/*/edit', '/posts/*']) }}"><a href="{{ url('/') }}">首页</a></li>
+                <li class="{{ $ekko->isActive(['/threads', '/threads/*', '/threads/create', '/threads/edit']) }}"><a href="{{ url('/threads') }}">问答</a></li>
+                <li class="{{ $ekko->isActive('/docs') }}" style="margin-right: 343px"><a href="{{ url('docs') }}">文档</a></li>
                 @include('layouts.search')
             </ul>
 
-            <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><i class=""></i><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{ route('register') }}">注册</a></li>

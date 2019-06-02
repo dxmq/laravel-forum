@@ -18,6 +18,7 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "laravelista/comments": "^2.1",
+        "laravelista/ekko": "^3.0",
         "mews/purifier": "~2.0",
         "overtrue/laravel-pinyin": "~3.0",
         "overtrue/laravel-socialite": "~2.0",

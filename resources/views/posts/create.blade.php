@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('/css/vendor/simplemde.min.css') }}" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/simplemde.min.css') }}" />
+    <link href="{{ asset('css/vendor/select2.min.css') }}" rel="stylesheet" />
 @endsection
+
+@section('title', '创建文章')
 
 @section('content')
    <div class="container" style="margin-top:38px;">
@@ -20,14 +22,14 @@
 
                            <div class="form-group">
                                <div class="col-md-3">
-                                   <select name="category_id" class="input-xlarge form-control">
+                                   <select name="category_id" class="input-xlarge form-control" required>
                                        @foreach($categories as $category)
                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                        @endforeach
                                    </select>
                                </div>
                                <div class="col-md-9">
-                                   <input class="form-control" name="title" value="{{ old('title') }}"  autofocus placeholder="请输入标题">
+                                   <input class="form-control" name="title" value="{{ old('title') }}"  autofocus placeholder="请输入标题" required>
                                </div>
                            </div>
 
@@ -40,7 +42,7 @@
 
                            <div class="form-group">
                                <div class="col-md-12">
-                                   <textarea rows="9" id="editor" style="resize:none" name="body" class="form-control"> </textarea>
+                                   <textarea rows="9" id="editor" style="resize:none" name="body" class="form-control" required> </textarea>
                                </div>
                            </div>
 
@@ -61,9 +63,9 @@
 @endsection
 
 @section('js')
- <script src="{{ asset('/js/vendor/simplemde.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/i18n/zh-CN.js"></script>
+ <script src="{{ asset('js/vendor/simplemde.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/select2.full.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/zh-CN.js') }}"></script>
     <script>
         // Most options demonstrate the non-default behavior
         var simplemde = new SimpleMDE({
@@ -149,7 +151,7 @@
                         results: data.topics
                     };
                 },
-                cache: true
+                cache: false
             },
             templateResult: formatTopic,
             templateSelection: formatTopicSelection,

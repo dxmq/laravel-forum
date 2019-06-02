@@ -4,6 +4,8 @@
     <link href="{{ asset('css/prism-a11y-dark.css') }}" rel="stylesheet">
 @endsection
 
+@section('title', '文章详情')
+
 @section('content')
     <div class="container">
         <div class="active-box">

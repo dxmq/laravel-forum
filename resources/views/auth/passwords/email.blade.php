@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '重置密码发送邮件')
+
 @section('content')
 <div class="container">
     <div class="row">

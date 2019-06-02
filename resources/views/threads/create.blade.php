@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '创建话题')
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -28,7 +30,7 @@
                             <div class="form-group">
                                 <label for="title">标题</label>
                                 <input type="text" class="form-control" id="title" name="title"
-                                       value="{{ old('title') }}">
+                                       value="{{ old('title') }}" required>
                             </div>
 
                             <div class="form-group">

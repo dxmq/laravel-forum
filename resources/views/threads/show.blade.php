@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{ asset('/css/vendor/jquery.atwho.css') }}">
 @endsection
 
+@section('title', '话题详情')
+
 @section('content')
     <thread-view :thread="{{ $thread }}" inline-template>
         <div class="container">

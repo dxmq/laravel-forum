@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service\PostsService;
 use Illuminate\Http\Request;
+use Laravelista\Ekko\Ekko;
 
 class IndexController extends Controller
 {

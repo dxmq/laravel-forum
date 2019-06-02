@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Laravelista\Comments\Comment;
+use Laravelista\Ekko\Ekko;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -57,6 +58,9 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with(compact('postCount', 'threadCount', 'userCount'));
         });
+
+        $ekko = new Ekko();
+        View::share('ekko', $ekko);
 
         Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
     }
