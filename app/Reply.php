@@ -27,6 +27,8 @@ class Reply extends Model
         });
 
         static::deleted(function ($reply) {
+            $reply->activities()->delete(); // 删除日志
+
             if ($reply->id == $reply->thread->best_reply_id) {
                 $reply->thread->update(['best_reply_id', null]);
             }

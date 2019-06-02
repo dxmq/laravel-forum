@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Laravelista\Comments\Events\CommentCreated;
+use Laravelista\Comments\Events\CommentDeleted;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -33,7 +33,7 @@ class EventServiceProvider extends ServiceProvider
 
         CommentCreated::class => [ // 创建评论时监听,记录活动日志
             'App\Listeners\CreatedCommentsRecordLog'
-        ]
+        ],
     ];
 
     /**

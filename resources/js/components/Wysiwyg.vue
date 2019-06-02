@@ -7,12 +7,10 @@
 </template>
 
 <script>
-    import Trix from '../../../node_modules/trix';
+    import Trix from 'trix'
 
     export default {
-        components: { Trix },
-
-        props:['name','value','placeholder','shouldClear'],
+        props: ['name', 'value', 'placeholder', 'shouldClear'],
 
         mounted () {
             this.$refs.trix.addEventListener('trix-change', e => {

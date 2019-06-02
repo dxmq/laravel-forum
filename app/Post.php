@@ -29,9 +29,10 @@ class Post extends Model implements SearchingInterface
             ]);
         });
 
-        static::deleting(function ($post) {
-            $post->activity()->delete();
+        static::deleting(function ($post) { // 删除文章时同时删除
             $post->comments()->delete();
+            $post->favorites()->delete();
+            $post->activities()->delete();
         });
     }
 

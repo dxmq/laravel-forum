@@ -32,6 +32,25 @@
                     <li><i class=""></i><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{ route('register') }}">注册</a></li>
                 @else
+                    <li>
+                        <a href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            <i class="fa fa-plus text-md"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li>
+                                <a class="button no-pjax" href="{{ url('posts/create') }}" >
+                                    <i class="fa fa-paint-brush text-md"></i> 创作文章
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="button no-pjax" href="{{ url('threads/create') }}">
+                                    <i class="fa fa-comment text-md"></i> 发帖
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <user-notifications></user-notifications>
 
                     <li class="dropdown" style="height: 50px">

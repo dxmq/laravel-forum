@@ -3644,8 +3644,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_trix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/trix */ "./node_modules/trix/dist/trix.js");
-/* harmony import */ var _node_modules_trix__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_trix__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var trix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! trix */ "./node_modules/trix/dist/trix.js");
+/* harmony import */ var trix__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(trix__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3656,9 +3656,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Trix: _node_modules_trix__WEBPACK_IMPORTED_MODULE_0___default.a
-  },
   props: ['name', 'value', 'placeholder', 'shouldClear'],
   mounted: function mounted() {
     var _this = this;
@@ -57363,7 +57360,7 @@ var render = function() {
               _c("wysiwyg", {
                 attrs: {
                   name: "body",
-                  placeholder: "Have something to say?",
+                  placeholder: "与人为善，比聪明更重要！",
                   shouldClear: _vm.completed
                 },
                 model: {

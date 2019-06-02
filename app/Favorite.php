@@ -12,6 +12,10 @@ class Favorite extends Model
                 ->performedOn($favorite)
                 ->log('点赞了');
         });
+
+        static::deleting(function ($favorite) {
+            $favorite->activities()->delete();
+        });
     }
 
     protected $guarded = [];
@@ -20,4 +24,5 @@ class Favorite extends Model
     {
         return $this->morphTo();
     }
+
 }

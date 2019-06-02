@@ -26,6 +26,7 @@ class Thread extends Model implements SearchingInterface
 
         static::deleting(function ($thread) {
             $thread->replies->each->delete();
+            $thread->activities()->delete();
         });
 
         static::created(function ($thread) {

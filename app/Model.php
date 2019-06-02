@@ -9,6 +9,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Spatie\Activitylog\Models\Activity;
 
 class Model extends EloquentModel
 {
@@ -27,5 +28,10 @@ class Model extends EloquentModel
         }
 
         return $this->attributes['slug'] = $slug;
+    }
+
+    public function activities()
+    {
+        return $this->morphMany(Activity::class, 'subject');
     }
 }

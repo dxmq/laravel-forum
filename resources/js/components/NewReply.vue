@@ -2,7 +2,7 @@
     <div>
         <div v-if="signedIn">
             <div class="form-group">
-                <wysiwyg name="body" v-model="body" placeholder="Have something to say?"
+                <wysiwyg name="body" v-model="body" placeholder="与人为善，比聪明更重要！"
                          :shouldClear="completed"></wysiwyg>
             </div>
 

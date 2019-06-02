@@ -8,7 +8,6 @@
 
 namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Favorite;
 /**
  * 点赞相关
