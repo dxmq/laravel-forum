@@ -3,8 +3,8 @@
 
 - [安装](#install-link)
 - [克隆源码到本地](#first-link)
-- [修改配置文件](#second-link)
-- [安装扩展包](#three-link)
+- [安装扩展包](#second-link)
+- [修改配置文件](#three-link)
 - [配置key与软链接](#four-link)
 - [数据迁移](#five-link)
 - [填充后台数据](#six-link)
@@ -15,7 +15,16 @@
 `git clone https://github.com/dxmq/laravel-forum.git`
 
 <a name="second-link">
-### 2. 修改配置文件
+### 2. 安装扩展包
+
+- 安装`laravel`扩展包 `composer install`
+- 安装`Vue.js`扩展包 `npm install`
+- 编译js `npm run dev`
+
+> 后续两步也可不执行，因为已经事先已编译好了
+
+<a name="three-link">
+### 3. 修改配置文件
 
 `cd laravel-forum`
 
@@ -34,16 +43,8 @@
 
 最后`php artisan config:clear`
 
-<a name="three-link">
-### 3. 安装扩展包
-
-- 安装`laravel`扩展包 `composer install`
-- 安装`Vue.js`扩展包 `npm install`
-- 编译js `npm run dev`
-
-> 后续两步也可不执行，因为已经事先已编译好了
-
 <a name="four-link">
+
 ### 4. 配置key与软链接
 
 `php artisan key:generate`
@@ -51,11 +52,13 @@
 `php artisan storage:link`
 
 <a name="five-link">
+
 ### 5. 数据迁移
 
 `php artisan migrate`
 
 <a name="six-link">
+
 ### 6. 填充后台数据
 
 `php artisan db:seed --class=AdminTablesSeeder`
