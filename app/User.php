@@ -89,11 +89,7 @@ class User extends Authenticatable implements SearchingInterface
 
     public function setSlugAttribute($value)
     {
-        $slug = str_slug($value);
-
-        if (preg_match('/[\x{4e00}-\x{9fa5}]/u', $value)) {
-            $slug = str_slug(pinyin_sentence($value));
-        }
+        $slug = str_slug(pinyin_sentence($value));
 
         return $this->attributes['slug'] = $slug;
     }

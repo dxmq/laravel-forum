@@ -17,13 +17,9 @@ class Model extends EloquentModel
 
     public function setSlug($value)
     {
-        $slug = str_slug($value);
+        $slug = str_slug(pinyin_sentence($value));
 
-        if (preg_match('/[\x{4e00}-\x{9fa5}]/u', $value)) {
-            $slug = str_slug(pinyin_sentence($value));
-        }
-
-        if (static::where('slug', $slug)->exists()) {
+        if (static::whereSlug($slug)->exists()) {
             $slug = "{$slug}-" . $this->id;
         }
 
