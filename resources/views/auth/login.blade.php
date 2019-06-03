@@ -66,13 +66,12 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-4 col-md-offset-8">
-                                    <a class="btn btn-link" href="{{ route('github') }}">
+                                <div class="col-md-3 col-md-offset-10">
+                                    <a class="btn btn-link" href="{{ route('github') }}" title="github登录">
                                         <span class="iconfont icon-github"></span>
-                                        github 登录
                                     </a>
-                                    <a href="{{ route('qq') }}">
-                                        <img src="{{ asset('images/qq.png') }}" alt="QQ">qq 登录
+                                    <a href="{{ route('qq') }}" title="QQ登录">
+                                        <img src="{{ asset('images/qq.png') }}" alt="QQ">
                                     </a>
                                 </div>
                             </div>

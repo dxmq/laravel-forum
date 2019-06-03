@@ -19,7 +19,7 @@
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li class="{{ $ekko->isActive(['/', '/posts/create', '/posts/*/edit', '/posts/*']) }}"><a href="{{ url('/') }}">首页</a></li>
+                <li class="{{ $ekko->isActive(['/', '/posts/create', '/posts/*/edit', '/posts/*']) }}"><a href="{{ url('/') }}">文章</a></li>
                 <li class="{{ $ekko->isActive(['/threads', '/threads/*', '/threads/create', '/threads/edit']) }}"><a href="{{ url('/threads') }}">问答</a></li>
                 <li class="{{ $ekko->isActive('/docs') }}" style="margin-right: 343px"><a href="{{ url('docs') }}">文档</a></li>
                 @include('layouts.search')
@@ -54,7 +54,7 @@
                     <li class="dropdown" style="height: 50px">
                         <div class="navbar-form dropdown-toggle" data-toggle="dropdown" role="button"
                               aria-expanded="false" style="padding-left: 1px">
-                            <img src="{{ Auth::user()->avatar_path }}" alt="" class="img-rounded" style="border-radius:500px; width: 30px ">&nbsp;
+                            <img src="{{ Auth::user()->avatar_path }}" alt="" class="img-thumbnail" style="width: 30px ">&nbsp;
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </div>
 

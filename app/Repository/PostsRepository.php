@@ -27,7 +27,7 @@ class PostsRepository
 
     public function getPosts()
     {
-        return $this->post->with(['topics', 'creator', 'category', 'comments'])->latest()->paginate(6);
+        return $this->post->with(['topics', 'creator', 'category', 'comments'])->latest()->paginate(8);
     }
 
     public function update($post, $params)

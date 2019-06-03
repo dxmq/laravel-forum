@@ -15,7 +15,7 @@
                    <div class="panel-heading">创建文章</div>
 
                    <div class="panel-body">
-                       <form class="form-horizontal" method="POST" action="/posts/store">
+                       <form class="form-horizontal" method="POST" action="{{ asset('posts/store') }}">
                            {{ csrf_field() }}
 
                           @include('layouts.partials.error')

@@ -15,7 +15,7 @@
     <link href="{{ asset('css/trix.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     <!-- Scripts -->
     <script>
         window.App = {!! json_encode([
