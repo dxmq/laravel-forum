@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Favoritable;
+use Laravelista\Comments\Comment;
 use Searching\Interfaces\SearchingInterface;
 use Searching\Prototypes\CategoryNamePrototype;
 use Searching\Prototypes\ColumnsPrototype;

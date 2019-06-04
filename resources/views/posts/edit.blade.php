@@ -140,7 +140,7 @@
 
         $(".topics").select2({
             tags: true,
-            placeholder: '选择相关专题，输出字符会自动检索',
+            placeholder: '选择相关专题，输出字符会自动检索（可不选）',
             minimumInputLength: 1,
             ajax: {
                 url: '/api/topics',

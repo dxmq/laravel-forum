@@ -89,7 +89,7 @@ class PostsController extends Controller
         request()->validate([
             'category_id' => 'required',
             'title' => 'required|max:200',
-            'topics' => 'required',
+            'topics' => 'array',
             'body' => 'required|min:6',
         ]);
 
@@ -101,7 +101,8 @@ class PostsController extends Controller
 
         $this->postsService->updatePost($post, $params);
 
-        $this->topicsService->updatePostTopics($post, request('topics')); // 维护中间表
+        if (!empty(request('topics')))
+            $this->topicsService->updatePostTopics($post, request('topics')); // 维护中间表
 
         return redirect('/')
             ->with('flash', '文章修改成功！');

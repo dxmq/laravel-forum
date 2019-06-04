@@ -18,14 +18,14 @@ class GithubController extends Controller
     {
         $github_user = Socialite::driver('github')->user();
 
-        $user = User::where('github_name', $github_user->name)->first();
+        $user = User::where('github_name', $github_user->getUserName())->first();
         if (empty($user)) {
             $user = User::create([
                 'name' => $github_user->getUserName(),
                 'slug' => $github_user->getUserName(),
                 'email' => $github_user->getEmail(),
                 'avatar_path' => $github_user->getAvatar(),
-                'github_name' => $github_user->getName(),
+                'github_name' => $github_user->getUserName(),
                 'provider' => $github_user->getProviderName(),
                 'password' => bcrypt(str_random(6)),
                 'confirmed' => 1,
