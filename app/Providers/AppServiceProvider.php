@@ -44,9 +44,13 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer(['posts.index', 'posts.show', 'posts.edit', 'posts.create'], function ($view) {
             $categories = Category::with('posts')->get();
+
             $topics = Topic::with('posts')->get();
 
-            $comments = Comment::with(['commenter', 'commentable', 'children', 'parent'])->take(4)->latest()->get();
+            $comments = Comment::with(['commenter', 'commentable', 'children', 'parent'])
+                ->take(4)
+                ->latest()
+                ->get();
 
             $view->with(['categories' => $categories, 'topics' => $topics, 'comments' => $comments]);
         });

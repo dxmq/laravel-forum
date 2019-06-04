@@ -45,7 +45,7 @@
                 @endif
                 <div class="infinite-scroll">
                     @foreach($posts as $post)
-                        <div class="panel panel-default" data-aos="fade-up">
+                        <div class="panel panel-default" data-aos="fade-up" data-aos-easing="ease-in-sine">
                             <div class="panel-heading" style="padding: 4px;">
                                 <div class="level">
                                     <div class="flex">
@@ -97,7 +97,6 @@
                             </div>
                         </div>
                     @endforeach
-                    {{--点击加载下一页的按钮--}}
                     <div>
                         {{ $posts->links() }}
                     </div>
@@ -113,7 +112,9 @@
     <script type="text/javascript" src="{{ asset('js/vendor/aos.js') }}"></script>
     <script>
         $(function () {
-            AOS.init();
-        }); // 加载动画
+            AOS.init({
+                disable: 'mobile',
+            }); // 加载动画
+        });
     </script>
 @endsection
