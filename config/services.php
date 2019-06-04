@@ -45,9 +45,9 @@ return [
     ],
 
     'github' => [
-        'client_id' => '074684398d78dab26597',
-        'client_secret' => 'fccc2fcdb0f584705c0bf9f3090a14789cb7489d',
-        'redirect' => 'http://forum.test/oauth/github/callback',
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => env('GITHUB_REDIRECT')
     ],
 
     'qq' => [

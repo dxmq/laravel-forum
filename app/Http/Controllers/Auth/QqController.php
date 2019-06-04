@@ -19,7 +19,7 @@ class GithubController extends Controller
         $qq_user = Socialite::driver('qq')->user();
 
         $user = User::where('qq_name', $qq_user->getUserName())->first();
-        if (empty($user)) {
+        if ($user) {
             $user = User::create([
                 'name' => $qq_user->getUserName(),
                 'slug' => $qq_user->getUserName(),

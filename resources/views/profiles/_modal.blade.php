@@ -14,7 +14,7 @@
                             <img src="{{ $star->suser->avatar_path }}" alt="{{ $star->suser->name }}" title="{{ $star->suser->name }}" width="35px" class="img-circle">
                             {{ $star->suser->name }}
                         </a>
-                        <span>&nbsp;|&nbsp;</span>
+                        <span>&nbsp;&nbsp;</span>
                     @endforeach
                 @else
                     还没有关注
@@ -32,7 +32,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="fans">我的粉丝</h4>
+                <h4 class="modal-title" id="fans">粉丝</h4>
             </div>
             <div class="modal-body">
                 @if(count($fans))
@@ -41,7 +41,7 @@
                             <img src="{{ $fan->fuser->avatar_path }}" alt="{{ $fan->fuser->name }}" title="{{ $fan->fuser->name }}" width="35px" class="img-circle">
                             {{ $fan->fuser->name }}
                         </a>
-                        <span>&nbsp;|&nbsp;</span>
+                        <span>&nbsp;&nbsp;</span>
                     @endforeach
                 @else
                     还没有粉丝诶！

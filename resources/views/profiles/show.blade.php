@@ -15,11 +15,11 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="media">
-                            <div align="center" title="修改头像"><img src="{{ $profileUser->avatar_path }}" width="300px"
+                            <div align="center"><img src="{{ $profileUser->avatar_path }}" width="300px"
                                                                   height="300px"
                                                                   class="thumbnail img-responsive"></div>
-                            <footer><span id="stars">关注：{{ $profileUser->stars_count }}</span>｜<span
-                                        id="fans">粉丝：{{ $profileUser->fans_count }}</span>｜文章：{{ $profileUser->posts_count }}
+                            <footer><span id="stars" title="点击查看关注">关注：{{ $profileUser->stars_count }}</span>｜<span
+                                        id="fans" title="点击查看粉丝">粉丝：{{ $profileUser->fans_count }}</span>｜文章：{{ $profileUser->posts_count }}
                                 ｜话题：{{ $profileUser->threads_count }}</footer>
 
                             @include('layouts.partials._user_like', ['target_user' => $profileUser])
@@ -108,11 +108,11 @@
         });
 
 
-        $('#stars').mouseover(function () {
+        $('#stars').click(function () {
             $('#starsModal').modal('show');
         });
 
-        $('#fans').mouseover(function () {
+        $('#fans').click(function () {
             $('#fansModal').modal('show');
         });
 
