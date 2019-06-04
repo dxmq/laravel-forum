@@ -18,11 +18,6 @@ class AdminTablesSeeder extends Seeder
                 'password' => bcrypt('admin'),
                 'name' => 'Administrator',
             ],
-            [
-                'username' => 'user1',
-                'password' => bcrypt(123456),
-                'name' => 'user1'
-            ]
         );
 
         Encore\Admin\Auth\Database\Menu::truncate();
@@ -153,6 +148,13 @@ class AdminTablesSeeder extends Seeder
                     'title' => '用户列表',
                     'icon' => 'fa-circle-o',
                     'uri' => 'users',
+                ],
+                [
+                    'parent_id' => 17,
+                    'order' => 19,
+                    'title' => '用户日志',
+                    'icon' => 'fa-calendar',
+                    'uri' => 'threads'
                 ],
             ]
         );

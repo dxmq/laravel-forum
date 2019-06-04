@@ -259,7 +259,7 @@ return [
     |    "skin-red", "skin-red-light", "skin-black", "skin-black-light".
     |
     */
-    'skin' => 'skin-purple',
+    'skin' => 'skin-blue-light',
 
     /*
     |--------------------------------------------------------------------------

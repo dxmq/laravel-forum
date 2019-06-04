@@ -22,6 +22,7 @@
 | spatie/laravel-activitylog  |  活动日志记录 |
 | valiner/identicon-avatar  |  随机头像生成 |
 | xiaohuilam/searching  | 搜索功能  |
+| beyondcode/laravel-er-diagram-generator  |  生成模型实体关系图 |
 
 ####　在此，非常感谢他们提供的优秀扩展
 
