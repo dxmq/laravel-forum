@@ -75,11 +75,6 @@
         // Most options demonstrate the non-default behavior
         var simplemde = new SimpleMDE({
             autofocus: true,
-            autosave: {
-                enabled: true,
-                uniqueId: "editor01",
-                delay: 1000,
-            },
             blockStyles: {
                 bold: "__",
                 italic: "_"
@@ -108,7 +103,7 @@
                 codeSyntaxHighlighting: true,
             },
             shortcuts: {
-                drawTable: "Cmd-Alt-T"
+                drawTable: "CTRL-Alt-T"
             },
             showIcons: ["code", "table"],
             spellChecker: false,
