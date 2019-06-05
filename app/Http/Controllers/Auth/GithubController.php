@@ -21,7 +21,7 @@ class GithubController extends Controller
         // 判断用户是否登录过
         $countMap = [
             'provider' => $github_user->getProviderName(),
-            'openid' => $github_user->getId(),
+            'name' => $github_user->getUserName(),
         ];
 
         $user = User::where($countMap)->first();
@@ -34,7 +34,7 @@ class GithubController extends Controller
                     'email' => $github_user->getEmail(),
                     'avatar_path' => $github_user->getAvatar(),
                     'provider' => $github_user->getProviderName(),
-                    'openid' => $github_user->getId(),
+                    'openid' => $github_user->id,
                     'password' => bcrypt(str_random(6)),
                     'confirmed' => 1,
                 ]);

@@ -26,9 +26,9 @@ Route::group([
     $router->get('/threads/{thread}', 'ThreadsController@show');
     $router->delete('/threads/{id}', 'ThreadsController@destroy');
 
-    $router->get('/channels', 'ChannelsController@index');
-    $router->get('/channels/{channel}', 'ChannelsController@show');
-    $router->delete('/channels/{id}', 'ChannelsController@destroy');
+    $router->resource('channels', 'ChannelsController', [
+        'except' => ['show']
+    ]);
 
     $router->resource('replies', 'RepliesController', [
         'only' => ['index', 'show', 'destroy']

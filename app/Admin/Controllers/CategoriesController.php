@@ -118,7 +118,7 @@ class CategoriesController extends Controller
     {
         $form = new Form(new Category);
 
-        $form->text('name', 'Name');
+        $form->text('name', 'Name')->rules('required|unique:categories|max:20');
 
         return $form;
     }

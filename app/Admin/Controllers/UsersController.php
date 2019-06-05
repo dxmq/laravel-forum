@@ -143,11 +143,11 @@ class UsersController extends Controller
     {
         $form = new Form(new User);
 
-        $form->text('name', 'Name');
+        $form->text('name', 'Name')->rules('required|max:20|unique:users');
         $form->text('slug', 'Slug');
-        $form->email('email', 'Email');
+        $form->email('email', 'Email')->rules('required|email_address');
         $form->datetime('email_verified_at', 'Email verified at')->default(date('Y-m-d H:i:s'));
-        $form->password('password', 'Password');
+        $form->password('password', 'Password')->rules('required');
         $form->text('description', 'Description');
         $form->text('avatar_path', 'Avatar path');
         $form->switch('confirmed', 'Confirmed');

@@ -74,7 +74,7 @@ $factory->define(App\Reply::class, function (Faker $faker) {
 });
 
 $factory->define(App\Channel::class, function (Faker $faker) {
-    $name = $faker->word;
+    $name = $faker->unique()->word;
 
     return [
         'name' => $name,
@@ -98,7 +98,7 @@ $factory->define(\Illuminate\Notifications\DatabaseNotification::class, function
 // categories
 $factory->define(App\Category::class, function (Faker $faker) {
     return [
-        'name' => $faker->word,
+        'name' => $faker->unique()->word,
     ];
 });
 
@@ -123,7 +123,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
 // topics
 $factory->define(App\Topic::class, function (Faker $faker) {
     return [
-        'name' => $faker->word,
+        'name' => $faker->unique()->word,
     ];
 });
 

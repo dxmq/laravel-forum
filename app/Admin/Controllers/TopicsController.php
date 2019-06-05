@@ -118,7 +118,7 @@ class TopicsController extends Controller
     {
         $form = new Form(new Topic);
 
-        $form->text('name', 'Name');
+        $form->text('name', 'Name')->rules('required|unique:topics|max:20');
 
         return $form;
     }

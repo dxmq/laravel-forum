@@ -17,7 +17,7 @@ class AdminTablesSeeder extends Seeder
                 'username' => 'admin',
                 'password' => bcrypt('admin'),
                 'name' => 'Administrator',
-            ],
+            ]
         );
 
         Encore\Admin\Auth\Database\Menu::truncate();

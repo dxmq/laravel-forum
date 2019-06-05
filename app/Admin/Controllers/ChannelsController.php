@@ -8,7 +8,6 @@ use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
-use Encore\Admin\Show;
 
 class ChannelsController extends Controller
 {
@@ -31,17 +30,34 @@ class ChannelsController extends Controller
     }
 
     /**
-     * @param Channel $channel
+     * Edit interface.
+     *
+     * @param mixed $id
      * @param Content $content
      * @return Content
      */
-    public function show(Channel $channel, Content $content)
+    public function edit(Channel $channel, Content $content)
     {
         return $content
             ->header('Channel')
-            ->description('detail')
-            ->body($this->detail($channel));
+            ->description('edit')
+            ->body($this->form()->edit($channel->id));
     }
+
+    /**
+     * Create interface.
+     *
+     * @param Content $content
+     * @return Content
+     */
+    public function create(Content $content)
+    {
+        return $content
+            ->header('Channel')
+            ->description('create')
+            ->body($this->form());
+    }
+
 
     /**
      * Make a grid builder.
@@ -58,38 +74,16 @@ class ChannelsController extends Controller
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
 
-        $grid->disableCreateButton();
-
-        $grid->actions(function ($actions) {
-            $actions->disableEdit();
-        });
-
         $grid->filter(function ($filter) {
             $filter->like('name');
         });
 
-        return $grid;
-    }
-
-    /**
-     * @param $channel
-     * @return Show
-     */
-    protected function detail($channel)
-    {
-        $show = new Show($channel);
-
-        $show->id('Id');
-        $show->name('Name');
-        $show->slug('Slug');
-        $show->created_at('Created at');
-        $show->updated_at('Updated at');
-
-        $show->panel()->tools(function ($tools) {
-            $tools->disableEdit();
+        $grid->actions(function ($actions) {
+            //关闭行操作 编辑
+            $actions->disableView();
         });
 
-        return $show;
+        return $grid;
     }
 
     /**
@@ -101,9 +95,19 @@ class ChannelsController extends Controller
     {
         $form = new Form(new Channel);
 
-        $form->text('name', 'Name');
-        $form->text('slug', 'Slug');
+        $form->text('name', 'Name')->rules('required|max:15|unique:channels');
 
         return $form;
+    }
+
+    public function update($id)
+    {
+        $this->form()->update($id);
+
+        $channel = Channel::findOrFail($id);
+        $channel->slug = $channel->name;
+        $channel->save();
+
+        return redirect('/admin/channels');
     }
 }

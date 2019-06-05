@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('avatar_path')->nullable();
             $table->boolean('confirmed')->default(false);
             $table->string('confirmation_token', 25)->nullable()->unique();
-            $table->string('openid', 40)->default('')->comment('第三方用户id');
             $table->rememberToken();
             $table->timestamps();
         });
