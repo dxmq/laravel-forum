@@ -17,11 +17,9 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('slug')->unique()->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('github_name')->comment('github')->nullable();
-            $table->string('qq_name')->comment('qq')->nullable();
             $table->enum('provider', ['web', 'mobile', 'github', 'qq', 'wechat'])->default('web');
             $table->string('description', 200)->nullable();
             $table->string('avatar_path')->nullable();

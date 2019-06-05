@@ -44,7 +44,7 @@
                             <label for="password" class="col-md-4 control-label">密码</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required autocomplete>
+                                <input id="password" type="password" class="form-control" name="password" required autocomplete placeholder="至少为8位">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">

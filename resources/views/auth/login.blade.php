@@ -13,15 +13,15 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">邮箱</label>
+                                <label for="name" class="col-md-4 control-label">用户名</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}" required autofocus>
+                                    <input id="name" type="text" class="form-control" name="name"
+                                           value="{{ old('name') }}" required autofocus>
 
-                                    @if ($errors->has('email'))
+                                    @if ($errors->has('name'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -67,11 +67,11 @@
 
                             <div class="form-group">
                                 <div class="col-md-3 col-md-offset-10">
-                                    <a class="btn btn-link" href="{{ route('github') }}" title="github登录">
-                                        <span class="iconfont icon-github"></span>
-                                    </a>
                                     <a href="{{ route('qq') }}" title="QQ登录">
                                         <img src="{{ asset('images/qq.png') }}" alt="QQ">
+                                    </a>
+                                    <a class="btn btn-link" href="{{ route('github') }}" title="github登录">
+                                        <span class="iconfont icon-github"></span>
                                     </a>
                                 </div>
                             </div>
