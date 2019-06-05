@@ -1,7 +1,7 @@
 @if(session('email_error') != null)
-    <div class="alert alert-danger">
+    <div class="alert alert-warning">
         <ul>
-            <li style="color: red">{{ session('email_error') }}</li>
+            <li>{{ session('email_error') }}</li>
         </ul>
     </div>
 @endif

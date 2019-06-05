@@ -18,7 +18,13 @@ class QqController extends Controller
     {
         $qq_user = Socialite::driver('qq')->user();
 
-        $user = User::where('name', $qq_user->getName())->first();
+        // 判断用户是否登录过
+        $countMap = [
+            'provider' => $qq_user->getProviderName(),
+            'openid' => $qq_user->getId(),
+        ];
+
+        $user = User::where($countMap)->first();
 
         if (!$user) {
             try {
@@ -29,6 +35,7 @@ class QqController extends Controller
                     'avatar_path' => $qq_user->getAvatar(),
                     'qq_name' => $qq_user->getName(),
                     'provider' => $qq_user->getProviderName(),
+                    'openid' => $qq_user->getId(),
                     'password' => bcrypt(str_random(6)),
                     'confirmed' => 1,
                 ]);

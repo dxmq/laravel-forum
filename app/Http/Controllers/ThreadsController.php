@@ -29,6 +29,8 @@ class ThreadsController extends Controller
 
         return view('threads.index', [
             'threads' => $threads,
+            'channelName' => $channel->name,
+            'channelSlug' => $channel->slug,
         ]);
     }
 

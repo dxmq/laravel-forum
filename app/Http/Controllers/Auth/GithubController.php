@@ -18,7 +18,13 @@ class GithubController extends Controller
     {
         $github_user = Socialite::driver('github')->user();
 
-        $user = User::where('name', $github_user->getUserName())->first();
+        // 判断用户是否登录过
+        $countMap = [
+            'provider' => $github_user->getProviderName(),
+            'openid' => $github_user->getId(),
+        ];
+
+        $user = User::where($countMap)->first();
 
         if (!$user) {
             try {
@@ -28,6 +34,7 @@ class GithubController extends Controller
                     'email' => $github_user->getEmail(),
                     'avatar_path' => $github_user->getAvatar(),
                     'provider' => $github_user->getProviderName(),
+                    'openid' => $github_user->getId(),
                     'password' => bcrypt(str_random(6)),
                     'confirmed' => 1,
                 ]);
