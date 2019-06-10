@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="540313fa-a892-4498-9699-30fdc70be041" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Channel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_04_29_154920_create_channels_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_04_29_154920_create_channels_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts/partials/_right.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/partials/_right.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/threads/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/threads/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +56,7 @@
           <entry key="json" value="18" />
           <entry key="md" value="21" />
           <entry key="partials" value="1" />
-          <entry key="php" value="1162" />
+          <entry key="php" value="1166" />
           <entry key="png" value="8" />
           <entry key="scss" value="2" />
           <entry key="svg" value="2" />
@@ -71,13 +67,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key=".env file" value="4" />
-          <entry key="Blade" value="336" />
+          <entry key="Blade" value="337" />
           <entry key="CSS" value="28" />
           <entry key="Image" value="15" />
           <entry key="JSON" value="18" />
           <entry key="JavaScript" value="51" />
           <entry key="Markdown" value="21" />
-          <entry key="PHP" value="826" />
+          <entry key="PHP" value="829" />
           <entry key="PLAIN_TEXT" value="16" />
           <entry key="SCSS" value="2" />
           <entry key="SVG" value="2" />
@@ -95,23 +91,23 @@
           <entry key="js" value="223" />
           <entry key="json" value="11" />
           <entry key="md" value="1699" />
-          <entry key="php" value="44871" />
+          <entry key="php" value="44943" />
           <entry key="scss" value="2" />
-          <entry key="txt" value="1359" />
+          <entry key="txt" value="1383" />
           <entry key="vue" value="1944" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="21" />
-          <entry key="Blade" value="15379" />
+          <entry key="Blade" value="15449" />
           <entry key="CSS" value="457" />
           <entry key="HTML" value="1" />
           <entry key="JSON" value="11" />
           <entry key="JavaScript" value="223" />
           <entry key="Markdown" value="1699" />
-          <entry key="PHP" value="29491" />
-          <entry key="PLAIN_TEXT" value="1546" />
+          <entry key="PHP" value="29493" />
+          <entry key="PLAIN_TEXT" value="1570" />
           <entry key="SCSS" value="2" />
           <entry key="Vue.js" value="1944" />
         </counts>
@@ -126,35 +122,18 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/posts/partials/_right.blade.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="55" column="70" lean-forward="true" selection-start-line="55" selection-start-column="70" selection-end-line="55" selection-end-column="70" />
-              <folding>
-                <element signature="e#2235#2241#1#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="2205">
+              <caret line="119" column="28" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProfilesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="56" column="33" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="33" />
-              <folding>
-                <element signature="e#33#50#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="116" column="49" selection-start-line="116" selection-start-column="49" selection-end-line="116" selection-end-column="49" />
-            </state>
+            <state relative-caret-position="-1384" />
           </provider>
         </entry>
       </file>
@@ -241,7 +220,6 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/partials/_email_alert.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/threads/index.blade.php" />
         <option value="$PROJECT_DIR$/database/seeds/AdminTablesSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/GithubController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
@@ -258,9 +236,10 @@
         <option value="$PROJECT_DIR$/app/Thread.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_29_154920_create_channels_table.php" />
         <option value="$PROJECT_DIR$/app/Channel.php" />
-        <option value="$PROJECT_DIR$/resources/views/posts/partials/_right.blade.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
+        <option value="$PROJECT_DIR$/resources/views/posts/partials/_right.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/threads/index.blade.php" />
       </list>
     </option>
   </component>
@@ -456,7 +435,14 @@
               <item name="laravel-bbs" type="b2602c69:ProjectViewProjectNode" />
               <item name="laravel-bbs" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Admin" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel-bbs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel-bbs" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel-bbs" type="b2602c69:ProjectViewProjectNode" />
@@ -488,7 +474,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="user&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/User.php&#10;thread&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/ThreadsController.php&#10;appser&#9;null&#9;null&#10;right&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/posts/partials/_right.blade.php&#10;factory&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/database/factories/ModelFactory.php&#10;Model&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/database/factories/ModelFactory.php&#10;PostsCont&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/PostsController.php&#10;users&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/database/migrations/2014_10_12_000000_create_users_table.php&#10;github&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/GithubController.php&#10;web.php&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/routes/web.php&#10;login&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/auth/login.blade.php&#10;QQ&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/QqController.php&#10;Gith&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/GithubController.php&#10;index.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/posts/index.blade.php&#10;index.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/threads/index.blade.php&#10;register&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/auth/register.blade.php&#10;login.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/auth/login.blade.php&#10;LoginCo&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/LoginController.php&#10;index&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/threads/index.blade.php&#10;nav&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/nav.blade.php&#10;index.css&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/public/css/index.css&#10;footer&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/partials/footer.blade.php&#10;githubc&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/GithubController.php&#10;PostsContr&#9;null&#9;null&#10;PostContro&#9;null&#9;null&#10;Post.php&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Post.php&#10;other.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/docs/1.0/others.md&#10;admin.php&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/config/admin.php&#10;show.b&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/profiles/show.blade.php&#10;userta&#9;null&#9;null&#10;na&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/nav.blade.php&#10;User.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/User.php&#10;Regis&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/RegisterController.php&#10;Register&#9;null&#9;null&#10;insta&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/docs/1.0/installing.md&#10;postsRe&#9;null&#9;null&#10;app.blade&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/app.blade.php&#10;app&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/app.blade.php&#10;create.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/posts/create.blade.php&#10;login.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/auth/login.blade.php&#10;web&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/routes/web.php&#10;.env&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/.env&#10;show&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/threads/show.blade.php&#10;pur&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/config/purifier.php&#10;show.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/profiles/show.blade.php&#10;footer.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/partials/footer.blade.php&#10;app.b&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/app.blade.php&#10;web.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/routes/web.php&#10;indexContr&#9;null&#9;null&#10;nav.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/nav.blade.php" />
+    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/threads/index.blade.php&#10;user&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/User.php&#10;thread&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/ThreadsController.php&#10;appser&#9;null&#9;null&#10;right&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/posts/partials/_right.blade.php&#10;factory&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/database/factories/ModelFactory.php&#10;Model&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/database/factories/ModelFactory.php&#10;PostsCont&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/PostsController.php&#10;users&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/database/migrations/2014_10_12_000000_create_users_table.php&#10;github&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/GithubController.php&#10;web.php&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/routes/web.php&#10;login&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/auth/login.blade.php&#10;QQ&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/QqController.php&#10;Gith&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/GithubController.php&#10;index.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/posts/index.blade.php&#10;index.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/threads/index.blade.php&#10;register&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/auth/register.blade.php&#10;login.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/auth/login.blade.php&#10;LoginCo&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/LoginController.php&#10;nav&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/nav.blade.php&#10;index.css&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/public/css/index.css&#10;footer&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/partials/footer.blade.php&#10;githubc&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/GithubController.php&#10;PostsContr&#9;null&#9;null&#10;PostContro&#9;null&#9;null&#10;Post.php&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Post.php&#10;other.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/docs/1.0/others.md&#10;admin.php&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/config/admin.php&#10;show.b&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/profiles/show.blade.php&#10;userta&#9;null&#9;null&#10;na&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/nav.blade.php&#10;User.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/User.php&#10;Regis&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/app/Http/Controllers/Auth/RegisterController.php&#10;Register&#9;null&#9;null&#10;insta&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/docs/1.0/installing.md&#10;postsRe&#9;null&#9;null&#10;app.blade&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/app.blade.php&#10;app&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/app.blade.php&#10;create.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/posts/create.blade.php&#10;login.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/auth/login.blade.php&#10;web&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/routes/web.php&#10;.env&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/.env&#10;show&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/threads/show.blade.php&#10;pur&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/config/purifier.php&#10;show.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/profiles/show.blade.php&#10;footer.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/partials/footer.blade.php&#10;app.b&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/app.blade.php&#10;web.&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/routes/web.php&#10;indexContr&#9;null&#9;null&#10;nav.bl&#9;FILE&#9;file://C:/Users/mint/Documents/PHP/Laravel/laravel-bbs/resources/views/layouts/nav.blade.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -560,14 +546,7 @@
       <workItem from="1559356737395" duration="39066000" />
       <workItem from="1559477192982" duration="7777000" />
       <workItem from="1559488202117" duration="58751000" />
-      <workItem from="1560174982760" duration="2811000" />
-    </task>
-    <task id="LOCAL-00031" summary="create posts topics categories table">
-      <created>1558147946303</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1558147946303</updated>
+      <workItem from="1560174982760" duration="3454000" />
     </task>
     <task id="LOCAL-00032" summary="posts create">
       <created>1558152936234</created>
@@ -905,11 +884,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559748291569</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="factory bugFix">
+      <created>1560178009168</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1560178009169</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="541480000" />
+    <option name="totallyTimeSpent" value="542123000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -922,9 +908,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.269437" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20442359" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -982,7 +967,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fan on users" />
     <MESSAGE value="add modal for star and fan" />
     <MESSAGE value="optimize sql" />
     <MESSAGE value="previous and next post" />
@@ -1007,23 +991,10 @@
     <MESSAGE value="bugFix" />
     <MESSAGE value="thread index filter optimize" />
     <MESSAGE value="Background enhancement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Background enhancement" />
+    <MESSAGE value="factory bugFix" />
+    <option name="LAST_COMMIT_MESSAGE" value="factory bugFix" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="650" column="34" lean-forward="true" selection-start-line="650" selection-start-column="34" selection-end-line="650" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/posts/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/partials/footer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1138,13 +1109,6 @@
         <state relative-caret-position="-439" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/threads/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Filters/ThreadsFilters.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-84">
@@ -1199,13 +1163,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Fan.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="905">
-          <caret line="119" column="28" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Admin/Controllers/CommentsController.php">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1321,16 +1278,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/posts/partials/_right.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="55" column="70" lean-forward="true" selection-start-line="55" selection-start-column="70" selection-end-line="55" selection-end-column="70" />
-          <folding>
-            <element signature="e#2235#2241#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
@@ -1347,12 +1294,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="56" column="33" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="33" />
+        <state relative-caret-position="294">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="e#33#50#0#PHP" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/threads/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/posts/partials/_right.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+          <folding>
+            <element signature="e#2235#2241#1#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BestRepliesController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2205">
+          <caret line="119" column="28" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProfilesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1384" />
       </provider>
     </entry>
   </component>

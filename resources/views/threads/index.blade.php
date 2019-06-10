@@ -84,7 +84,10 @@
                                             <span title="最后活跃于"
                                                   class="timeago">{{ $thread->updated_at->diffForHumans()}}</span>
                                             <span> / </span>
-                                            <span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span>
+                                            <span title="回复数" class="fa fa-reply"></span>
+                                            <span title="回复数">{{ $thread->replies()->count() }}</span>
+                                            <span> / </span>
+                                            <span aria-hidden="true" class="glyphicon glyphicon-eye-open" title="查看数"></span>
                                             <span title="查看数">{{ visits($thread)->count()}}</span>
                                         </div>
                                     </div>
