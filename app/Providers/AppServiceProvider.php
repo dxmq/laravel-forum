@@ -37,11 +37,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Carbon::setLocale('zh');
 
+        // thread channels
         View::composer(['threads.index', 'threads.create'], function ($view) {
             $channel = Channel::with('threads')->get();
             $view->with('channels', $channel);
         });
 
+        // post右边
         View::composer(['posts.index', 'posts.show', 'posts.edit', 'posts.create'], function ($view) {
             $categories = Category::with('posts')->get();
 
@@ -55,6 +57,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with(['categories' => $categories, 'topics' => $topics, 'comments' => $comments]);
         });
 
+        // 站点统计
         View::composer(['*'], function ($view) {
             $postCount = Post::count();
             $threadCount = Thread::count();
@@ -63,6 +66,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with(compact('postCount', 'threadCount', 'userCount'));
         });
 
+        // 路径url
         $ekko = new Ekko();
         View::share('ekko', $ekko);
 

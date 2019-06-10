@@ -114,6 +114,11 @@ class User extends Authenticatable implements SearchingInterface
         return $this->hasMany('App\Post')->latest();
     }
 
+    public function getPostsCount() // 获取当前用户的文章数
+    {
+        return $this->posts()->count();
+    }
+
     /**
      * 用户浏览话题的动作
      * @param $thread

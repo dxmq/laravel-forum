@@ -11,10 +11,9 @@
         <div class="panel-heading">
             最新评论
         </div>
-
         <div class="panel-body">
             <ul class="list-group">
-                @foreach($comments as $comment)
+                @forelse($comments as $comment)
                     <li class="list-group-item comment-li">
                         <a href="{{ route('profile', $comment->commenter->slug) }}"
                            title="{{ $comment->commenter->name }}">
@@ -39,7 +38,9 @@
                         @endif
                         <p>{!! str_limit($comment->comment, 30, '...') !!}</p>
                     </li>
-                @endforeach
+                    @empty
+                        暂无评论！
+                @endforelse
             </ul>
         </div>
     </div>

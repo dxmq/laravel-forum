@@ -14,11 +14,6 @@ class Channel extends Model
             ]);
         });
 
-        static::updated(function ($channel) {
-            $channel->slug = $channel->name;
-            $channel->save();
-        });
-
         static::deleting(function ($channel) {
            $channel->threads()->delete();
         });
