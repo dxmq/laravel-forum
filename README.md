@@ -1,6 +1,5 @@
 ### Laravel-forum是一个Laravel 5.8建立的文章发布和问答系统，后台基于 [laravel-admin](https://laravel-admin.org/)。
 
-- [预览](#perview-link)
 - [功能介绍](#feature-link)
 - [安装](#install-link)
 - [克隆源码到本地](#first-link)
@@ -12,12 +11,6 @@
 - [License](#license-link)
 
 
-<a name="perview-link">
-    
-    ### 预览
-    
-    ![Snipaste_2019-06-02_20-50-07.png](https://cdn.nlark.com/yuque/0/2019/png/385548/1562201681843-7680d7dc-1d91-4ae5-9aba-d95c7810a6f9.png#align=left&display=inline&height=886&name=Snipaste_2019-06-02_20-50-07.png&originHeight=886&originWidth=1603&size=121664&status=done&width=1603)
-  
 <a name="feature-link">
 
    ### 功能介绍
