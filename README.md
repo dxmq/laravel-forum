@@ -1,3 +1,5 @@
+> 注：最新的项目地址--> [laravel-forum](https://gitee.com/squash/laravel-forum.git). 
+
 ### Laravel-forum是一个Laravel 5.8建立的文章发布和问答系统，后台基于 [laravel-admin](https://laravel-admin.org/)。
 
 - [功能介绍](#feature-link)
